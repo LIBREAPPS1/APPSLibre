@@ -70,8 +70,9 @@
     .stat strong { font-size: 1.35rem; letter-spacing: -.04em; display: block; }
     .stat span { color: #98a28f; font-size: .76rem; }
     /* Al cargar, solo se muestra la portada. El resto aparece al explorar el catálogo. */
-    #explorar, #filosofia, #sugerir, footer { display: none; }
+    #explorar, #noticias, #filosofia, #sugerir, footer { display: none; }
     body.catalog-visible #explorar,
+    body.catalog-visible #noticias,
     body.catalog-visible #filosofia,
     body.catalog-visible #sugerir,
     body.catalog-visible footer { display: block; }
@@ -117,6 +118,27 @@
     .empty-state { display:none; border:1px dashed #3a4531; border-radius:20px; padding:44px 20px; text-align:center; color:#9ca691; }
     .empty-state strong { display:block; color:#edf2e8; margin-bottom:7px; font-size:1.1rem; }
     .empty-state button { margin-top:14px; border:1px solid #566544; background:#20291a; color:var(--lime); padding:9px 14px; border-radius:10px; cursor:pointer; }
+    /* Noticias: sección editorial que aparece cuando el visitante navega por el sitio. */
+    .news-section { padding: 10px 0 76px; }
+    .news-feature { overflow:hidden; border:1px solid #2b3227; border-radius:24px; background:linear-gradient(145deg,#1b2118,#151914 78%); }
+    .news-intro { display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:30px; padding:27px; }
+    .news-meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px; color:#9da891; font-size:.73rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .news-label { display:inline-flex; align-items:center; border:1px solid #435331; background:#1d2817; color:var(--lime); padding:5px 9px; border-radius:999px; letter-spacing:.04em; }
+    .news-title { margin:15px 0 13px; font-size:clamp(1.75rem,3vw,2.65rem); line-height:1.06; letter-spacing:-.055em; }
+    .news-lead { margin:0; color:#c1cbb8; font-size:1.03rem; line-height:1.75; }
+    .news-cover { margin:0; min-width:0; }
+    .news-cover img { display:block; width:100%; aspect-ratio:3/2; object-fit:cover; border-radius:17px; border:1px solid #333d2d; background:#20261d; }
+    .news-cover figcaption, .news-inline-photo figcaption { margin-top:8px; color:#899481; font-size:.74rem; line-height:1.5; }
+    .news-copy { max-width:900px; margin:0 auto; padding:2px 30px 32px; color:#aeb8a7; font-size:.95rem; line-height:1.85; }
+    .news-copy p { margin:0 0 17px; }
+    .news-copy h3 { margin:29px 0 10px; color:#edf2e8; font-size:1.3rem; line-height:1.2; letter-spacing:-.03em; }
+    .news-inline-photo { margin:25px 0; max-width:760px; }
+    .news-inline-photo img { display:block; width:100%; max-height:430px; object-fit:cover; border:1px solid #333d2d; border-radius:17px; background:#20261d; }
+    .news-callout { margin:24px 0; padding:17px 19px; border:1px solid #37432d; border-radius:15px; background:#1a2116; color:#c6d0bc; }
+    .news-callout strong { color:var(--lime); }
+    .news-sources { display:flex; flex-wrap:wrap; gap:10px; padding-top:19px; margin-top:23px; border-top:1px solid #2b3227; }
+    .news-source-link { display:inline-flex; align-items:center; gap:7px; padding:9px 12px; border:1px solid #384332; border-radius:10px; color:#d4ddcc; font-size:.8rem; font-weight:700; }
+    .news-source-link:hover { border-color:#697f4b; color:var(--lime); }
     .principles { padding: 0 0 85px; }
     .principle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
     .principle { padding:23px; background:#151914; border:1px solid #2a3225; border-radius:18px; }
@@ -138,7 +160,7 @@
     .toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#e2ffc0; color:#16200c; padding:12px 18px; border-radius:12px; font-size:.87rem; font-weight:750; box-shadow:0 8px 40px #0005; transition:all .25s; z-index:30; }
     .toast.show { opacity:1; transform:translate(-50%,0); }
     @media (max-width: 900px) { .hero-grid { grid-template-columns:1fr; gap:34px; } .visual { min-height:0; } .app-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero { padding-top:64px; } }
-    @media (max-width: 620px) { .container { width:min(100% - 30px, var(--max)); } .topbar { height:66px; } .nav-links { gap:14px; } .nav-links a:not(.nav-cta) { display:none; } .nav-cta { padding:9px 11px; font-size:.8rem; } .hero { padding:53px 0 35px; } h1 { font-size:clamp(2.6rem, 13vw, 4.3rem); } .hero-copy { font-size:1rem; } .visual { padding:19px; border-radius:22px; } .mini-apps { gap:8px; } .mini-app { padding:9px; gap:8px; } .mini-icon { width:33px; height:33px; border-radius:10px; } .mini-app strong { font-size:.77rem; } .mini-app small { font-size:.66rem; } .stat { padding:14px 10px; } .stat strong { font-size:1.2rem; } .stat span { font-size:.68rem; } .catalog { padding:46px 0 62px; } .section-top { align-items:start; flex-direction:column; gap:12px; } .toolbar { align-items:stretch; } .search-wrap { max-width:none; flex-basis:100%; } .sort-select { flex:1; } .app-grid { grid-template-columns:1fr; column-gap:0; row-gap:11px; } .app-photo { height:190px; } .principles { padding-bottom:56px; } .principle-grid { grid-template-columns:1fr; } .submit-banner { padding:23px; flex-direction:column; align-items:flex-start; margin-bottom:50px; } .footer-inner { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
+    @media (max-width: 620px) { .container { width:min(100% - 30px, var(--max)); } .topbar { height:66px; } .nav-links { gap:14px; } .nav-links a:not(.nav-cta):not([href="#noticias"]) { display:none; } .nav-cta { padding:9px 11px; font-size:.8rem; } .hero { padding:53px 0 35px; } h1 { font-size:clamp(2.6rem, 13vw, 4.3rem); } .hero-copy { font-size:1rem; } .visual { padding:19px; border-radius:22px; } .mini-apps { gap:8px; } .mini-app { padding:9px; gap:8px; } .mini-icon { width:33px; height:33px; border-radius:10px; } .mini-app strong { font-size:.77rem; } .mini-app small { font-size:.66rem; } .stat { padding:14px 10px; } .stat strong { font-size:1.2rem; } .stat span { font-size:.68rem; } .catalog { padding:46px 0 62px; } .section-top { align-items:start; flex-direction:column; gap:12px; } .toolbar { align-items:stretch; } .search-wrap { max-width:none; flex-basis:100%; } .sort-select { flex:1; } .app-grid { grid-template-columns:1fr; column-gap:0; row-gap:11px; } .app-photo { height:190px; } .principles { padding-bottom:56px; } .principle-grid { grid-template-columns:1fr; } .submit-banner { padding:23px; flex-direction:column; align-items:flex-start; margin-bottom:50px; } .footer-inner { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior:auto !important; transition:none !important; } }
   </style>
 </head>
@@ -148,6 +170,7 @@
       <a class="brand" href="#inicio" aria-label="LibreApps, inicio"><span class="brand-mark">L</span><span>libre<em>apps</em></span></a>
       <div class="nav-links">
         <a href="#explorar">Explorar apps</a>
+        <a href="#noticias">Noticias</a>
         <a href="#filosofia">Por qué libre</a>
         <a class="nav-cta" href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">+ Foro de apps ↗</a>
       </div>
@@ -180,7 +203,7 @@
             </div>
           </div>
           <div class="stats" aria-label="Datos del catálogo">
-            <div class="stat"><strong id="stat-apps">49</strong><span>apps para explorar</span></div>
+            <div class="stat"><strong id="stat-apps">51</strong><span>apps para explorar</span></div>
             <div class="stat"><strong id="stat-categories">4</strong><span>categorías</span></div>
             <div class="stat"><strong>0</strong><span>anuncios integrados</span></div>
           </div>
@@ -192,7 +215,7 @@
       <div class="container">
         <div class="section-top">
           <div><div class="section-kicker">El catálogo</div><h2>Encontrá tu próxima app.</h2><p class="section-desc">Buscá por nombre, explorá categorías y entrá al proyecto o su código fuente.</p></div>
-          <div class="result-count" id="result-count" aria-live="polite">49 aplicaciones</div>
+          <div class="result-count" id="result-count" aria-live="polite">51 aplicaciones</div>
         </div>
         <div class="toolbar">
           <div class="search-wrap">
@@ -207,6 +230,61 @@
         </div>
         <div class="app-grid" id="app-grid"></div>
         <div class="empty-state" id="empty-state"><strong>No encontramos aplicaciones.</strong>Probá con otra búsqueda o elegí una categoría distinta.<br><button id="reset-filters" type="button">Ver todas las apps</button></div>
+      </div>
+    </section>
+
+    <section class="news-section" id="noticias">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="section-kicker">Noticias de tecnología</div>
+            <h2>Lo nuevo en Android y software libre.</h2>
+            <p class="section-desc">Novedades importantes para entender mejor las apps, los dispositivos y la tecnología que usamos todos los días.</p>
+          </div>
+          <div class="result-count">Actualidad · Android</div>
+        </div>
+
+        <article class="news-feature">
+          <div class="news-intro">
+            <div>
+              <div class="news-meta"><span class="news-label">Android 17</span><span>Rendimiento · Memoria RAM</span></div>
+              <h2 class="news-title">Adiós a las apps que devoran tu RAM: Android les pondrá límite, y la gama baja lo va a notar más que nadie</h2>
+              <p class="news-lead">Desde febrero de 2027, Google Play empezará a aplicar nuevos umbrales de calidad relacionados con el uso de memoria. La idea es ayudar a que las aplicaciones con un consumo desmedido no perjudiquen la fluidez, especialmente en móviles con menos recursos.</p>
+            </div>
+            <figure class="news-cover">
+              <img src="https://i.blogs.es/56bebc/cmf-phone-1/1200_800.jpeg" alt="Teléfono Android de gama media" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <figcaption>Los teléfonos con menos memoria disponible pueden notar más los efectos de las apps exigentes.</figcaption>
+            </figure>
+          </div>
+
+          <div class="news-copy">
+            <p>Una de las novedades de Android 17 apunta a un problema cotidiano: cuando una aplicación consume demasiada RAM, el sistema puede volverse lento, otras apps pueden recargarse al cambiar entre ellas e incluso pueden producirse cierres. Google anunció que los límites de memoria de Android se ampliarán a más dispositivos, más allá de los Pixel donde la función comenzó a aparecer.</p>
+
+            <h3>Un momento muy oportuno</h3>
+            <p>El problema suele notarse más en los móviles económicos, que normalmente tienen menos memoria disponible y menos margen para mantener muchas aplicaciones abiertas a la vez. En esos equipos, una app que crece demasiado en segundo plano puede afectar la multitarea, aumentar el trabajo del sistema y provocar una experiencia menos fluida.</p>
+            <p>En un contexto de presión sobre el precio de los componentes, aprovechar mejor los recursos del teléfono es especialmente importante. Una gestión más estricta de la memoria no añade RAM física, pero puede ayudar a que el sistema reserve recursos para las tareas que el usuario está utilizando.</p>
+
+            <h3>Cómo funcionarán los límites de RAM</h3>
+            <p>Los límites no serán idénticos para todos los dispositivos: se ajustarán en función de la memoria total del teléfono y del tipo de aplicación. Google contempla umbrales distintos para apps y juegos, ya que estos últimos suelen necesitar más recursos. Android también puede actuar cuando un proceso consume demasiada memoria y amenaza la estabilidad del sistema.</p>
+            <figure class="news-inline-photo">
+              <img src="https://i.blogs.es/142ca4/android-17-limites-ram/1200_800.jpeg" alt="Ilustración sobre los límites de memoria RAM en Android 17" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <figcaption>Android 17 incorpora límites de memoria por aplicación; los umbrales varían según el dispositivo y el estado de la app.</figcaption>
+            </figure>
+            <p>Las aplicaciones que ejecutan tareas exigentes —por ejemplo, modelos de inteligencia artificial en el propio dispositivo— tendrán que optimizar su consumo para funcionar dentro de las condiciones aplicables. El resultado concreto dependerá de cada app y de cómo gestione sus recursos.</p>
+
+            <h3>Cuándo se pone en marcha</h3>
+            <p>Google Play anunció que, desde febrero de 2027, las apps y los juegos deberán cumplir nuevos umbrales de comportamiento relacionados con el uso de memoria, el consumo de bitmaps y la optimización del código. Las aplicaciones que no cumplan podrían perder visibilidad en la tienda o tener restricciones para publicar nuevas versiones.</p>
+            <p>Además, a partir de abril de 2027, las apps de Google Play que usan inicio de sesión deberán admitir la restauración de credenciales para facilitar el cambio a otro dispositivo. Son cambios dirigidos principalmente a desarrolladores, pero que podrían repercutir en la estabilidad y la experiencia de los usuarios.</p>
+
+            <div class="news-callout"><strong>Qué significa para vos:</strong> no quiere decir que todos los teléfonos vayan a recibir más RAM ni que cada app vaya a tener el mismo límite. El objetivo es reducir consumos problemáticos y mejorar la estabilidad; el efecto dependerá del dispositivo, la aplicación y sus actualizaciones.</div>
+
+            <div class="news-sources" aria-label="Fuentes relacionadas">
+              <a class="news-source-link" href="https://android-developers.googleblog.com/2026/08/app-broader-memory-limits.html" target="_blank" rel="noopener noreferrer">Google Android Developers ↗</a>
+              <a class="news-source-link" href="https://developer.android.com/about/versions/17/behavior-changes-all" target="_blank" rel="noopener noreferrer">Documentación de Android 17 ↗</a>
+              <a class="news-source-link" href="https://support.google.com/googleplay/android-developer/answer/17492799" target="_blank" rel="noopener noreferrer">Requisitos de calidad de Google Play ↗</a>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -239,7 +317,7 @@
     </section>
   </main>
 
-  <footer><div class="container footer-inner"><div><strong>libreapps</strong> · Un directorio independiente para explorar software abierto.</div><div class="footer-links"><a href="#explorar">Catálogo</a><a href="#filosofia">Filosofía</a><a href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">Foro de GitHub ↗</a></div><div>Hecho con curiosidad <span aria-hidden="true">↗</span></div></div></footer>
+  <footer><div class="container footer-inner"><div><strong>libreapps</strong> · Un directorio independiente para explorar software abierto.</div><div class="footer-links"><a href="#explorar">Catálogo</a><a href="#noticias">Noticias</a><a href="#filosofia">Filosofía</a><a href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">Foro de GitHub ↗</a></div><div>Hecho con curiosidad <span aria-hidden="true">↗</span></div></div></footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -620,6 +698,32 @@
     "site": "https://github.com/Klisee/pokemon-reloaded-android/releases",
     "source": "https://github.com/Klisee/pokemon-reloaded-android",
     "featured": 49
+  },
+  {
+    "id": "bedrocklauncher",
+    "name": "BedrockLauncher",
+    "category": "Juegos",
+    "desc": "Lanzador alternativo para Minecraft Bedrock Edition. Consultá el repositorio para revisar compatibilidad, requisitos y opciones de instalación.",
+    "tag": "Launcher · Minecraft Bedrock · PC",
+    "initials": "BL",
+    "color": "#88c9ee",
+    "photo": "https://opengraph.githubassets.com/1/BedrockLauncher/BedrockLauncher",
+    "site": "https://github.com/BedrockLauncher/BedrockLauncher",
+    "source": "https://github.com/BedrockLauncher/BedrockLauncher",
+    "featured": 50
+  },
+  {
+    "id": "polymc",
+    "name": "PolyMC (Minecraft Java)",
+    "category": "Juegos",
+    "desc": "Launcher de código abierto para gestionar instancias, versiones y modpacks de Minecraft: Java Edition. Revisá el estado y las instrucciones actuales en su repositorio.",
+    "tag": "Launcher · Minecraft Java · PC",
+    "initials": "PM",
+    "color": "#b9a6f6",
+    "photo": "https://opengraph.githubassets.com/1/PolyMC/PolyMC",
+    "site": "https://github.com/PolyMC/PolyMC",
+    "source": "https://github.com/PolyMC/PolyMC",
+    "featured": 51
   }
 ]);
     const appGrid = document.getElementById('app-grid');
@@ -760,6 +864,10 @@
     document.querySelectorAll('a[href="#filosofia"]').forEach(a => a.addEventListener('click', event => {
       event.preventDefault();
       revealContent('filosofia');
+    }));
+    document.querySelectorAll('a[href="#noticias"]').forEach(a => a.addEventListener('click', event => {
+      event.preventDefault();
+      revealContent('noticias');
     }));
     buildCategoryFilters();
     render();
