@@ -118,18 +118,37 @@
     .empty-state { display:none; border:1px dashed #3a4531; border-radius:20px; padding:44px 20px; text-align:center; color:#9ca691; }
     .empty-state strong { display:block; color:#edf2e8; margin-bottom:7px; font-size:1.1rem; }
     .empty-state button { margin-top:14px; border:1px solid #566544; background:#20291a; color:var(--lime); padding:9px 14px; border-radius:10px; cursor:pointer; }
-    /* Noticias: sección editorial que aparece cuando el visitante navega por el sitio. */
+    /* Noticias con el mismo lenguaje visual de las tarjetas de apps. */
     .news-section { padding: 10px 0 76px; }
-    .news-feature { overflow:hidden; border:1px solid #2b3227; border-radius:24px; background:linear-gradient(145deg,#1b2118,#151914 78%); }
-    .news-intro { display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:30px; padding:27px; }
-    .news-meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px; color:#9da891; font-size:.73rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .news-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:15px; align-items:start; }
+    .news-feature { min-width:0; overflow:hidden; border:1px solid #2b3227; border-radius:19px; background:var(--panel); padding:15px; display:flex; flex-direction:column; align-self:start; position:relative; transition:transform .2s,border-color .2s,background .2s; }
+    .news-feature:not(.expanded):hover { transform:translateY(-3px); border-color:#48563a; background:#1a2018; }
+    .news-intro { display:flex; flex-direction:column; align-items:stretch; gap:0; padding:0; }
+    .news-intro > div { order:1; min-width:0; }
+    .news-meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px; color:#9da891; font-size:.7rem; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
     .news-label { display:inline-flex; align-items:center; border:1px solid #435331; background:#1d2817; color:var(--lime); padding:5px 9px; border-radius:999px; letter-spacing:.04em; }
-    .news-title { margin:15px 0 13px; font-size:clamp(1.75rem,3vw,2.65rem); line-height:1.06; letter-spacing:-.055em; }
-    .news-lead { margin:0; color:#c1cbb8; font-size:1.03rem; line-height:1.75; }
-    .news-cover { margin:0; min-width:0; }
-    .news-cover img { display:block; width:100%; aspect-ratio:3/2; object-fit:cover; border-radius:17px; border:1px solid #333d2d; background:#20261d; }
+    .news-title { margin:10px 0 8px; font-size:1.03rem; line-height:1.3; letter-spacing:-.035em; }
+    .news-lead { margin:0; color:#abb4a4; font-size:.84rem; line-height:1.65; }
+    .news-cover { order:0; margin:0 0 16px; min-width:0; }
+    .news-cover img { display:block; width:100%; height:166px; aspect-ratio:auto; object-fit:cover; object-position:center; border-radius:13px; border:1px solid #333d2d; background:#20261d; }
     .news-cover figcaption, .news-inline-photo figcaption { margin-top:8px; color:#899481; font-size:.74rem; line-height:1.5; }
-    .news-copy { max-width:900px; margin:0 auto; padding:2px 30px 32px; color:#aeb8a7; font-size:.95rem; line-height:1.85; }
+    .news-cover figcaption { display:none; }
+    .news-card-bottom { display:flex; align-items:center; justify-content:space-between; gap:10px; padding-top:14px; margin-top:17px; border-top:1px solid #2b3227; }
+    .news-card-label { display:inline-flex; align-items:center; gap:6px; color:#b5c7a1; font-size:.73rem; }
+    .news-card-label::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--lime); flex:0 0 auto; }
+    .news-read-toggle { display:inline-flex; align-items:center; gap:5px; border:0; padding:0; background:transparent; color:#d1d9ca; font:inherit; font-size:.76rem; font-weight:750; cursor:pointer; white-space:nowrap; }
+    .news-read-toggle:hover { color:var(--lime); }
+    .news-copy { display:none; max-width:900px; width:100%; margin:0 auto; padding:20px 30px 32px; color:#aeb8a7; font-size:.95rem; line-height:1.85; }
+    .news-feature.expanded { grid-column:1 / -1; padding:0; border-radius:24px; background:linear-gradient(145deg,#1b2118,#151914 78%); }
+    .news-feature.expanded .news-intro { display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:30px; padding:27px; }
+    .news-feature.expanded .news-intro > div { order:0; }
+    .news-feature.expanded .news-cover { order:0; margin:0; }
+    .news-feature.expanded .news-cover img { height:auto; aspect-ratio:3/2; border-radius:17px; }
+    .news-feature.expanded .news-cover figcaption { display:block; }
+    .news-feature.expanded .news-title { margin:15px 0 13px; font-size:clamp(1.75rem,3vw,2.65rem); line-height:1.06; letter-spacing:-.055em; }
+    .news-feature.expanded .news-lead { color:#c1cbb8; font-size:1.03rem; line-height:1.75; }
+    .news-feature.expanded .news-card-bottom { margin:0 27px; }
+    .news-feature.expanded .news-copy { display:block; }
     .news-copy p { margin:0 0 17px; }
     .news-copy h3 { margin:29px 0 10px; color:#edf2e8; font-size:1.3rem; line-height:1.2; letter-spacing:-.03em; }
     .news-inline-photo { margin:25px 0; max-width:760px; }
@@ -139,6 +158,16 @@
     .news-sources { display:flex; flex-wrap:wrap; gap:10px; padding-top:19px; margin-top:23px; border-top:1px solid #2b3227; }
     .news-source-link { display:inline-flex; align-items:center; gap:7px; padding:9px 12px; border:1px solid #384332; border-radius:10px; color:#d4ddcc; font-size:.8rem; font-weight:700; }
     .news-source-link:hover { border-color:#697f4b; color:var(--lime); }
+    .news-check-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:18px 0 24px; }
+    .news-check-card { border:1px solid #30392a; border-radius:14px; padding:16px; background:#191e17; }
+    .news-check-card h4 { margin:0 0 10px; color:#edf2e8; font-size:.95rem; }
+    .news-check-card ul { padding-left:19px; margin:0; }
+    .news-check-card li { margin:5px 0; }
+    .spec-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:20px 0 24px; }
+    .spec-item { border:1px solid #30392a; border-radius:12px; padding:13px 15px; background:#191e17; }
+    .spec-item dt { margin-bottom:5px; color:var(--lime); font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.07em; }
+    .spec-item dd { margin:0; color:#d2dacb; font-size:.85rem; line-height:1.6; }
+    .news-small-note { color:#85907d; font-size:.78rem; line-height:1.65; }
     .principles { padding: 0 0 85px; }
     .principle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
     .principle { padding:23px; background:#151914; border:1px solid #2a3225; border-radius:18px; }
@@ -160,7 +189,7 @@
     .toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#e2ffc0; color:#16200c; padding:12px 18px; border-radius:12px; font-size:.87rem; font-weight:750; box-shadow:0 8px 40px #0005; transition:all .25s; z-index:30; }
     .toast.show { opacity:1; transform:translate(-50%,0); }
     @media (max-width: 900px) { .hero-grid { grid-template-columns:1fr; gap:34px; } .visual { min-height:0; } .app-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero { padding-top:64px; } }
-    @media (max-width: 620px) { .container { width:min(100% - 30px, var(--max)); } .topbar { height:66px; } .nav-links { gap:14px; } .nav-links a:not(.nav-cta):not([href="#noticias"]) { display:none; } .nav-cta { padding:9px 11px; font-size:.8rem; } .hero { padding:53px 0 35px; } h1 { font-size:clamp(2.6rem, 13vw, 4.3rem); } .hero-copy { font-size:1rem; } .visual { padding:19px; border-radius:22px; } .mini-apps { gap:8px; } .mini-app { padding:9px; gap:8px; } .mini-icon { width:33px; height:33px; border-radius:10px; } .mini-app strong { font-size:.77rem; } .mini-app small { font-size:.66rem; } .stat { padding:14px 10px; } .stat strong { font-size:1.2rem; } .stat span { font-size:.68rem; } .catalog { padding:46px 0 62px; } .section-top { align-items:start; flex-direction:column; gap:12px; } .toolbar { align-items:stretch; } .search-wrap { max-width:none; flex-basis:100%; } .sort-select { flex:1; } .app-grid { grid-template-columns:1fr; column-gap:0; row-gap:11px; } .app-photo { height:190px; } .principles { padding-bottom:56px; } .principle-grid { grid-template-columns:1fr; } .submit-banner { padding:23px; flex-direction:column; align-items:flex-start; margin-bottom:50px; } .footer-inner { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
+    @media (max-width: 620px) { .container { width:min(100% - 30px, var(--max)); } .topbar { height:66px; } .nav-links { gap:14px; } .nav-links a:not(.nav-cta):not([href="#noticias"]) { display:none; } .nav-cta { padding:9px 11px; font-size:.8rem; } .hero { padding:53px 0 35px; } h1 { font-size:clamp(2.6rem, 13vw, 4.3rem); } .hero-copy { font-size:1rem; } .visual { padding:19px; border-radius:22px; } .mini-apps { gap:8px; } .mini-app { padding:9px; gap:8px; } .mini-icon { width:33px; height:33px; border-radius:10px; } .mini-app strong { font-size:.77rem; } .mini-app small { font-size:.66rem; } .stat { padding:14px 10px; } .stat strong { font-size:1.2rem; } .stat span { font-size:.68rem; } .catalog { padding:46px 0 62px; } .section-top { align-items:start; flex-direction:column; gap:12px; } .toolbar { align-items:stretch; } .search-wrap { max-width:none; flex-basis:100%; } .sort-select { flex:1; } .app-grid { grid-template-columns:1fr; column-gap:0; row-gap:11px; } .app-photo { height:190px; }  .news-grid { grid-template-columns:1fr; } .news-feature.expanded .news-intro { grid-template-columns:1fr; padding:20px; gap:18px; } .news-feature.expanded .news-copy { padding:20px 20px 25px; } .news-feature.expanded .news-card-bottom { margin:0 20px; } .news-check-grid, .spec-grid { grid-template-columns:1fr; } .principles { padding-bottom:56px; } .principle-grid { grid-template-columns:1fr; } .submit-banner { padding:23px; flex-direction:column; align-items:flex-start; margin-bottom:50px; } .footer-inner { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior:auto !important; transition:none !important; } }
   </style>
 </head>
@@ -244,6 +273,7 @@
           <div class="result-count">Actualidad · Android</div>
         </div>
 
+        <div class="news-grid">
         <article class="news-feature">
           <div class="news-intro">
             <div>
@@ -255,6 +285,10 @@
               <img src="https://i.blogs.es/56bebc/cmf-phone-1/1200_800.jpeg" alt="Teléfono Android de gama media" loading="lazy" decoding="async" onerror="this.style.display='none'">
               <figcaption>Los teléfonos con menos memoria disponible pueden notar más los efectos de las apps exigentes.</figcaption>
             </figure>
+          </div>
+          <div class="news-card-bottom">
+            <span class="news-card-label">Noticia</span>
+            <button class="news-read-toggle" type="button" aria-expanded="false">Leer noticia ↗</button>
           </div>
 
           <div class="news-copy">
@@ -285,6 +319,101 @@
             </div>
           </div>
         </article>
+
+        <article class="news-feature">
+          <div class="news-intro">
+            <div>
+              <div class="news-meta"><span class="news-label">Análisis · POCO</span><span>Hardware · Gama alta</span></div>
+              <h2 class="news-title">POCO F9 Ultra: potencia de sobra, batería enorme y un precio de gama ultra</h2>
+              <p class="news-lead">El POCO F9 Ultra apuesta por una experiencia de gama alta casi sin recortes: pantalla AMOLED de 185 Hz, Snapdragon 8 Elite Gen 5, cámaras versátiles y batería de 8.050 mAh. Su mayor obstáculo es el precio oficial, que supera los mil euros.</p>
+            </div>
+            <figure class="news-cover">
+              <img src="https://i.blogs.es/2025c9/poco-f9-ultra-1/1200_800.jpeg" alt="Vista del POCO F9 Ultra" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <figcaption>Un teléfono orientado a quienes priorizan potencia, pantalla, sonido y autonomía.</figcaption>
+            </figure>
+          </div>
+          <div class="news-card-bottom">
+            <span class="news-card-label">Noticia</span>
+            <button class="news-read-toggle" type="button" aria-expanded="false">Leer noticia ↗</button>
+          </div>
+
+          <div class="news-copy">
+            <p>POCO nació con la idea de ofrecer mucha potencia sin cobrar el precio de los modelos más exclusivos. Con el F9 Ultra, la marca apunta claramente al segmento prémium: no solo busca destacar en rendimiento, también incorpora una pantalla ambiciosa, un sistema de cámaras versátil, materiales de calidad y un conjunto de audio firmado por Bose.</p>
+
+            <h3>Lo esencial en 30 segundos</h3>
+            <p>El POCO F9 Ultra combina un panel AMOLED de 6,9 pulgadas y hasta 185 Hz con el Snapdragon 8 Elite Gen 5, opciones de hasta 16 GB de RAM y hasta 1 TB de almacenamiento. La batería de 8.050 mAh admite carga por cable de 100 W e inalámbrica de 50 W. En fotografía, suma una cámara principal de 200 MP, un ultra gran angular de 50 MP y un teleobjetivo periscópico de 50 MP.</p>
+            <div class="news-check-grid">
+              <div class="news-check-card">
+                <h4>✅ Cómpralo si…</h4>
+                <ul>
+                  <li>Querés un móvil completo y muy potente.</li>
+                  <li>Buscás rendimiento de primer nivel sin pagar el sobreprecio de otras marcas prémium.</li>
+                  <li>Valorás el sonido estéreo potente y una batería de gran capacidad.</li>
+                </ul>
+              </div>
+              <div class="news-check-card">
+                <h4>❌ No es para vos si…</h4>
+                <ul>
+                  <li>Tu prioridad es la mejor relación calidad-precio.</li>
+                  <li>No querés gastar más de mil euros en un teléfono.</li>
+                  <li>Te preocupa especialmente la temperatura durante sesiones de juego largas.</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3>Diseño prémium y pantalla de alto nivel</h3>
+            <p>La construcción mezcla aluminio y un diseño cuidado, con lector de huellas ultrasónico bajo la pantalla. Pese a su batería generosa, el dispositivo mantiene un grosor de 8,74 mm y un peso de 235 gramos. La certificación IP68 y el cristal Gorilla Glass 7i completan una ficha pensada para competir en la gama más alta.</p>
+            <p>La pantalla AMOLED de 6,9 pulgadas ofrece resolución de 2.608 × 1.200 píxeles, compatibilidad con HDR10+ y Dolby Vision, y una tasa de refresco de hasta 185 Hz. El brillo anunciado varía según el modo de medición: Xiaomi publica cifras máximas de escenario y valores HBM diferentes, así que no deben interpretarse como brillo sostenido en toda la pantalla.</p>
+            <figure class="news-inline-photo">
+              <img src="https://i.blogs.es/d74155/poco-f9-ultra-2/1366_2000.jpeg" alt="Detalle del diseño y la pantalla del POCO F9 Ultra" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <figcaption>El panel de alta frecuencia y el acabado son dos de los elementos centrales de esta propuesta.</figcaption>
+            </figure>
+
+            <h3>Potencia enorme, con una temperatura a vigilar</h3>
+            <p>El Snapdragon 8 Elite Gen 5, fabricado en 3 nm, está acompañado por RAM LPDDR5X y almacenamiento UFS 4.1. En juegos y tareas pesadas ofrece un margen de rendimiento propio de los equipos más potentes. Sin embargo, sostener ese nivel de exigencia también puede elevar mucho la temperatura: durante pruebas de estrés prolongadas se registraron valores superiores a 50 °C y algunas pruebas llegaron a interrumpirse por calor.</p>
+            <p>En el uso real, la temperatura dependerá del juego, la temperatura ambiente, la funda y el tiempo de carga de trabajo. Si jugás durante horas, conviene observar cómo se comporta el equipo y evitar usarlo bajo el sol o mientras se carga si ya está caliente.</p>
+            <figure class="news-inline-photo">
+              <img src="https://i.blogs.es/b60a24/portada/375_142.jpeg" alt="Imagen de portada de la reseña del POCO F9 Ultra" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <figcaption>El análisis destaca el rendimiento sostenido, aunque la disipación térmica es uno de los aspectos a considerar.</figcaption>
+            </figure>
+
+            <h3>Cámaras versátiles y sonido destacado</h3>
+            <p>La cámara trasera reúne un sensor principal de 200 MP con estabilización óptica, un ultra gran angular de 50 MP y un teleobjetivo periscópico de 50 MP con zoom óptico equivalente a 120 mm. Puede grabar vídeo hasta 8K a 30 fotogramas por segundo; la cámara frontal es de 32 MP y admite vídeo 4K a 30 fps.</p>
+            <p>El apartado de audio es otro de sus argumentos: cuenta con altavoces estéreo y un subwoofer independiente con ajuste de Bose, además de Dolby Atmos. La conectividad incluye 5G, Wi-Fi 7, Bluetooth 6.0, NFC, USB-C 3.2 Gen 1 y opciones dual SIM con eSIM, según mercado y operador.</p>
+            <figure class="news-inline-photo">
+              <img src="https://i.blogs.es/8d8504/poco-f9-ultra-4/1366_2000.jpeg" alt="Vista adicional del POCO F9 Ultra" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <figcaption>El conjunto de cámaras combina sensor principal de alta resolución y teleobjetivo periscópico.</figcaption>
+            </figure>
+
+            <h3>Batería enorme, carga rápida y software</h3>
+            <p>La batería típica de 8.050 mAh es uno de los puntos más llamativos. Incluye carga por cable de hasta 100 W, carga inalámbrica de hasta 50 W y carga inversa tanto por cable como inalámbrica. La autonomía exacta depende del brillo, la cobertura, los juegos y el uso de la cámara; la potencia máxima de carga también puede variar con el cargador y las condiciones.</p>
+            <p>Según la ficha facilitada para este análisis, el equipo llega con Android 16 y HyperOS 3. Incluye las herramientas de personalización y funciones de IA propias de Xiaomi, pero no parte con Android 17 ni HyperOS 4. Para un teléfono de este precio, el calendario de actualizaciones y la cantidad de aplicaciones preinstaladas también forman parte de la experiencia que conviene valorar.</p>
+
+            <h3>Ficha técnica resumida</h3>
+            <dl class="spec-grid">
+              <div class="spec-item"><dt>Pantalla</dt><dd>AMOLED de 6,9″ · 2.608 × 1.200 · hasta 185 Hz · HDR10+ y Dolby Vision</dd></div>
+              <div class="spec-item"><dt>Procesador</dt><dd>Snapdragon 8 Elite Gen 5 · 3 nm · GPU Adreno 840 · VisionBoost D8</dd></div>
+              <div class="spec-item"><dt>Memoria y almacenamiento</dt><dd>12/16 GB LPDDR5X · 256 GB, 512 GB o 1 TB UFS 4.1</dd></div>
+              <div class="spec-item"><dt>Cámaras traseras</dt><dd>Principal 200 MP con OIS · ultra gran angular 50 MP · periscopio 50 MP con OIS</dd></div>
+              <div class="spec-item"><dt>Cámara frontal</dt><dd>32 MP · vídeo 4K a 30 fps</dd></div>
+              <div class="spec-item"><dt>Batería y carga</dt><dd>8.050 mAh · 100 W por cable · 50 W inalámbrica · carga inversa</dd></div>
+              <div class="spec-item"><dt>Dimensiones y resistencia</dt><dd>163,49 × 77,94 × 8,74 mm · 235 g · IP68</dd></div>
+              <div class="spec-item"><dt>Conectividad</dt><dd>5G · Wi-Fi 7 · Bluetooth 6.0 · NFC · USB-C 3.2 Gen 1</dd></div>
+              <div class="spec-item"><dt>Software</dt><dd>Android 16 · Xiaomi HyperOS 3, según la ficha del equipo</dd></div>
+              <div class="spec-item"><dt>Otros</dt><dd>Huella ultrasónica · Gorilla Glass 7i · altavoces Bose · Dolby Atmos</dd></div>
+            </dl>
+
+            <div class="news-callout"><strong>Veredicto:</strong> el POCO F9 Ultra es una opción para quien quiere potencia, pantalla, sonido y autonomía sin grandes concesiones. El precio elevado y el calor en cargas intensivas son sus principales puntos a sopesar antes de comprar.</div>
+            <p class="news-small-note">Las especificaciones y la disponibilidad pueden variar según el país. Las cifras de autonomía, temperatura y carga dependen de las condiciones de uso; consultá la ficha oficial de tu región antes de comprar.</p>
+
+            <div class="news-sources" aria-label="Fuentes y especificaciones del POCO F9 Ultra">
+              <a class="news-source-link" href="https://www.mi.com/es/product/poco-f9-ultra/" target="_blank" rel="noopener noreferrer">POCO F9 Ultra · Xiaomi ↗</a>
+              <a class="news-source-link" href="https://www.mi.com/es/product/poco-f9-ultra/specs/" target="_blank" rel="noopener noreferrer">Ficha técnica oficial ↗</a>
+              <a class="news-source-link" href="https://www.mi.com/es/support/faq/details/KA-1141816/" target="_blank" rel="noopener noreferrer">Preguntas frecuentes ↗</a>
+            </div>
+          </div>
+        </article>
+        </div>
       </div>
     </section>
 
@@ -869,6 +998,16 @@
       event.preventDefault();
       revealContent('noticias');
     }));
+    const newsGrid = document.querySelector('.news-grid');
+    if (newsGrid) newsGrid.addEventListener('click', event => {
+      const button = event.target.closest('.news-read-toggle');
+      if (!button) return;
+      const card = button.closest('.news-feature');
+      const expanded = card.classList.toggle('expanded');
+      button.setAttribute('aria-expanded', String(expanded));
+      button.textContent = expanded ? 'Cerrar noticia ×' : 'Leer noticia ↗';
+      if (expanded) requestAnimationFrame(() => card.scrollIntoView({ behavior:'smooth', block:'start' }));
+    });
     buildCategoryFilters();
     render();
   </script>
