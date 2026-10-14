@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10130f">
+  <meta name="theme-color" content="#050505">
   <meta name="description" content="Descubrí aplicaciones open source: herramientas libres, potentes y creadas por comunidades abiertas.">
-  <title>LibreApps — Software libre para todo</title>
+  <title>APPSLibre — Software libre para todo</title>
   <style>
     :root {
       color-scheme: dark;
@@ -35,6 +35,10 @@
     .brand span em { color: var(--lime); font-style: normal; }
     .nav-links { display: flex; gap: 30px; align-items: center; color: var(--muted); font-size: .91rem; }
     .nav-links a:hover { color: var(--text); }
+    .nav-links a.nav-news { display:inline-flex; align-items:center; gap:8px; padding:9px 14px; border:1px solid #536a34; border-radius:12px; background:linear-gradient(135deg,#25331b,#1a2115); color:var(--lime); font-weight:850; box-shadow:inset 0 1px 0 #ffffff0a, 0 0 0 1px #c5f4670d; transition:transform .2s,background .2s,border-color .2s,box-shadow .2s; }
+    .nav-links a.nav-news::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--lime); box-shadow:0 0 10px #c5f46799; }
+    .nav-links a.nav-news:hover, body.news-visible .nav-links a.nav-news { color:#151a10; background:var(--lime); border-color:var(--lime); box-shadow:0 0 22px #c5f46725; transform:translateY(-1px); }
+    body.news-visible .nav-links a.nav-news::before { background:#151a10; box-shadow:none; }
     .nav-cta { background: var(--lime); color: #171b12; padding: 10px 15px; border-radius: 12px; font-weight: 750; font-size: .88rem; transition: transform .2s, background .2s; }
     .nav-cta:hover { background: #d5ff8c; transform: translateY(-1px); }
     .hero { padding: 86px 0 54px; position: relative; overflow: hidden; }
@@ -69,13 +73,17 @@
     .stat { background: #151914; padding: 18px 21px; }
     .stat strong { font-size: 1.35rem; letter-spacing: -.04em; display: block; }
     .stat span { color: #98a28f; font-size: .76rem; }
-    /* Al cargar, solo se muestra la portada. El resto aparece al explorar el catálogo. */
+    /* La portada se muestra primero. Catálogo y noticias son vistas separadas. */
     #explorar, #noticias, #filosofia, #sugerir, footer { display: none; }
     body.catalog-visible #explorar,
-    body.catalog-visible #noticias,
     body.catalog-visible #filosofia,
     body.catalog-visible #sugerir,
     body.catalog-visible footer { display: block; }
+    body.news-visible #noticias,
+    body.news-visible footer { display: block; }
+    body.philosophy-visible #filosofia,
+    body.philosophy-visible #sugerir,
+    body.philosophy-visible footer { display: block; }
     .catalog { padding: 63px 0 90px; }
     .section-top { display:flex; justify-content:space-between; gap: 24px; align-items:end; margin-bottom: 28px; }
     .section-kicker { color: var(--lime); font-size: .72rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 850; margin-bottom: 10px; }
@@ -190,16 +198,328 @@
     .toast.show { opacity:1; transform:translate(-50%,0); }
     @media (max-width: 900px) { .hero-grid { grid-template-columns:1fr; gap:34px; } .visual { min-height:0; } .app-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero { padding-top:64px; } }
     @media (max-width: 620px) { .container { width:min(100% - 30px, var(--max)); } .topbar { height:66px; } .nav-links { gap:14px; } .nav-links a:not(.nav-cta):not([href="#noticias"]) { display:none; } .nav-cta { padding:9px 11px; font-size:.8rem; } .hero { padding:53px 0 35px; } h1 { font-size:clamp(2.6rem, 13vw, 4.3rem); } .hero-copy { font-size:1rem; } .visual { padding:19px; border-radius:22px; } .mini-apps { gap:8px; } .mini-app { padding:9px; gap:8px; } .mini-icon { width:33px; height:33px; border-radius:10px; } .mini-app strong { font-size:.77rem; } .mini-app small { font-size:.66rem; } .stat { padding:14px 10px; } .stat strong { font-size:1.2rem; } .stat span { font-size:.68rem; } .catalog { padding:46px 0 62px; } .section-top { align-items:start; flex-direction:column; gap:12px; } .toolbar { align-items:stretch; } .search-wrap { max-width:none; flex-basis:100%; } .sort-select { flex:1; } .app-grid { grid-template-columns:1fr; column-gap:0; row-gap:11px; } .app-photo { height:190px; }  .news-grid { grid-template-columns:1fr; } .news-feature.expanded .news-intro { grid-template-columns:1fr; padding:20px; gap:18px; } .news-feature.expanded .news-copy { padding:20px 20px 25px; } .news-feature.expanded .news-card-bottom { margin:0 20px; } .news-check-grid, .spec-grid { grid-template-columns:1fr; } .principles { padding-bottom:56px; } .principle-grid { grid-template-columns:1fr; } .submit-banner { padding:23px; flex-direction:column; align-items:flex-start; margin-bottom:50px; } .footer-inner { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior:auto !important; transition:none !important; } }
+    /* Tema azul eléctrico + microinteracciones */
+    :root {
+      color-scheme: dark;
+      --bg: #070c16;
+      --panel: #0d1627;
+      --panel-2: #122039;
+      --line: #203858;
+      --text: #f1f7ff;
+      --muted: #9db1ce;
+      --lime: #1685ff;
+      --lime-dark: #0067f5;
+      --blue-electric: #1685ff;
+      --blue-bright: #35a0ff;
+      --blue-deep: #06172d;
+      --radius: 22px;
+    }
+    html { background: var(--bg); }
+    body {
+      background: radial-gradient(ellipse at 80% -15%, #0875ff20, transparent 43%),
+                  radial-gradient(ellipse at -15% 60%, #0059d90b, transparent 38%), var(--bg);
+      color: var(--text);
+    }
+    ::selection { background: #1685ff66; color: #fff; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid #39a4ff; outline-offset: 4px; box-shadow: 0 0 0 5px #1685ff24;
+    }
+    .topbar { border-bottom-color: #29466b88; background: #07101de8; backdrop-filter: blur(16px); }
+    .brand-mark { color: #041326; background: linear-gradient(145deg, #54b5ff, #0875ff 68%); box-shadow: 0 0 28px #1685ff44; animation: bluePulse 4.5s ease-in-out infinite; }
+    .brand span em { color: var(--blue-bright); }
+    .nav-links { color: #9eb4d2; }
+    .nav-links a { transition: color .22s ease, transform .22s ease, background .22s ease; }
+    .nav-links a:not(.nav-cta):not(.nav-news) { position: relative; }
+    .nav-links a:not(.nav-cta):not(.nav-news)::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -6px; height: 2px; border-radius: 2px; background: var(--blue-bright); transition: right .24s ease; }
+    .nav-links a:not(.nav-cta):not(.nav-news):hover::after { right: 0; }
+    .nav-links a.nav-news { border-color: #167ee5; background: linear-gradient(135deg, #102b4c, #0b1a30); color: #63baff; box-shadow: inset 0 1px 0 #ffffff12, 0 0 0 1px #1685ff1f, 0 5px 22px #0067f51a; }
+    .nav-links a.nav-news::before { background: #35a0ff; box-shadow: 0 0 11px #1685ffcc; animation: bluePulse 2s ease-in-out infinite; }
+    .nav-links a.nav-news:hover, body.news-visible .nav-links a.nav-news { color: #03152c; background: linear-gradient(135deg, #5ebaff, #1685ff); border-color: #58b7ff; box-shadow: 0 0 28px #1685ff55; transform: translateY(-2px); }
+    body.news-visible .nav-links a.nav-news::before { background: #03152c; box-shadow: none; }
+    .nav-cta, .btn-primary { background: linear-gradient(135deg, #54b4ff, #0875ff 75%); color: #041326; border-color: #248fff; box-shadow: 0 7px 25px #0067f52b; }
+    .nav-cta:hover, .btn-primary:hover { color: #031329; background: linear-gradient(135deg, #85cbff, #238dff); box-shadow: 0 10px 30px #1685ff54; transform: translateY(-3px); }
+    .hero { isolation: isolate; }
+    .hero::before { background: #1685ff24; filter: blur(78px); animation: orbDrift 11s ease-in-out infinite alternate; }
+    .eyebrow { border-color: #1b5790; background: #0d2541; color: #62baff; box-shadow: inset 0 1px 0 #ffffff0a; }
+    .eyebrow-dot { background: #37a4ff; box-shadow: 0 0 14px #1685ff; animation: bluePulse 2.4s ease-in-out infinite; }
+    h1 .accent, .section-kicker { color: var(--blue-bright); }
+    .hero-copy { color: #a6bad4; }
+    .btn-secondary { border-color: #2d4768; background: #0e1a2d; color: #dceaff; }
+    .btn-secondary:hover { border-color: #258eff; background: #122746; box-shadow: 0 8px 24px #0067f526; }
+    .hero-note { color: #8fa8c8; }
+    .hero-note svg { color: #43acff; }
+    .visual { border-color: #214773; background: linear-gradient(145deg, #122644, #0a1424 75%); box-shadow: 0 26px 80px #0006, 0 0 40px #0067f50b; animation: floatPanel 7s ease-in-out infinite; }
+    .visual::after { border-color: #1685ff35; box-shadow: 0 0 0 35px #1685ff12, 0 0 0 75px #1685ff08; }
+    .visual-head, .visual-sub { color: #91a9c9; }
+    .live-pill { color: #64bdff; border-color: #1e5a91; background: #102d4f; }
+    .live-pill::before { background: #36a5ff; box-shadow: 0 0 10px #1685ff; animation: bluePulse 1.8s infinite; }
+    .mini-app { border-color: #254365; background: #0e1c30e8; transition: transform .24s ease, border-color .24s ease, background .24s ease, box-shadow .24s ease; }
+    .mini-app:hover { transform: translateY(-4px); border-color: #1685ff; background: #122747; box-shadow: 0 10px 25px #0003, 0 0 18px #1685ff12; }
+    .mini-app:nth-child(1) { animation: riseIn .55s .08s both; }
+    .mini-app:nth-child(2) { animation: riseIn .55s .16s both; }
+    .mini-app:nth-child(3) { animation: riseIn .55s .24s both; }
+    .mini-app:nth-child(4) { animation: riseIn .55s .32s both; }
+    .mini-app small { color: #8fa8c7; }
+    .stats { border-color: #203858; background: #203858; }
+    .stat { background: #0b1525; transition: background .22s ease; }
+    .stat:hover { background: #10233d; }
+    .stat span { color: #9ab0cd; }
+    .search { background: #0c1728; border-color: #254061; }
+    .search-wrap svg { color: #77a4d5; }
+    .search:focus { border-color: #1685ff; box-shadow: 0 0 0 4px #1685ff21; }
+    .search::placeholder { color: #748eaf; }
+    .sort-select { background: #0c1728; color: #d7e8ff; border-color: #254061; }
+    .filter { border-color: #254061; background: #0c1728; color: #a5bad6; transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease; }
+    .filter:hover { border-color: #258fff; color: #e9f5ff; transform: translateY(-2px); }
+    .filter.active { background: linear-gradient(135deg, #59baff, #1685ff); border-color: #4db3ff; color: #03142a; box-shadow: 0 5px 18px #1685ff30; }
+    .result-count { color: #95add0; }
+    .app-card { border-color: #203858; background: linear-gradient(145deg, #0f1a2c, #0b1422); box-shadow: 0 6px 22px #0002; animation: cardEnter .55s both; transition: transform .28s cubic-bezier(.2,.75,.25,1), border-color .25s ease, background .25s ease, box-shadow .25s ease; }
+    .app-card:nth-child(8n+1) { animation-delay: .025s; }
+    .app-card:nth-child(8n+2) { animation-delay: .06s; }
+    .app-card:nth-child(8n+3) { animation-delay: .095s; }
+    .app-card:nth-child(8n+4) { animation-delay: .13s; }
+    .app-card:nth-child(8n+5) { animation-delay: .165s; }
+    .app-card:nth-child(8n+6) { animation-delay: .2s; }
+    .app-card:nth-child(8n+7) { animation-delay: .235s; }
+    .app-card:nth-child(8n) { animation-delay: .27s; }
+    .app-card:hover { transform: translateY(-6px) scale(1.012); border-color: #1685ff; background: linear-gradient(145deg, #142945, #0d192b); box-shadow: 0 16px 34px #0005, 0 0 0 1px #1685ff28, 0 0 28px #1685ff11; }
+    .app-photo { border-color: #254263; background: #10203a; transition: transform .45s cubic-bezier(.2,.75,.25,1), filter .35s ease, border-color .3s ease; }
+    .app-card:hover .app-photo { transform: scale(1.025); filter: saturate(1.12); border-color: #318fff; }
+    .app-title { color: #f2f7ff; }
+    .app-category { color: #90a8ca; }
+    .favorite { border-color: #2b4566; color: #8ba6c8; transition: transform .2s ease, color .2s ease, border-color .2s ease, background .2s ease; }
+    .favorite:hover, .favorite.saved { color: #50b5ff; border-color: #1685ff; background: #1685ff1c; }
+    .favorite:active { transform: scale(.86); }
+    .favorite.saved svg { animation: heartPop .32s ease; }
+    .app-description { color: #afc0d8; }
+    .open-badge { color: #a5c4e7; }
+    .open-badge svg { color: #45adff; }
+    .card-link { color: #d3e5fc; transition: color .2s ease, transform .2s ease; }
+    .card-link:hover { color: #56b6ff; transform: translateX(2px); }
+    .news-feature { border-color: #203858; background: linear-gradient(145deg, #0f1a2c, #0b1422); box-shadow: 0 7px 25px #0002; animation: cardEnter .6s both; transition: transform .28s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease; }
+    .news-feature:nth-child(2) { animation-delay: .13s; }
+    .news-feature:not(.expanded):hover { transform: translateY(-6px); border-color: #1685ff; background: #10213a; box-shadow: 0 16px 35px #0004, 0 0 25px #1685ff13; }
+    .news-label { border-color: #1e5f9e; background: #102d4d; color: #63bcff; }
+    .news-meta { color: #8faacc; }
+    .news-lead { color: #adbfda; }
+    .news-cover img { border-color: #254263; transition: transform .45s ease, border-color .3s ease, filter .3s ease; }
+    .news-feature:not(.expanded):hover .news-cover img { transform: scale(1.025); border-color: #1685ff; filter: saturate(1.1); }
+    .news-card-bottom { border-top-color: #203858; }
+    .news-card-label { color: #a9c9eb; }
+    .news-card-label::before { background: #1685ff; box-shadow: 0 0 9px #1685ff77; }
+    .news-read-toggle { color: #d9eaff; transition: color .2s ease, transform .2s ease; }
+    .news-read-toggle:hover { color: #55b5ff; transform: translateX(2px); }
+    .news-feature.expanded { border-color: #1685ff; background: linear-gradient(145deg, #112541, #0b1422 78%); box-shadow: 0 20px 70px #0005, 0 0 0 1px #1685ff25; animation: expandNews .4s ease both; }
+    .news-feature.expanded .news-copy { animation: riseIn .5s .08s both; }
+    .news-feature.expanded .news-lead { color: #c1d3eb; }
+    .news-copy { color: #b2c5df; }
+    .news-copy h3, .news-check-card h4 { color: #f0f7ff; }
+    .news-callout { border-color: #244b78; background: #0e2037; color: #c0d5ed; }
+    .news-callout strong, .spec-item dt { color: #5bb7ff; }
+    .news-inline-photo img { border-color: #254263; }
+    .news-sources { border-top-color: #203858; }
+    .news-source-link { border-color: #2c4a70; color: #d3e6fd; transition: transform .2s ease, border-color .2s ease, color .2s ease, background .2s ease; }
+    .news-source-link:hover { border-color: #1685ff; color: #5bb7ff; background: #1685ff12; transform: translateY(-2px); }
+    .news-check-card, .spec-item { border-color: #243d5e; background: #0e1a2c; }
+    .news-check-card h4 { color: #edf5ff; }
+    .spec-item dd { color: #c5d8ee; }
+    .principle { background: #0d1727; border-color: #203858; transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease; }
+    .principle:hover { transform: translateY(-5px); border-color: #1685ff; background: #10213a; box-shadow: 0 12px 28px #0003, 0 0 24px #1685ff11; }
+    .principle-icon { background: #102e50; color: #58b7ff; }
+    .principle p { color: #9fb4d0; }
+    .submit-banner { border-color: #1d5d98; background: radial-gradient(ellipse at 93% 0%, #1685ff2b, transparent 42%), linear-gradient(120deg, #10233e, #0b1525); transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+    .submit-banner:hover { border-color: #1685ff; box-shadow: 0 16px 40px #0003, 0 0 32px #1685ff12; transform: translateY(-3px); }
+    .submit-banner p { color: #a8bfda; }
+    .forum-status { border-color: #1f679f; background: #102d4a; color: #bee4ff; }
+    .forum-status::before { background: #2ca0ff; box-shadow: 0 0 10px #1685ff; }
+    .community-count { color: #8ea9cb; }
+    footer { border-top-color: #203858; color: #8ea6c7; }
+    .footer-inner strong { color: #e3efff; }
+    .footer-links a { transition: color .2s ease, transform .2s ease; }
+    .footer-links a:hover { color: #55b5ff; transform: translateY(-1px); }
+    .toast { background: linear-gradient(135deg, #b9e2ff, #e3f3ff); color: #04172d; box-shadow: 0 10px 45px #0007, 0 0 28px #1685ff24; }
+    .catalog, #noticias, .principles, #sugerir { scroll-margin-top: 22px; }
+    body.catalog-visible #explorar { animation: viewEnter .48s ease both; }
+    body.news-visible #noticias { animation: viewEnter .48s ease both; }
+    body.philosophy-visible #filosofia, body.philosophy-visible #sugerir { animation: viewEnter .48s ease both; }
+    @keyframes riseIn { from { opacity: 0; filter: blur(2px); } to { opacity: 1; filter: blur(0); } }
+    @keyframes cardEnter { from { opacity: 0; filter: blur(2px); } to { opacity: 1; filter: blur(0); } }
+    @keyframes viewEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes expandNews { from { opacity: .82; transform: translateY(8px) scale(.995); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes heartPop { 0% { transform: scale(.7); } 65% { transform: scale(1.22); } 100% { transform: scale(1); } }
+    @keyframes bluePulse { 0%, 100% { filter: brightness(1); box-shadow: 0 0 8px #1685ff44; } 50% { filter: brightness(1.24); box-shadow: 0 0 18px #1685ff77; } }
+    @keyframes orbDrift { from { transform: translate3d(-15px, 0, 0) scale(.96); opacity: .7; } to { transform: translate3d(24px, 20px, 0) scale(1.06); opacity: 1; } }
+    @keyframes floatPanel { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    @media (max-width: 620px) {
+      .visual { animation-duration: 9s; }
+      .nav-links a.nav-news { padding: 8px 10px; }
+      .app-card:hover, .news-feature:not(.expanded):hover { transform: translateY(-2px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+    /* Tema negro monocromático: negro profundo, grises y blanco suave */
+    :root {
+      color-scheme: dark;
+      --bg: #050505;
+      --panel: #0b0b0b;
+      --panel-2: #121212;
+      --line: #292929;
+      --text: #f5f5f5;
+      --muted: #a3a3a3;
+      --lime: #f2f2f2;
+      --lime-dark: #d5d5d5;
+      --blue-electric: #e8e8e8;
+      --blue-bright: #ffffff;
+      --blue-deep: #050505;
+    }
+    html { background:#050505; }
+    body {
+      background: radial-gradient(ellipse at 80% -15%, #ffffff08, transparent 43%),
+                  radial-gradient(ellipse at -15% 60%, #ffffff04, transparent 38%), #050505;
+      color:#f5f5f5;
+    }
+    ::selection { background:#ffffff30; color:#fff; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline:2px solid #f2f2f2; outline-offset:4px; box-shadow:0 0 0 5px #ffffff12;
+    }
+    .topbar { border-bottom-color:#ffffff15; background:#050505eF; backdrop-filter:blur(16px); }
+    .brand-mark { color:#050505; background:linear-gradient(145deg,#fff,#cfcfcf 68%); box-shadow:0 0 25px #ffffff15; animation:neutralPulse 4.5s ease-in-out infinite; }
+    .brand span em { color:#fff; }
+    .nav-links { color:#b5b5b5; }
+    .nav-links a { transition:color .22s ease, transform .22s ease, background .22s ease; }
+    .nav-links a:not(.nav-cta):not(.nav-news) { position:relative; }
+    .nav-links a:not(.nav-cta):not(.nav-news)::after { background:#f2f2f2; }
+    .nav-links a.nav-news { border-color:#606060; background:linear-gradient(135deg,#202020,#101010); color:#f5f5f5; box-shadow:inset 0 1px 0 #ffffff0d, 0 0 0 1px #ffffff08, 0 5px 20px #0008; }
+    .nav-links a.nav-news::before { background:#f5f5f5; box-shadow:0 0 9px #ffffff55; animation:neutralPulse 2s ease-in-out infinite; }
+    .nav-links a.nav-news:hover, body.news-visible .nav-links a.nav-news { color:#050505; background:linear-gradient(135deg,#fff,#d5d5d5); border-color:#fff; box-shadow:0 0 22px #ffffff20; transform:translateY(-2px); }
+    body.news-visible .nav-links a.nav-news::before { background:#050505; box-shadow:none; }
+    .nav-cta, .btn-primary { background:linear-gradient(135deg,#fff,#d7d7d7 75%); color:#050505; border-color:#e8e8e8; box-shadow:0 7px 25px #ffffff12; }
+    .nav-cta:hover, .btn-primary:hover { color:#000; background:linear-gradient(135deg,#fff,#eee); box-shadow:0 10px 28px #ffffff20; transform:translateY(-3px); }
+    .hero::before { background:#ffffff08; filter:blur(78px); animation:orbDrift 11s ease-in-out infinite alternate; }
+    .eyebrow { border-color:#414141; background:#151515; color:#f0f0f0; box-shadow:inset 0 1px 0 #ffffff08; }
+    .eyebrow-dot { background:#fff; box-shadow:0 0 12px #ffffff40; animation:neutralPulse 2.4s ease-in-out infinite; }
+    h1 .accent, .section-kicker { color:#f5f5f5; }
+    .hero-copy { color:#b6b6b6; }
+    .btn-secondary { border-color:#393939; background:#111; color:#e9e9e9; }
+    .btn-secondary:hover { border-color:#888; background:#1b1b1b; box-shadow:0 8px 24px #0008; }
+    .hero-note { color:#a0a0a0; }
+    .hero-note svg { color:#f0f0f0; }
+    .visual { border-color:#343434; background:linear-gradient(145deg,#171717,#090909 75%); box-shadow:0 26px 80px #000a,0 0 40px #ffffff05; animation:floatPanel 7s ease-in-out infinite; }
+    .visual::after { border-color:#ffffff18; box-shadow:0 0 0 35px #ffffff06,0 0 0 75px #ffffff03; }
+    .visual-head, .visual-sub { color:#a4a4a4; }
+    .live-pill { color:#f1f1f1; border-color:#454545; background:#202020; }
+    .live-pill::before { background:#f5f5f5; box-shadow:0 0 8px #ffffff44; animation:neutralPulse 1.8s infinite; }
+    .mini-app { border-color:#303030; background:#101010e8; transition:transform .24s ease,border-color .24s ease,background .24s ease,box-shadow .24s ease; }
+    .mini-app:hover { transform:translateY(-4px); border-color:#858585; background:#1b1b1b; box-shadow:0 10px 25px #0008,0 0 18px #ffffff05; }
+    .mini-app small { color:#a3a3a3; }
+    .stats { border-color:#292929; background:#292929; }
+    .stat { background:#101010; transition:background .22s ease; }
+    .stat:hover { background:#1a1a1a; }
+    .stat span { color:#a6a6a6; }
+    .search { background:#0d0d0d; border-color:#333; }
+    .search-wrap svg { color:#aaa; }
+    .search:focus { border-color:#aaa; box-shadow:0 0 0 4px #ffffff12; }
+    .search::placeholder { color:#777; }
+    .sort-select { background:#0d0d0d; color:#e0e0e0; border-color:#333; }
+    .filter { border-color:#333; background:#0d0d0d; color:#b9b9b9; transition:transform .2s ease,border-color .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease; }
+    .filter:hover { border-color:#888; color:#fff; transform:translateY(-2px); }
+    .filter.active { background:linear-gradient(135deg,#f7f7f7,#d5d5d5); border-color:#eee; color:#050505; box-shadow:0 5px 18px #ffffff10; }
+    .result-count { color:#aaa; }
+    .app-card { border-color:#2a2a2a; background:linear-gradient(145deg,#111,#090909); box-shadow:0 6px 22px #0008; animation:cardEnter .55s both; transition:transform .28s cubic-bezier(.2,.75,.25,1),border-color .25s ease,background .25s ease,box-shadow .25s ease; }
+    .app-card:hover { transform:translateY(-6px) scale(1.012); border-color:#777; background:linear-gradient(145deg,#191919,#0d0d0d); box-shadow:0 16px 34px #000a,0 0 0 1px #ffffff0b,0 0 28px #ffffff05; }
+    .app-photo { border-color:#333; background:#171717; transition:transform .45s cubic-bezier(.2,.75,.25,1),filter .35s ease,border-color .3s ease; }
+    .app-card:hover .app-photo { transform:scale(1.025); filter:saturate(1.05); border-color:#777; }
+    .app-title { color:#f5f5f5; }
+    .app-category { color:#a4a4a4; }
+    .favorite { border-color:#3b3b3b; color:#aaa; transition:transform .2s ease,color .2s ease,border-color .2s ease,background .2s ease; }
+    .favorite:hover, .favorite.saved { color:#fff; border-color:#8a8a8a; background:#ffffff12; }
+    .app-description { color:#b9b9b9; }
+    .open-badge { color:#bdbdbd; }
+    .open-badge svg { color:#ededed; }
+    .card-link { color:#e1e1e1; transition:color .2s ease,transform .2s ease; }
+    .card-link:hover { color:#fff; transform:translateX(2px); }
+    .empty-state { border-color:#444; color:#aaa; }
+    .empty-state strong { color:#eee; }
+    .empty-state button { border-color:#666; background:#191919; color:#f2f2f2; }
+    .news-feature { border-color:#2a2a2a; background:linear-gradient(145deg,#111,#090909); box-shadow:0 7px 25px #0008; animation:cardEnter .6s both; transition:transform .28s ease,border-color .25s ease,background .25s ease,box-shadow .25s ease; }
+    .news-feature:not(.expanded):hover { transform:translateY(-6px); border-color:#777; background:#151515; box-shadow:0 16px 35px #000a,0 0 25px #ffffff05; }
+    .news-label { border-color:#555; background:#1c1c1c; color:#eee; }
+    .news-meta { color:#aaa; }
+    .news-lead { color:#b8b8b8; }
+    .news-cover img { border-color:#333; background:#171717; transition:transform .45s ease,border-color .3s ease,filter .3s ease; }
+    .news-feature:not(.expanded):hover .news-cover img { transform:scale(1.025); border-color:#777; filter:saturate(1.04); }
+    .news-card-bottom { border-top-color:#292929; }
+    .news-card-label { color:#c3c3c3; }
+    .news-card-label::before { background:#eee; box-shadow:0 0 8px #ffffff44; }
+    .news-read-toggle { color:#e0e0e0; transition:color .2s ease,transform .2s ease; }
+    .news-read-toggle:hover { color:#fff; transform:translateX(2px); }
+    .news-feature.expanded { border-color:#666; background:linear-gradient(145deg,#171717,#090909 78%); box-shadow:0 20px 70px #000b,0 0 0 1px #ffffff0a; animation:expandNews .4s ease both; }
+    .news-feature.expanded .news-copy { animation:riseIn .5s .08s both; }
+    .news-feature.expanded .news-lead { color:#d0d0d0; }
+    .news-copy { color:#bcbcbc; }
+    .news-copy h3, .news-check-card h4 { color:#f2f2f2; }
+    .news-callout { border-color:#414141; background:#171717; color:#ccc; }
+    .news-callout strong, .spec-item dt { color:#f3f3f3; }
+    .news-inline-photo img { border-color:#333; }
+    .news-sources { border-top-color:#292929; }
+    .news-source-link { border-color:#444; color:#e0e0e0; transition:transform .2s ease,border-color .2s ease,color .2s ease,background .2s ease; }
+    .news-source-link:hover { border-color:#888; color:#fff; background:#ffffff08; transform:translateY(-2px); }
+    .news-check-card, .spec-item { border-color:#363636; background:#131313; }
+    .news-check-card h4 { color:#eee; }
+    .spec-item dd { color:#ccc; }
+    .news-small-note { color:#999; }
+    .principle { background:#101010; border-color:#2d2d2d; transition:transform .25s ease,border-color .25s ease,background .25s ease,box-shadow .25s ease; }
+    .principle:hover { transform:translateY(-5px); border-color:#777; background:#181818; box-shadow:0 12px 28px #0008,0 0 24px #ffffff04; }
+    .principle-icon { background:#222; color:#f1f1f1; }
+    .principle p { color:#aaa; }
+    .submit-banner { border-color:#414141; background:radial-gradient(ellipse at 93% 0%,#ffffff09,transparent 42%),linear-gradient(120deg,#181818,#0b0b0b); transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease; }
+    .submit-banner:hover { border-color:#777; box-shadow:0 16px 40px #0008,0 0 32px #ffffff05; transform:translateY(-3px); }
+    .submit-banner p { color:#b4b4b4; }
+    .forum-status { border-color:#4a4a4a; background:#1a1a1a; color:#e1e1e1; }
+    .forum-status::before { background:#ededed; box-shadow:0 0 8px #ffffff44; }
+    .community-count { color:#999; }
+    footer { border-top-color:#282828; color:#999; }
+    .footer-inner strong { color:#eee; }
+    .footer-links a:hover { color:#fff; }
+    .toast { background:linear-gradient(135deg,#f5f5f5,#d7d7d7); color:#080808; box-shadow:0 10px 45px #000b,0 0 28px #ffffff10; }
+    @keyframes neutralPulse { 0%,100% { filter:brightness(1); box-shadow:0 0 7px #ffffff12; } 50% { filter:brightness(1.12); box-shadow:0 0 16px #ffffff28; } }
+    @media (max-width:620px) {
+      .app-card:hover, .news-feature:not(.expanded):hover { transform:translateY(-2px); }
+    }
+
+    /* La barra de navegación se revela después de entrar al catálogo o a otra sección. */
+    .topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    body.catalog-visible .topbar,
+    body.news-visible .topbar,
+    body.philosophy-visible .topbar {
+      display: flex;
+      animation: topbarReveal .36s cubic-bezier(.2,.75,.25,1) both;
+    }
+    @keyframes topbarReveal {
+      from { opacity: 0; transform: translateY(-9px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body.catalog-visible .topbar,
+      body.news-visible .topbar,
+      body.philosophy-visible .topbar { animation: none; }
+    }
+
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="nav container" aria-label="Navegación principal">
-      <a class="brand" href="#inicio" aria-label="LibreApps, inicio"><span class="brand-mark">L</span><span>libre<em>apps</em></span></a>
+      <a class="brand" href="#inicio" aria-label="APPSLibre, inicio"><span class="brand-mark">A</span><span>APPS<em>Libre</em></span></a>
       <div class="nav-links">
         <a href="#explorar">Explorar apps</a>
-        <a href="#noticias">Noticias</a>
+        <a class="nav-news" href="#noticias" aria-label="Abrir sección de noticias">Noticias</a>
         <a href="#filosofia">Por qué libre</a>
         <a class="nav-cta" href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">+ Foro de apps ↗</a>
       </div>
@@ -221,7 +541,7 @@
         </div>
         <div>
           <div class="visual" aria-label="Vista previa de aplicaciones open source populares">
-            <div class="visual-head"><span>Selección de LibreApps</span><span class="live-pill">Código abierto</span></div>
+            <div class="visual-head"><span>Selección de APPSLibre</span><span class="live-pill">Código abierto</span></div>
             <div class="visual-title">Tu próximo favorito.</div>
             <p class="visual-sub">Grandes herramientas, ideas abiertas.</p>
             <div class="mini-apps">
@@ -435,7 +755,7 @@
         <div>
           <div class="section-kicker">Comunidad en GitHub</div>
           <h2>Compartí apps, ideas y descubrimientos.</h2>
-          <p>El foro oficial de LibreApps está en GitHub Discussions. Proponé nuevas aplicaciones, hacé preguntas, compartí recomendaciones y ayudá a mejorar el catálogo junto a la comunidad.</p>
+          <p>El foro oficial de APPSLibre está en GitHub Discussions. Proponé nuevas aplicaciones, hacé preguntas, compartí recomendaciones y ayudá a mejorar el catálogo junto a la comunidad.</p>
           <div class="community-meta">
             <span class="forum-status">Foro comunitario</span>
             <span class="community-count">Para publicar o comentar, GitHub puede pedirte iniciar sesión.</span>
@@ -446,34 +766,34 @@
     </section>
   </main>
 
-  <footer><div class="container footer-inner"><div><strong>libreapps</strong> · Un directorio independiente para explorar software abierto.</div><div class="footer-links"><a href="#explorar">Catálogo</a><a href="#noticias">Noticias</a><a href="#filosofia">Filosofía</a><a href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">Foro de GitHub ↗</a></div><div>Hecho con curiosidad <span aria-hidden="true">↗</span></div></div></footer>
+  <footer><div class="container footer-inner"><div><strong>APPSLibre</strong> · Un directorio independiente para explorar software abierto.</div><div class="footer-links"><a href="#explorar">Catálogo</a><a href="#noticias">Noticias</a><a href="#filosofia">Filosofía</a><a href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">Foro de GitHub ↗</a></div><div>Hecho con curiosidad <span aria-hidden="true">↗</span></div></div></footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
     const originalApps = [
-      {id:'metrolist',name:'Metrolist',category:'Música',desc:'Cliente de YouTube Music para Android con reproducción en segundo plano, letras sincronizadas, descargas y biblioteca musical.',tag:'Música · Android',initials:'ML',color:'#c5f467',photo:'https://metrolist.cc/5.webp',site:'https://metrolist.cc/',source:'https://github.com/t4ulquiorra/Metrolist',featured:1},
-      {id:'libretune',name:'LibreTune',category:'Música',desc:'Reproductor musical libre para Android y alternativa independiente a YouTube Music, con foco en la privacidad.',tag:'Reproductor musical',initials:'LT',color:'#78cdb5',photo:'https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2x2tdlxe4pyfau5kpi3h.png',site:'https://github.com/acoluzzi/libre-tune',source:'https://github.com/acoluzzi/libre-tune',featured:2},
-      {id:'skate3-android',name:'Skate 3 Android',category:'Juegos',desc:'Port experimental para ejecutar Skate 3 de forma nativa en Android. Requiere un dispositivo compatible y una copia legal del juego; no incluye archivos del juego.',tag:'Juego · Experimental',initials:'S3',color:'#f3a16f',photo:'https://store-images.s-microsoft.com/image/apps.57264.68005754082254855.39795a60-73cf-4461-87d9-7f112c30c43c.a9fe1ef9-f8df-4ac1-89c1-cbd3a5f1b852',site:'https://github.com/Buku313/Skate3-Mobile',source:'https://github.com/Buku313/Skate3-Mobile',featured:3},
-      {id:'halo1-android',name:'Halo 1 Android',category:'Juegos',desc:'Proyecto comunitario para llevar Halo: Combat Evolved a Android. Consultá el repositorio para ver compatibilidad, instalación y estado del port.',tag:'Juego · Android',initials:'H1',color:'#9fd7fb',photo:'https://i.imgur.com/5dLT3Irg.jpg',site:'https://github.com/FulGerNet/halo-ce-android',source:'https://github.com/FulGerNet/halo-ce-android',featured:4},
-      {id:'canta',name:'Canta',category:'Privacidad',desc:'Herramienta para desinstalar aplicaciones del sistema Android sin root, usando Shizuku. Revisá las recomendaciones antes de quitar componentes.',tag:'Control del dispositivo',initials:'CA',color:'#efb0ca',photo:'https://imag.malavida.com/mvimgbig/download-fs/canta-40518-11.jpg',site:'https://samolego.github.io/Canta/',source:'https://github.com/samolego/Canta',featured:5},
-      {id:'aurorastore',name:'Aurora Store',category:'Tiendas de apps',desc:'Cliente libre y de código abierto para buscar y descargar aplicaciones desde Google Play, con opciones de cuenta anónima.',tag:'Tienda de apps',initials:'AS',color:'#b9a3ff',photo:'https://aplicacionesandroid.es/img/Aurora-Store-actualizacion_AplicacionesAndroid.jpg',site:'https://auroraoss.com/aurora-store',source:'https://gitlab.com/AuroraOSS/AuroraStore',featured:6},
-      {id:'auraninja',name:'AuraNinja',category:'Música',desc:'Mezclá sonidos de la naturaleza, ruido blanco, pulsos binaurales y radios online para concentrarte o relajarte.',tag:'Audio · Android',initials:'AN',color:'#c5f467',photo:'https://opengraph.githubassets.com/1/Giuig/auraninja',site:'https://github.com/Giuig/auraninja',source:'https://github.com/Giuig/auraninja',featured:7},
-      {id:'lemuroid',name:'Lemuroid',category:'Juegos',desc:'Emulador todo en uno para Android basado en Libretro, compatible con varias consolas clásicas. Usá tus propios juegos obtenidos legalmente.',tag:'Emulación · Android',initials:'LE',color:'#7bc8ee',photo:'https://opengraph.githubassets.com/1/swordfish90/lemuroid',site:'https://github.com/swordfish90/lemuroid',source:'https://github.com/swordfish90/lemuroid',featured:8},
-      {id:'silent-hill-1-android',name:'Silent Hill 1 Android',category:'Juegos',desc:'Versión beta multiplataforma basada en la decompilación de Silent Hill. Revisá los requisitos y aportá tus propios archivos del juego legalmente.',tag:'Juego · Beta',initials:'SH',color:'#b4b7bf',photo:'https://opengraph.githubassets.com/1/SlickAmogus/silent-hill-decomp',site:'https://github.com/SlickAmogus/silent-hill-decomp/releases/tag/crossplatform-beta',source:'https://github.com/SlickAmogus/silent-hill-decomp',featured:9},
-      {id:'jak-3-pc',name:'Jak 3 PC',category:'Juegos',desc:'Port para PC de Jak 3 publicado como lanzamiento comunitario. Consultá las notas del proyecto y los requisitos antes de instalar.',tag:'Juego · PC',initials:'J3',color:'#e0b96e',photo:'https://opengraph.githubassets.com/1/ingunnfranklyn0931/jak-3-pc-port-opengoal',site:'https://github.com/ingunnfranklyn0931/jak-3-pc-port-opengoal/releases/tag/jak-3-pc-port-opengoal',source:'https://github.com/ingunnfranklyn0931/jak-3-pc-port-opengoal',featured:10},
-      {id:'sonic-r-android',name:'Sonic R Android',category:'Juegos',desc:'Port nativo de Sonic R para Android con controles táctiles personalizables. Requiere que tengas los archivos originales del juego; no están incluidos.',tag:'Juego · Android',initials:'SR',color:'#83baff',photo:'https://raw.githubusercontent.com/ZinexDa/sonic-r-android/main/AppIcon.png',site:'https://github.com/ZinexDa/sonic-r-android',source:'https://github.com/ZinexDa/sonic-r-android',featured:11},
-      {id:'archivetune',name:'ArchiveTune',category:'Música',desc:'Reproductor musical para Android con soporte para archivos locales y YouTube Music, con una interfaz moderna.',tag:'Música · Android',initials:'AT',color:'#f1a5ca',photo:'https://opengraph.githubassets.com/1/rukamori/ArchiveTune',site:'https://github.com/rukamori/ArchiveTune',source:'https://github.com/rukamori/ArchiveTune',featured:12},
-      {id:'gif-live-wallpaper',name:'GIF Live Wallpaper',category:'Personalización',desc:'Aplicación Android para usar GIFs animados como fondo de pantalla.',tag:'Fondos animados · Android',initials:'GIF',color:'#c9a7ff',photo:'https://opengraph.githubassets.com/1/redwarp/gif-wallpaper',site:'https://github.com/redwarp/gif-wallpaper',source:'https://github.com/redwarp/gif-wallpaper',featured:13},
-      {id:'droiddeck',name:'DroidDeck',category:'Juegos',desc:'Lleva la experiencia de SteamOS a dispositivos Android compatibles, con Steam Big Picture y soporte para juegos de PC mediante Proton. Revisá los requisitos de hardware.',tag:'Gaming · Android',initials:'DD',color:'#95a8ff',photo:'https://opengraph.githubassets.com/1/Droid-Deck/DroidDeck',site:'https://github.com/Droid-Deck/DroidDeck',source:'https://github.com/Droid-Deck/DroidDeck',featured:14},
-      {id:'super-mario-sunshine-pc',name:'Super Mario Sunshine (PC)',category:'Juegos',desc:'Aviso: el enlace que compartiste corresponde a un port nativo para PC, no a una versión Android. Requiere una copia propia del juego; confirmá si querías este proyecto.',tag:'Juego · PC · Enlace a confirmar',initials:'SMS',color:'#ff9e64',photo:'https://opengraph.githubassets.com/1/TekRantGaming/sms-pc-port',site:'https://github.com/TekRantGaming/sms-pc-port',source:'https://github.com/TekRantGaming/sms-pc-port',featured:15},
-      {id:'concat',name:'Con Cat',category:'Creatividad',desc:'Editor de video libre, alternativa a CapCut, disponible para Android y computadoras. El proyecto está en beta, así que revisá sus limitaciones actuales.',tag:'Video · Android y PC',initials:'CC',color:'#f0a9a0',photo:'https://opengraph.githubassets.com/1/jub0t/Concat',site:'https://github.com/jub0t/Concat',source:'https://github.com/jub0t/Concat',featured:16},
-      {id:'hail',name:'Hail',category:'Herramientas',desc:'Permite deshabilitar, ocultar, suspender o desinstalar aplicaciones Android, con funciones que dependen de la configuración del dispositivo.',tag:'Sistema · Android',initials:'HA',color:'#b8cefb',photo:'https://raw.githubusercontent.com/aistra0528/Hail/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png',site:'https://github.com/aistra0528/Hail',source:'https://github.com/aistra0528/Hail',featured:17},
-      {id:'seal',name:'Seal',category:'Multimedia',desc:'Descargador de video y audio para Android basado en yt-dlp. Respetá las condiciones de la plataforma y los derechos del contenido que descargues.',tag:'Audio y video · Android',initials:'SE',color:'#b4d5b3',photo:'https://raw.githubusercontent.com/JunkFood02/Seal/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg',site:'https://github.com/junkfood02/Seal',source:'https://github.com/junkfood02/Seal',featured:18},
-      {id:'celeste-android',name:'Celeste Android',category:'Juegos',desc:'Port nativo de Celeste para Android que ejecuta tu propia copia de la versión de PC. El proyecto no incluye el juego ni sus archivos.',tag:'Juego · Android',initials:'CE',color:'#8fbbfb',photo:'https://opengraph.githubassets.com/1/BelmanteGu/CelesteAndroid',site:'https://github.com/BelmanteGu/CelesteAndroid/releases',source:'https://github.com/BelmanteGu/CelesteAndroid',featured:19},
-      {id:'opencut',name:'OpenCut',category:'Multimedia',desc:'Proyecto de editor de video libre para web, escritorio y móvil. La rama principal está en reescritura; consultá el README para ver qué versión está lista para usar.',tag:'Edición de video · Android y PC',initials:'OC',color:'#c5f467',photo:'https://opengraph.githubassets.com/1/opencut-app/opencut',site:'https://github.com/opencut-app/opencut',source:'https://github.com/opencut-app/opencut',featured:20},
-      {id:'dbz-budokai-tenkaichi-3-android',name:'Dragon Ball Z Budokai Tenkaichi 3 Android',category:'Juegos',desc:'Enlace a revisar: la URL proporcionada lleva al repositorio halo-ce-android y no parece corresponder a Dragon Ball Z Budokai Tenkaichi 3. Mandá el enlace correcto para actualizar esta ficha.',tag:'Juego · Android · Enlace a revisar',initials:'DBZ',color:'#f3a65b',photo:'https://opengraph.githubassets.com/1/FulGerNet/halo-ce-android',site:'https://github.com/FulGerNet/halo-ce-android',source:'https://github.com/FulGerNet/halo-ce-android',featured:21},
-      {id:'opentune',name:'OpenTune Android',category:'Música',desc:'Cliente de YouTube Music para Android con una interfaz Material Design 3. La web del proyecto incluye información y descargas.',tag:'Música · Android',initials:'OT',color:'#86c9e8',photo:'https://raw.githubusercontent.com/Arturo254/OpenTune-Web/main/img/reproductor.webp',site:'https://github.com/Arturo254/OpenTune-Web',source:'https://github.com/Arturo254/OpenTune-Web',featured:22}
+      {id:'metrolist',name:'Metrolist',category:'Música',desc:'Cliente de YouTube Music para Android con reproducción en segundo plano, letras sincronizadas, descargas y biblioteca musical.',tag:'Android',initials:'ML',color:'#c5f467',photo:'https://metrolist.cc/5.webp',site:'https://metrolist.cc/',source:'https://github.com/t4ulquiorra/Metrolist',featured:1},
+      {id:'libretune',name:'LibreTune',category:'Música',desc:'Reproductor musical libre para Android y alternativa independiente a YouTube Music, con foco en la privacidad.',tag:'Android',initials:'LT',color:'#78cdb5',photo:'https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2x2tdlxe4pyfau5kpi3h.png',site:'https://github.com/acoluzzi/libre-tune',source:'https://github.com/acoluzzi/libre-tune',featured:2},
+      {id:'skate3-android',name:'Skate 3 Android',category:'Juegos',desc:'Port experimental para ejecutar Skate 3 de forma nativa en Android. Requiere un dispositivo compatible y una copia legal del juego; no incluye archivos del juego.',tag:'Android · Experimental',initials:'S3',color:'#f3a16f',photo:'https://store-images.s-microsoft.com/image/apps.57264.68005754082254855.39795a60-73cf-4461-87d9-7f112c30c43c.a9fe1ef9-f8df-4ac1-89c1-cbd3a5f1b852',site:'https://github.com/Buku313/Skate3-Mobile',source:'https://github.com/Buku313/Skate3-Mobile',featured:3},
+      {id:'halo1-android',name:'Halo 1 Android',category:'Juegos',desc:'Proyecto comunitario para llevar Halo: Combat Evolved a Android. Consultá el repositorio para ver compatibilidad, instalación y estado del port.',tag:'Android · PC · Web',initials:'H1',color:'#9fd7fb',photo:'https://i.imgur.com/5dLT3Irg.jpg',site:'https://github.com/FulGerNet/halo-ce-android',source:'https://github.com/FulGerNet/halo-ce-android',featured:4},
+      {id:'canta',name:'Canta',category:'Herramientas',desc:'Herramienta para desinstalar aplicaciones del sistema Android sin root, usando Shizuku. Revisá las recomendaciones antes de quitar componentes.',tag:'Android',initials:'CA',color:'#efb0ca',photo:'https://imag.malavida.com/mvimgbig/download-fs/canta-40518-11.jpg',site:'https://samolego.github.io/Canta/',source:'https://github.com/samolego/Canta',featured:5},
+      {id:'aurorastore',name:'Aurora Store',category:'Tiendas de apps',desc:'Cliente libre y de código abierto para buscar y descargar aplicaciones desde Google Play, con opciones de cuenta anónima.',tag:'Android',initials:'AS',color:'#b9a3ff',photo:'https://aplicacionesandroid.es/img/Aurora-Store-actualizacion_AplicacionesAndroid.jpg',site:'https://auroraoss.com/aurora-store',source:'https://gitlab.com/AuroraOSS/AuroraStore',featured:6},
+      {id:'auraninja',name:'AuraNinja',category:'Música',desc:'Mezclá sonidos de la naturaleza, ruido blanco, pulsos binaurales y radios online para concentrarte o relajarte.',tag:'Android',initials:'AN',color:'#c5f467',photo:'https://opengraph.githubassets.com/1/Giuig/auraninja',site:'https://github.com/Giuig/auraninja',source:'https://github.com/Giuig/auraninja',featured:7},
+      {id:'lemuroid',name:'Lemuroid',category:'Juegos',desc:'Emulador todo en uno para Android basado en Libretro, compatible con varias consolas clásicas. Usá tus propios juegos obtenidos legalmente.',tag:'Android',initials:'LE',color:'#7bc8ee',photo:'https://opengraph.githubassets.com/1/swordfish90/lemuroid',site:'https://github.com/swordfish90/lemuroid',source:'https://github.com/swordfish90/lemuroid',featured:8},
+      {id:'silent-hill-1-android',name:'Silent Hill 1 Android',category:'Juegos',desc:'Versión beta multiplataforma basada en la decompilación de Silent Hill. Revisá los requisitos y aportá tus propios archivos del juego legalmente.',tag:'PC · Android en desarrollo · Beta',initials:'SH',color:'#b4b7bf',photo:'https://opengraph.githubassets.com/1/SlickAmogus/silent-hill-decomp',site:'https://github.com/SlickAmogus/silent-hill-decomp/releases/tag/crossplatform-beta',source:'https://github.com/SlickAmogus/silent-hill-decomp',featured:9},
+      {id:'jak-3-pc',name:'Jak 3 PC',category:'Juegos',desc:'Port para PC de Jak 3 publicado como lanzamiento comunitario. Consultá las notas del proyecto y los requisitos antes de instalar.',tag:'PC',initials:'J3',color:'#e0b96e',photo:'https://opengraph.githubassets.com/1/ingunnfranklyn0931/jak-3-pc-port-opengoal',site:'https://github.com/ingunnfranklyn0931/jak-3-pc-port-opengoal/releases/tag/jak-3-pc-port-opengoal',source:'https://github.com/ingunnfranklyn0931/jak-3-pc-port-opengoal',featured:10},
+      {id:'sonic-r-android',name:'Sonic R Android',category:'Juegos',desc:'Port nativo de Sonic R para Android con controles táctiles personalizables. Requiere que tengas los archivos originales del juego; no están incluidos.',tag:'Android',initials:'SR',color:'#83baff',photo:'https://raw.githubusercontent.com/ZinexDa/sonic-r-android/main/AppIcon.png',site:'https://github.com/ZinexDa/sonic-r-android',source:'https://github.com/ZinexDa/sonic-r-android',featured:11},
+      {id:'archivetune',name:'ArchiveTune',category:'Música',desc:'Reproductor musical para Android con soporte para archivos locales y YouTube Music, con una interfaz moderna.',tag:'Android',initials:'AT',color:'#f1a5ca',photo:'https://opengraph.githubassets.com/1/rukamori/ArchiveTune',site:'https://github.com/rukamori/ArchiveTune',source:'https://github.com/rukamori/ArchiveTune',featured:12},
+      {id:'gif-live-wallpaper',name:'GIF Live Wallpaper',category:'Personalización',desc:'Aplicación Android para usar GIFs animados como fondo de pantalla.',tag:'Android',initials:'GIF',color:'#c9a7ff',photo:'https://opengraph.githubassets.com/1/redwarp/gif-wallpaper',site:'https://github.com/redwarp/gif-wallpaper',source:'https://github.com/redwarp/gif-wallpaper',featured:13},
+      {id:'droiddeck',name:'DroidDeck',category:'Juegos',desc:'Lleva la experiencia de SteamOS a dispositivos Android compatibles, con Steam Big Picture y soporte para juegos de PC mediante Proton. Revisá los requisitos de hardware.',tag:'Android',initials:'DD',color:'#95a8ff',photo:'https://opengraph.githubassets.com/1/Droid-Deck/DroidDeck',site:'https://github.com/Droid-Deck/DroidDeck',source:'https://github.com/Droid-Deck/DroidDeck',featured:14},
+      {id:'super-mario-sunshine-pc',name:'Super Mario Sunshine (PC)',category:'Juegos',desc:'Aviso: el enlace que compartiste corresponde a un port nativo para PC, no a una versión Android. Requiere una copia propia del juego; confirmá si querías este proyecto.',tag:'PC · Windows/Linux',initials:'SMS',color:'#ff9e64',photo:'https://opengraph.githubassets.com/1/TekRantGaming/sms-pc-port',site:'https://github.com/TekRantGaming/sms-pc-port',source:'https://github.com/TekRantGaming/sms-pc-port',featured:15},
+      {id:'concat',name:'Con Cat',category:'Creatividad',desc:'Editor de video libre, alternativa a CapCut, disponible para Android y computadoras. El proyecto está en beta, así que revisá sus limitaciones actuales.',tag:'Android · PC · macOS · Linux',initials:'CC',color:'#f0a9a0',photo:'https://opengraph.githubassets.com/1/jub0t/Concat',site:'https://github.com/jub0t/Concat',source:'https://github.com/jub0t/Concat',featured:16},
+      {id:'hail',name:'Hail',category:'Herramientas',desc:'Permite deshabilitar, ocultar, suspender o desinstalar aplicaciones Android, con funciones que dependen de la configuración del dispositivo.',tag:'Android',initials:'HA',color:'#b8cefb',photo:'https://raw.githubusercontent.com/aistra0528/Hail/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png',site:'https://github.com/aistra0528/Hail',source:'https://github.com/aistra0528/Hail',featured:17},
+      {id:'seal',name:'Seal',category:'Multimedia',desc:'Descargador de video y audio para Android basado en yt-dlp. Respetá las condiciones de la plataforma y los derechos del contenido que descargues.',tag:'Android',initials:'SE',color:'#b4d5b3',photo:'https://raw.githubusercontent.com/JunkFood02/Seal/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg',site:'https://github.com/junkfood02/Seal',source:'https://github.com/junkfood02/Seal',featured:18},
+      {id:'celeste-android',name:'Celeste Android',category:'Juegos',desc:'Port nativo de Celeste para Android que ejecuta tu propia copia de la versión de PC. El proyecto no incluye el juego ni sus archivos.',tag:'Android',initials:'CE',color:'#8fbbfb',photo:'https://opengraph.githubassets.com/1/BelmanteGu/CelesteAndroid',site:'https://github.com/BelmanteGu/CelesteAndroid/releases',source:'https://github.com/BelmanteGu/CelesteAndroid',featured:19},
+      {id:'opencut',name:'OpenCut',category:'Multimedia',desc:'Proyecto de editor de video libre para web, escritorio y móvil. La rama principal está en reescritura; consultá el README para ver qué versión está lista para usar.',tag:'Android · PC',initials:'OC',color:'#c5f467',photo:'https://opengraph.githubassets.com/1/opencut-app/opencut',site:'https://github.com/opencut-app/opencut',source:'https://github.com/opencut-app/opencut',featured:20},
+      {id:'dbz-budokai-tenkaichi-3-android',name:'Dragon Ball Z Budokai Tenkaichi 3 Android',category:'Juegos',desc:'Enlace a revisar: la URL proporcionada lleva al repositorio halo-ce-android y no parece corresponder a Dragon Ball Z Budokai Tenkaichi 3. Mandá el enlace correcto para actualizar esta ficha.',tag:'Android · Enlace a revisar',initials:'DBZ',color:'#f3a65b',photo:'https://opengraph.githubassets.com/1/FulGerNet/halo-ce-android',site:'https://github.com/FulGerNet/halo-ce-android',source:'https://github.com/FulGerNet/halo-ce-android',featured:21},
+      {id:'opentune',name:'OpenTune Android',category:'Música',desc:'Cliente de YouTube Music para Android con una interfaz Material Design 3. La web del proyecto incluye información y descargas.',tag:'Android',initials:'OT',color:'#86c9e8',photo:'https://raw.githubusercontent.com/Arturo254/OpenTune-Web/main/img/reproductor.webp',site:'https://github.com/Arturo254/OpenTune-Web',source:'https://github.com/Arturo254/OpenTune-Web',featured:22}
     ];
     // Apps añadidas por la comunidad a la lista base.
     originalApps.push(...[
@@ -482,7 +802,7 @@
     "name": "NouTune Android",
     "category": "Música",
     "desc": "Proyecto de música para Android publicado por la comunidad NouTube. Consultá el repositorio para ver sus funciones, compatibilidad e instrucciones de instalación.",
-    "tag": "Música · Android",
+    "tag": "Android",
     "initials": "NT",
     "color": "#c5f467",
     "photo": "https://opengraph.githubassets.com/1/nonbili/NouTube",
@@ -495,7 +815,7 @@
     "name": "GAMA Android",
     "category": "Herramientas",
     "desc": "Graphics API Manager para Android: permite cambiar la API de renderizado gráfico compatible con el dispositivo. Algunas funciones pueden requerir Shizuku o root.",
-    "tag": "Sistema · Android",
+    "tag": "Android",
     "initials": "GA",
     "color": "#89c9f2",
     "photo": "https://opengraph.githubassets.com/1/palincat/gama",
@@ -508,7 +828,7 @@
     "name": "SD Maid 2/SE - Limpiador",
     "category": "Herramientas",
     "desc": "Herramienta de mantenimiento y administración de archivos para liberar espacio, limpiar residuos de aplicaciones y analizar el almacenamiento de Android.",
-    "tag": "Limpieza · Android",
+    "tag": "Android",
     "initials": "SD",
     "color": "#d4d9df",
     "photo": "https://opengraph.githubassets.com/1/d4rken-org/sdmaid-se",
@@ -521,7 +841,7 @@
     "name": "F-Droid Basic",
     "category": "Tiendas de apps",
     "desc": "Cliente básico para acceder al catálogo de aplicaciones libres de F-Droid. El enlace lleva al repositorio oficial del cliente; consultá allí las variantes disponibles.",
-    "tag": "Tienda de apps · Android",
+    "tag": "Android",
     "initials": "FB",
     "color": "#8bc7ee",
     "photo": "https://gitlab.com/fdroid/fdroidclient/-/raw/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png",
@@ -534,7 +854,7 @@
     "name": "Neo Store",
     "category": "Tiendas de apps",
     "desc": "Cliente moderno de F-Droid con una interfaz cuidada, sincronización rápida de repositorios y herramientas para explorar aplicaciones libres.",
-    "tag": "Tienda de apps · Android",
+    "tag": "Android",
     "initials": "NS",
     "color": "#bea7ff",
     "photo": "https://opengraph.githubassets.com/1/NeoApplications/Neo-Store",
@@ -547,7 +867,7 @@
     "name": "F-Droid",
     "category": "Tiendas de apps",
     "desc": "Catálogo e instalador de aplicaciones gratuitas y de código abierto para Android. Permite añadir repositorios y revisar los metadatos de las apps.",
-    "tag": "Tienda de apps · Android",
+    "tag": "Android",
     "initials": "FD",
     "color": "#75bce6",
     "photo": "https://gitlab.com/fdroid/fdroidclient/-/raw/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png",
@@ -560,7 +880,7 @@
     "name": "Dolphin Emulator",
     "category": "Emuladores",
     "desc": "Emulador de Nintendo GameCube y Wii disponible para distintas plataformas. El rendimiento depende del dispositivo; utilizá copias de juegos que tengas legalmente.",
-    "tag": "Emulación · Android y PC",
+    "tag": "Android · PC",
     "initials": "DE",
     "color": "#76c9f0",
     "photo": "https://opengraph.githubassets.com/1/dolphin-emu/dolphin",
@@ -573,7 +893,7 @@
     "name": "PPSSPP",
     "category": "Emuladores",
     "desc": "Emulador de PSP para ejecutar juegos de esa consola en dispositivos compatibles, con opciones gráficas y de control. No incluye juegos.",
-    "tag": "Emulación · Android y PC",
+    "tag": "Android · PC",
     "initials": "PSP",
     "color": "#8ea7ff",
     "photo": "https://opengraph.githubassets.com/1/hrydgard/ppsspp",
@@ -586,7 +906,7 @@
     "name": "RetroArch",
     "category": "Emuladores",
     "desc": "Interfaz multiplataforma para usar distintos núcleos de emulación y organizar juegos clásicos. Los núcleos y sus licencias pueden variar.",
-    "tag": "Emulación · Android y PC",
+    "tag": "Android · PC",
     "initials": "RA",
     "color": "#ee9f68",
     "photo": "https://opengraph.githubassets.com/1/libretro/RetroArch",
@@ -599,7 +919,7 @@
     "name": "Need For Speed Most Wanted Android",
     "category": "Juegos",
     "desc": "Proyecto comunitario relacionado con ejecutar Need for Speed: Most Wanted en Android. Revisá el estado del lanzamiento, compatibilidad y requisitos; no se incluyen archivos comerciales del juego.",
-    "tag": "Juego · Android · Experimental",
+    "tag": "Android · Experimental",
     "initials": "NFS",
     "color": "#ee795e",
     "photo": "https://opengraph.githubassets.com/1/codepdbh/nfsmw-android",
@@ -612,7 +932,7 @@
     "name": "J2ME Loader",
     "category": "Emuladores",
     "desc": "Emulador para ejecutar aplicaciones y juegos Java ME clásicos en Android, con configuración de pantalla, teclado y compatibilidad.",
-    "tag": "Emulación · Android",
+    "tag": "Android",
     "initials": "J2",
     "color": "#9bc7e5",
     "photo": "https://opengraph.githubassets.com/1/nikita36078/J2ME-Loader",
@@ -625,7 +945,7 @@
     "name": "Olauncher",
     "category": "Personalización",
     "desc": "Lanzador minimalista para Android que reduce distracciones y mantiene una pantalla de inicio sencilla, basada principalmente en texto.",
-    "tag": "Launcher · Android",
+    "tag": "Android",
     "initials": "OL",
     "color": "#d6d2c5",
     "photo": "https://opengraph.githubassets.com/1/tanujnotes/Olauncher",
@@ -638,7 +958,7 @@
     "name": "Kvaesitso",
     "category": "Personalización",
     "desc": "Lanzador de Android centrado en la búsqueda, con widgets y accesos rápidos para encontrar aplicaciones y contenido desde la pantalla de inicio.",
-    "tag": "Launcher · Android",
+    "tag": "Android",
     "initials": "KV",
     "color": "#b9a8f5",
     "photo": "https://opengraph.githubassets.com/1/MM2-0/Kvaesitso",
@@ -651,7 +971,7 @@
     "name": "SoundPod",
     "category": "Música",
     "desc": "Aplicación de audio para Android del proyecto SoundPod. Visitá el repositorio para consultar detalles de sus funciones, requisitos y versiones disponibles.",
-    "tag": "Audio · Android",
+    "tag": "Android",
     "initials": "SP",
     "color": "#e9a7c5",
     "photo": "https://opengraph.githubassets.com/1/arunnechully/SoundPod",
@@ -664,7 +984,7 @@
     "name": "NewPipe",
     "category": "Multimedia",
     "desc": "Cliente ligero y libre para explorar servicios de video y audio sin depender de las aplicaciones oficiales. Instalá desde fuentes confiables y respetá los derechos del contenido.",
-    "tag": "Video y audio · Android",
+    "tag": "Android",
     "initials": "NP",
     "color": "#f5a16e",
     "photo": "https://opengraph.githubassets.com/1/TeamNewPipe/NewPipe",
@@ -677,7 +997,7 @@
     "name": "PixelPlayerOSS",
     "category": "Música",
     "desc": "Reproductor musical libre para Android, enfocado en música local y bibliotecas controladas por el usuario, con interfaz Material moderna.",
-    "tag": "Reproductor · Android",
+    "tag": "Android",
     "initials": "PP",
     "color": "#a7c6ff",
     "photo": "https://opengraph.githubassets.com/1/PixelPlayerHQ/PixelPlayerOSS",
@@ -690,7 +1010,7 @@
     "name": "InnerTune",
     "category": "Música",
     "desc": "Cliente musical libre para Android que permite explorar y reproducir música de YouTube Music. Consultá el repositorio para ver el estado del proyecto.",
-    "tag": "Música · Android",
+    "tag": "Android",
     "initials": "IT",
     "color": "#9ed7bd",
     "photo": "https://opengraph.githubassets.com/1/z-huang/InnerTune",
@@ -701,9 +1021,9 @@
   {
     "id": "gdroid",
     "name": "GDroid",
-    "category": "Herramientas",
+    "category": "Juegos",
     "desc": "Proyecto para Android publicado en GitHub. Entrá al repositorio para revisar su descripción, las funciones actuales y las instrucciones de instalación.",
-    "tag": "Herramientas · Android",
+    "tag": "Android",
     "initials": "GD",
     "color": "#91c5ed",
     "photo": "https://opengraph.githubassets.com/1/tinsarfal/GDroid",
@@ -716,7 +1036,7 @@
     "name": "COD: Black Ops Zombies Android",
     "category": "Juegos",
     "desc": "Proyecto comunitario de decompilación parcial relacionado con Call of Duty: Black Ops Zombies. Puede ser experimental y requerir archivos originales; revisá la página de lanzamientos.",
-    "tag": "Juego · Android · Experimental",
+    "tag": "Android · Experimental",
     "initials": "COD",
     "color": "#a9adba",
     "photo": "https://opengraph.githubassets.com/1/eugene373/COD-BOZ-Partially-Decompiled",
@@ -729,7 +1049,7 @@
     "name": "GTA 4 Android",
     "category": "Juegos",
     "desc": "Port no oficial y experimental de Liberty Recomp para Android. El propio repositorio advierte que puede ser inestable; verificá requisitos y archivos necesarios antes de probarlo.",
-    "tag": "Juego · Android · Experimental",
+    "tag": "Android · Experimental",
     "initials": "GTA",
     "color": "#9ac2aa",
     "photo": "https://opengraph.githubassets.com/1/vaduur/LibertyRecompAndroid",
@@ -742,7 +1062,7 @@
     "name": "Metroid Prime Android",
     "category": "Juegos",
     "desc": "Port nativo de Metroid Prime para Android y otras plataformas basado en un proyecto de decompilación. No incluye archivos del juego; necesitás aportar tu propia imagen de disco.",
-    "tag": "Juego · Android y PC",
+    "tag": "Android · PC · Linux · Windows",
     "initials": "MP",
     "color": "#b7a7f2",
     "photo": "https://opengraph.githubassets.com/1/Odrannnn/MetroidPrimePort",
@@ -755,7 +1075,7 @@
     "name": "The Legend of Zelda: The Wind Waker Android",
     "category": "Juegos",
     "desc": "Proyecto de port para Android de The Wind Waker HD. Revisá la documentación y los requisitos técnicos; puede necesitar archivos propios del juego.",
-    "tag": "Juego · Android",
+    "tag": "Android",
     "initials": "WW",
     "color": "#81bde8",
     "photo": "https://opengraph.githubassets.com/1/GreenNaugahyde/ZeldaWWHDRecompAndroid",
@@ -768,7 +1088,7 @@
     "name": "PokeWilds Android",
     "category": "Juegos",
     "desc": "Proyecto para ejecutar PokeWilds en Android mediante Godot. Consultá el repositorio para conocer el estado del port, compatibilidad y pasos de instalación.",
-    "tag": "Juego · Android",
+    "tag": "Android",
     "initials": "PW",
     "color": "#e9c66f",
     "photo": "https://opengraph.githubassets.com/1/TryTheSauceBoss/Pokewilds-Godot",
@@ -781,7 +1101,7 @@
     "name": "Broforce Android",
     "category": "Juegos",
     "desc": "Port comunitario de Broforce para Android. Revisá los requisitos y el estado del proyecto antes de instalar; puede necesitar recursos originales del juego.",
-    "tag": "Juego · Android",
+    "tag": "Android",
     "initials": "BF",
     "color": "#ee9871",
     "photo": "https://opengraph.githubassets.com/1/BelmanteGu/BroforceAndroid",
@@ -794,7 +1114,7 @@
     "name": "CS16Client Android",
     "category": "Juegos",
     "desc": "Cliente para jugar Counter-Strike 1.6 en Android. Consultá la documentación para configurar los datos del juego y asegurarte de usar archivos que tengas legalmente.",
-    "tag": "Juego · Android",
+    "tag": "Android",
     "initials": "CS",
     "color": "#b8c4d2",
     "photo": "https://opengraph.githubassets.com/1/Velaron/cs16-client",
@@ -807,7 +1127,7 @@
     "name": "The Simpsons: Hit & Run Android",
     "category": "Juegos",
     "desc": "Port no oficial para Android de The Simpsons: Hit & Run. Revisá compatibilidad, instrucciones y requisitos de archivos originales en el repositorio.",
-    "tag": "Juego · Android",
+    "tag": "Android",
     "initials": "SHR",
     "color": "#f1cd60",
     "photo": "https://opengraph.githubassets.com/1/Carlox33/The-Simpsons-Hit-and-Run-Android",
@@ -820,7 +1140,7 @@
     "name": "Pokemon Reloaded Android",
     "category": "Juegos",
     "desc": "Proyecto para llevar Pokémon Reloaded a Android. Revisá la página de lanzamientos y las indicaciones del autor sobre compatibilidad e instalación.",
-    "tag": "Juego · Android",
+    "tag": "Android",
     "initials": "PK",
     "color": "#e8a9bd",
     "photo": "https://opengraph.githubassets.com/1/Klisee/pokemon-reloaded-android",
@@ -833,7 +1153,7 @@
     "name": "BedrockLauncher",
     "category": "Juegos",
     "desc": "Lanzador alternativo para Minecraft Bedrock Edition. Consultá el repositorio para revisar compatibilidad, requisitos y opciones de instalación.",
-    "tag": "Launcher · Minecraft Bedrock · PC",
+    "tag": "PC · Windows",
     "initials": "BL",
     "color": "#88c9ee",
     "photo": "https://opengraph.githubassets.com/1/BedrockLauncher/BedrockLauncher",
@@ -846,7 +1166,7 @@
     "name": "PolyMC (Minecraft Java)",
     "category": "Juegos",
     "desc": "Launcher de código abierto para gestionar instancias, versiones y modpacks de Minecraft: Java Edition. Revisá el estado y las instrucciones actuales en su repositorio.",
-    "tag": "Launcher · Minecraft Java · PC",
+    "tag": "PC · Windows · macOS · Linux",
     "initials": "PM",
     "color": "#b9a6f6",
     "photo": "https://opengraph.githubassets.com/1/PolyMC/PolyMC",
@@ -979,13 +1299,30 @@
       render();
     });
     function revealContent(targetId = 'explorar') {
-      document.body.classList.add('catalog-visible');
+      document.body.classList.remove('catalog-visible', 'news-visible', 'philosophy-visible');
+      if (targetId === 'noticias') document.body.classList.add('news-visible');
+      else if (targetId === 'filosofia') document.body.classList.add('philosophy-visible');
+      else document.body.classList.add('catalog-visible');
+
+      const newsLink = document.querySelector('.nav-news');
+      if (newsLink) {
+        if (targetId === 'noticias') newsLink.setAttribute('aria-current', 'page');
+        else newsLink.removeAttribute('aria-current');
+      }
+
       requestAnimationFrame(() => {
-        layoutAppGrid();
+        if (targetId === 'explorar') layoutAppGrid();
         const target = document.getElementById(targetId);
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
+    document.querySelectorAll('a[href="#inicio"]').forEach(a => a.addEventListener('click', event => {
+      event.preventDefault();
+      document.body.classList.remove('catalog-visible', 'news-visible', 'philosophy-visible');
+      const newsLink = document.querySelector('.nav-news');
+      if (newsLink) newsLink.removeAttribute('aria-current');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }));
     document.querySelectorAll('a[href="#explorar"]').forEach(a => a.addEventListener('click', event => {
       event.preventDefault();
       revealContent('explorar');
