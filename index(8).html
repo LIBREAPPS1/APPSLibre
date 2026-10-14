@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10130f">
+  <meta name="description" content="Descubrí aplicaciones open source: herramientas libres, potentes y creadas por comunidades abiertas.">
+  <title>LibreApps — Software libre para todo</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #10130f;
+      --panel: #171b16;
+      --panel-2: #1d221b;
+      --line: #2c3329;
+      --text: #f2f5ed;
+      --muted: #a1aa99;
+      --lime: #c5f467;
+      --lime-dark: #a5d84b;
+      --radius: 22px;
+      --max: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    .container { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .topbar { height: 78px; border-bottom: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.045em; font-size: 1.25rem; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; color: #141810; background: var(--lime); border-radius: 11px; font-size: 1.18rem; font-weight: 900; box-shadow: 0 0 26px #c5f46722; }
+    .brand span em { color: var(--lime); font-style: normal; }
+    .nav-links { display: flex; gap: 30px; align-items: center; color: var(--muted); font-size: .91rem; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--lime); color: #171b12; padding: 10px 15px; border-radius: 12px; font-weight: 750; font-size: .88rem; transition: transform .2s, background .2s; }
+    .nav-cta:hover { background: #d5ff8c; transform: translateY(-1px); }
+    .hero { padding: 86px 0 54px; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; width: 520px; height: 360px; border-radius: 50%; background: #b5ef4c0d; filter: blur(65px); right: -100px; top: -80px; pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 55px; position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; border: 1px solid #3b4830; background: #1a2115; color: var(--lime); padding: 7px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: .11em; font-size: .69rem; font-weight: 800; }
+    .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+    h1 { margin: 22px 0 19px; font-size: clamp(2.75rem, 5.6vw, 5.1rem); letter-spacing: -.075em; line-height: .99; max-width: 690px; }
+    h1 .accent { color: var(--lime); }
+    .hero-copy { color: #aeb7a5; font-size: 1.1rem; max-width: 540px; line-height: 1.75; margin: 0 0 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn-primary, .btn-secondary { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 18px; border-radius: 13px; font-weight: 750; font-size: .94rem; transition: .2s ease; }
+    .btn-primary { background: var(--lime); color: #151a10; border: 1px solid var(--lime); }
+    .btn-primary:hover { background: #d8ff9a; transform: translateY(-2px); }
+    .btn-secondary { border: 1px solid #3b4336; background: #191d17; color: #e4eadd; }
+    .btn-secondary:hover { border-color: #879276; transform: translateY(-2px); }
+    .hero-note { display: flex; gap: 9px; align-items: center; color: #929b8a; font-size: .8rem; margin-top: 20px; }
+    .hero-note svg { flex: 0 0 auto; color: var(--lime); }
+    .visual { min-height: 360px; border: 1px solid #30392a; border-radius: 28px; background: linear-gradient(145deg, #1b2117, #151914 75%); padding: 25px; position: relative; overflow: hidden; box-shadow: 0 26px 80px #0003; }
+    .visual::after { content: ""; position: absolute; width: 310px; height: 310px; border: 1px solid #c5f46719; border-radius: 50%; right: -100px; bottom: -155px; box-shadow: 0 0 0 35px #c5f46708, 0 0 0 75px #c5f46705; }
+    .visual-head { display:flex; justify-content: space-between; align-items:center; color: #96a08e; text-transform: uppercase; letter-spacing: .1em; font-size: .68rem; font-weight: 800; }
+    .live-pill { display: inline-flex; gap: 6px; align-items: center; color: var(--lime); border: 1px solid #3e4a2e; background: #242e1b; padding: 5px 8px; border-radius: 99px; letter-spacing: 0; text-transform: none; font-size: .7rem; }
+    .live-pill::before { content:""; width: 5px; height: 5px; border-radius: 50%; background: var(--lime); }
+    .visual-title { font-size: 1.5rem; font-weight: 780; letter-spacing: -.04em; margin: 25px 0 5px; }
+    .visual-sub { color: #8e9886; font-size: .84rem; margin: 0 0 20px; }
+    .mini-apps { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; z-index: 1; }
+    .mini-app { display:flex; align-items:center; gap: 11px; padding: 12px; border: 1px solid #30382b; border-radius: 15px; background: #1c2119db; }
+    .mini-icon { height: 39px; width: 39px; border-radius: 12px; display:grid; place-items:center; flex-shrink:0; font-weight: 850; font-size: .78rem; color: #11170b; }
+    .mini-app strong { display:block; font-size: .85rem; letter-spacing: -.02em; }
+    .mini-app small { display:block; color: #8f9987; font-size: .72rem; margin-top: 2px; }
+    .stats { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); border-radius: 17px; overflow: hidden; margin: 8px 0 0; }
+    .stat { background: #151914; padding: 18px 21px; }
+    .stat strong { font-size: 1.35rem; letter-spacing: -.04em; display: block; }
+    .stat span { color: #98a28f; font-size: .76rem; }
+    /* Al cargar, solo se muestra la portada. El resto aparece al explorar el catálogo. */
+    #explorar, #filosofia, #sugerir, footer { display: none; }
+    body.catalog-visible #explorar,
+    body.catalog-visible #filosofia,
+    body.catalog-visible #sugerir,
+    body.catalog-visible footer { display: block; }
+    .catalog { padding: 63px 0 90px; }
+    .section-top { display:flex; justify-content:space-between; gap: 24px; align-items:end; margin-bottom: 28px; }
+    .section-kicker { color: var(--lime); font-size: .72rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 850; margin-bottom: 10px; }
+    h2 { margin:0; font-size: clamp(1.85rem, 3.2vw, 2.75rem); letter-spacing: -.06em; line-height: 1.08; }
+    .section-desc { margin: 12px 0 0; color: var(--muted); max-width: 570px; font-size: .94rem; }
+    .result-count { font-size: .8rem; color: #9aa491; white-space: nowrap; padding-bottom: 3px; }
+    .toolbar { display:flex; flex-wrap:wrap; gap: 12px; justify-content:space-between; align-items:center; margin-bottom: 20px; }
+    .search-wrap { position:relative; flex: 1 1 260px; max-width: 390px; }
+    .search-wrap svg { position:absolute; left: 14px; top:50%; transform:translateY(-50%); color:#8c9783; pointer-events:none; }
+    .search { width:100%; height:46px; padding: 0 40px 0 43px; background: #171b16; color: var(--text); border:1px solid #30372b; border-radius:13px; outline:none; }
+    .search::placeholder { color:#778170; }
+    .search:focus { border-color:#859d5f; box-shadow: 0 0 0 3px #c5f46714; }
+    .clear-search { position:absolute; right:8px; top:50%; transform:translateY(-50%); background:transparent; color:#9ba48f; border:0; padding:5px 7px; cursor:pointer; border-radius:6px; display:none; }
+    .clear-search.visible { display:block; }
+    .sort-select { height:46px; padding:0 36px 0 13px; background:#171b16; color:#cbd3c3; border:1px solid #30372b; border-radius:13px; cursor:pointer; }
+    .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:25px; }
+    .filter { border:1px solid #30372b; background:#171b16; color:#a7b09e; border-radius:999px; padding:8px 14px; font-size:.81rem; cursor:pointer; transition:all .18s ease; }
+    .filter:hover { border-color:#65724e; color:#eaf0e3; }
+    .filter.active { background:var(--lime); border-color:var(--lime); color:#151a10; font-weight:800; }
+    /* Masonry compacto: cada tarjeta ocupa su altura real y los huecos se rellenan. */
+    .app-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); grid-auto-rows:8px; grid-auto-flow:dense; column-gap:15px; row-gap:15px; align-items:start; }
+    .app-card { border:1px solid #2b3227; border-radius:19px; background:var(--panel); padding:15px; display:flex; flex-direction:column; min-height:0; height:auto; align-self:start; position:relative; transition: transform .2s, border-color .2s, background .2s; }
+    .app-card:hover { transform:translateY(-3px); border-color:#48563a; background:#1a2018; }
+    .app-photo { display:block; width:100%; height:166px; object-fit:cover; object-position:center; border-radius:13px; margin:0 0 16px; background:#20261d; border:1px solid #30382b; }
+    .card-top { display:flex; align-items:flex-start; gap:13px; }
+    .app-icon { width:49px; height:49px; border-radius:15px; display:grid; place-items:center; color:#12170d; font-size:.88rem; font-weight:900; letter-spacing:-.04em; flex:0 0 auto; box-shadow:inset 0 1px 0 #ffffff55; }
+    .app-title-wrap { min-width:0; padding-top:2px; }
+    .app-title { font-weight:800; font-size:1.03rem; letter-spacing:-.035em; margin:0; }
+    .app-category { color:#9aa58e; font-size:.75rem; margin-top:3px; }
+    .favorite { margin-left:auto; flex-shrink:0; height:32px; width:32px; display:grid; place-items:center; background:transparent; border:1px solid #343c2f; border-radius:10px; color:#9ba58f; cursor:pointer; }
+    .favorite:hover, .favorite.saved { color:var(--lime); border-color:#667b42; background:#c5f4670b; }
+    .favorite.saved svg { fill:currentColor; }
+    .app-description { color:#abb4a4; font-size:.84rem; line-height:1.65; margin:17px 0 18px; }
+    .card-bottom { display:flex; align-items:center; justify-content:space-between; gap:10px; padding-top:14px; border-top:1px solid #2b3227; }
+    .open-badge { display:inline-flex; align-items:center; gap:6px; color:#b5c7a1; font-size:.73rem; }
+    .open-badge svg { color:var(--lime); }
+    .card-links { display:flex; gap:13px; align-items:center; }
+    .card-link { display:inline-flex; align-items:center; gap:5px; font-size:.76rem; color:#d1d9ca; font-weight:700; }
+    .card-link:hover { color:var(--lime); }
+    .empty-state { display:none; border:1px dashed #3a4531; border-radius:20px; padding:44px 20px; text-align:center; color:#9ca691; }
+    .empty-state strong { display:block; color:#edf2e8; margin-bottom:7px; font-size:1.1rem; }
+    .empty-state button { margin-top:14px; border:1px solid #566544; background:#20291a; color:var(--lime); padding:9px 14px; border-radius:10px; cursor:pointer; }
+    .principles { padding: 0 0 85px; }
+    .principle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
+    .principle { padding:23px; background:#151914; border:1px solid #2a3225; border-radius:18px; }
+    .principle-icon { height:38px; width:38px; display:grid; place-items:center; background:#252e1d; color:var(--lime); border-radius:12px; margin-bottom:17px; }
+    .principle h3 { margin:0 0 8px; font-size:1rem; letter-spacing:-.025em; }
+    .principle p { margin:0; color:#9ea894; font-size:.84rem; line-height:1.7; }
+    .submit-banner { padding:34px; border:1px solid #435331; border-radius:24px; background:radial-gradient(ellipse at 93% 0%, #c5f46718, transparent 38%), #1a2015; display:flex; justify-content:space-between; align-items:center; gap:24px; margin-bottom:74px; }
+    .submit-banner h2 { font-size:clamp(1.5rem, 3vw, 2.1rem); }
+    .submit-banner p { color:#a4af98; margin:9px 0 0; font-size:.9rem; }
+    .community-meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin-top:15px; }
+    .forum-status { display:inline-flex; align-items:center; gap:8px; border:1px solid #435b2f; background:#1b2717; color:#d6f6ad; border-radius:999px; padding:7px 11px; font-size:.76rem; font-weight:750; }
+    .forum-status::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--lime); box-shadow:0 0 10px #c5f46788; }
+    .community-count { color:#899481; font-size:.76rem; }
+    footer { border-top:1px solid #283026; padding:25px 0; color:#8b9582; font-size:.79rem; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+    .footer-inner strong { color:#e3e9dc; }
+    .footer-links { display:flex; gap:19px; }
+    .footer-links a:hover { color:var(--lime); }
+    .toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#e2ffc0; color:#16200c; padding:12px 18px; border-radius:12px; font-size:.87rem; font-weight:750; box-shadow:0 8px 40px #0005; transition:all .25s; z-index:30; }
+    .toast.show { opacity:1; transform:translate(-50%,0); }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns:1fr; gap:34px; } .visual { min-height:0; } .app-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero { padding-top:64px; } }
+    @media (max-width: 620px) { .container { width:min(100% - 30px, var(--max)); } .topbar { height:66px; } .nav-links { gap:14px; } .nav-links a:not(.nav-cta) { display:none; } .nav-cta { padding:9px 11px; font-size:.8rem; } .hero { padding:53px 0 35px; } h1 { font-size:clamp(2.6rem, 13vw, 4.3rem); } .hero-copy { font-size:1rem; } .visual { padding:19px; border-radius:22px; } .mini-apps { gap:8px; } .mini-app { padding:9px; gap:8px; } .mini-icon { width:33px; height:33px; border-radius:10px; } .mini-app strong { font-size:.77rem; } .mini-app small { font-size:.66rem; } .stat { padding:14px 10px; } .stat strong { font-size:1.2rem; } .stat span { font-size:.68rem; } .catalog { padding:46px 0 62px; } .section-top { align-items:start; flex-direction:column; gap:12px; } .toolbar { align-items:stretch; } .search-wrap { max-width:none; flex-basis:100%; } .sort-select { flex:1; } .app-grid { grid-template-columns:1fr; column-gap:0; row-gap:11px; } .app-photo { height:190px; } .principles { padding-bottom:56px; } .principle-grid { grid-template-columns:1fr; } .submit-banner { padding:23px; flex-direction:column; align-items:flex-start; margin-bottom:50px; } .footer-inner { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior:auto !important; transition:none !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="LibreApps, inicio"><span class="brand-mark">L</span><span>libre<em>apps</em></span></a>
+      <div class="nav-links">
+        <a href="#explorar">Explorar apps</a>
+        <a href="#filosofia">Por qué libre</a>
+        <a class="nav-cta" href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">+ Foro de apps ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span> El software debería ser libre</div>
+          <h1>Buenas apps.<br><span class="accent">Código abierto.</span><br>Sin vueltas.</h1>
+          <p class="hero-copy">Descubrí apps libres para escuchar música, jugar y tener más control sobre tu Android.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#explorar">Explorar catálogo <span aria-hidden="true">↗</span></a>
+            <a class="btn-secondary" href="#filosofia">¿Qué es open source?</a>
+          </div>
+          <div class="hero-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg> Sin rankings pagos. Sin apps patrocinadas. Solo software para explorar.</div>
+        </div>
+        <div>
+          <div class="visual" aria-label="Vista previa de aplicaciones open source populares">
+            <div class="visual-head"><span>Selección de LibreApps</span><span class="live-pill">Código abierto</span></div>
+            <div class="visual-title">Tu próximo favorito.</div>
+            <p class="visual-sub">Grandes herramientas, ideas abiertas.</p>
+            <div class="mini-apps">
+              <div class="mini-app"><span class="mini-icon" style="background:#c5f467">ML</span><span><strong>Metrolist</strong><small>Música para Android</small></span></div>
+              <div class="mini-app"><span class="mini-icon" style="background:#7cc9b6">LT</span><span><strong>LibreTune</strong><small>Reproductor musical</small></span></div>
+              <div class="mini-app"><span class="mini-icon" style="background:#f3a16f">S3</span><span><strong>Skate 3 Android</strong><small>Juego experimental</small></span></div>
+              <div class="mini-app"><span class="mini-icon" style="background:#9fd7fb">H1</span><span><strong>Halo 1 Android</strong><small>Acción y aventura</small></span></div>
+            </div>
+          </div>
+          <div class="stats" aria-label="Datos del catálogo">
+            <div class="stat"><strong id="stat-apps">49</strong><span>apps para explorar</span></div>
+            <div class="stat"><strong id="stat-categories">4</strong><span>categorías</span></div>
+            <div class="stat"><strong>0</strong><span>anuncios integrados</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog" id="explorar">
+      <div class="container">
+        <div class="section-top">
+          <div><div class="section-kicker">El catálogo</div><h2>Encontrá tu próxima app.</h2><p class="section-desc">Buscá por nombre, explorá categorías y entrá al proyecto o su código fuente.</p></div>
+          <div class="result-count" id="result-count" aria-live="polite">49 aplicaciones</div>
+        </div>
+        <div class="toolbar">
+          <div class="search-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7.5"/><path d="m16.5 16.5 4 4"/></svg>
+            <input class="search" id="search" type="search" placeholder="Buscá una app, categoría o uso…" autocomplete="off" aria-label="Buscar aplicaciones">
+            <button type="button" class="clear-search" id="clear-search" aria-label="Limpiar búsqueda">✕</button>
+          </div>
+          <select class="sort-select" id="sort" aria-label="Ordenar aplicaciones"><option value="featured">Orden recomendado</option><option value="az">Nombre: A–Z</option><option value="saved">Mis favoritas</option></select>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría">
+          <button class="filter active" data-category="Todas" type="button">Todas</button>
+        </div>
+        <div class="app-grid" id="app-grid"></div>
+        <div class="empty-state" id="empty-state"><strong>No encontramos aplicaciones.</strong>Probá con otra búsqueda o elegí una categoría distinta.<br><button id="reset-filters" type="button">Ver todas las apps</button></div>
+      </div>
+    </section>
+
+    <section class="principles" id="filosofia">
+      <div class="container">
+        <div class="section-kicker">Más que gratis</div>
+        <h2>La libertad también importa.</h2>
+        <p class="section-desc">Open source no es solo una etiqueta: es una forma más transparente y colaborativa de construir tecnología.</p>
+        <div class="principle-grid">
+          <article class="principle"><div class="principle-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18-6-6 6-6M15 6l6 6-6 6"/></svg></div><h3>Código visible</h3><p>Podés inspeccionar cómo funciona el software y, según el proyecto, auditarlo, modificarlo o adaptarlo.</p></article>
+          <article class="principle"><div class="principle-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2M19 8h3M20.5 6.5v3"/></svg></div><h3>Hecho en comunidad</h3><p>Personas de todo el mundo colaboran, informan errores y mejoran herramientas que todos pueden aprovechar.</p></article>
+          <article class="principle"><div class="principle-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Más control para vos</h3><p>Licencias abiertas facilitan la independencia y la interoperabilidad. Revisá siempre la licencia y las condiciones de cada app.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="sugerir">
+      <div class="submit-banner">
+        <div>
+          <div class="section-kicker">Comunidad en GitHub</div>
+          <h2>Compartí apps, ideas y descubrimientos.</h2>
+          <p>El foro oficial de LibreApps está en GitHub Discussions. Proponé nuevas aplicaciones, hacé preguntas, compartí recomendaciones y ayudá a mejorar el catálogo junto a la comunidad.</p>
+          <div class="community-meta">
+            <span class="forum-status">Foro comunitario</span>
+            <span class="community-count">Para publicar o comentar, GitHub puede pedirte iniciar sesión.</span>
+          </div>
+        </div>
+        <a class="btn-primary" href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">Abrir foro de GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><div><strong>libreapps</strong> · Un directorio independiente para explorar software abierto.</div><div class="footer-links"><a href="#explorar">Catálogo</a><a href="#filosofia">Filosofía</a><a href="https://github.com/zerojuan0041-alt/LibreApps-FORO/discussions" target="_blank" rel="noopener noreferrer">Foro de GitHub ↗</a></div><div>Hecho con curiosidad <span aria-hidden="true">↗</span></div></div></footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const originalApps = [
+      {id:'metrolist',name:'Metrolist',category:'Música',desc:'Cliente de YouTube Music para Android con reproducción en segundo plano, letras sincronizadas, descargas y biblioteca musical.',tag:'Música · Android',initials:'ML',color:'#c5f467',photo:'https://metrolist.cc/5.webp',site:'https://metrolist.cc/',source:'https://github.com/t4ulquiorra/Metrolist',featured:1},
+      {id:'libretune',name:'LibreTune',category:'Música',desc:'Reproductor musical libre para Android y alternativa independiente a YouTube Music, con foco en la privacidad.',tag:'Reproductor musical',initials:'LT',color:'#78cdb5',photo:'https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2x2tdlxe4pyfau5kpi3h.png',site:'https://github.com/acoluzzi/libre-tune',source:'https://github.com/acoluzzi/libre-tune',featured:2},
+      {id:'skate3-android',name:'Skate 3 Android',category:'Juegos',desc:'Port experimental para ejecutar Skate 3 de forma nativa en Android. Requiere un dispositivo compatible y una copia legal del juego; no incluye archivos del juego.',tag:'Juego · Experimental',initials:'S3',color:'#f3a16f',photo:'https://store-images.s-microsoft.com/image/apps.57264.68005754082254855.39795a60-73cf-4461-87d9-7f112c30c43c.a9fe1ef9-f8df-4ac1-89c1-cbd3a5f1b852',site:'https://github.com/Buku313/Skate3-Mobile',source:'https://github.com/Buku313/Skate3-Mobile',featured:3},
+      {id:'halo1-android',name:'Halo 1 Android',category:'Juegos',desc:'Proyecto comunitario para llevar Halo: Combat Evolved a Android. Consultá el repositorio para ver compatibilidad, instalación y estado del port.',tag:'Juego · Android',initials:'H1',color:'#9fd7fb',photo:'https://i.imgur.com/5dLT3Irg.jpg',site:'https://github.com/FulGerNet/halo-ce-android',source:'https://github.com/FulGerNet/halo-ce-android',featured:4},
+      {id:'canta',name:'Canta',category:'Privacidad',desc:'Herramienta para desinstalar aplicaciones del sistema Android sin root, usando Shizuku. Revisá las recomendaciones antes de quitar componentes.',tag:'Control del dispositivo',initials:'CA',color:'#efb0ca',photo:'https://imag.malavida.com/mvimgbig/download-fs/canta-40518-11.jpg',site:'https://samolego.github.io/Canta/',source:'https://github.com/samolego/Canta',featured:5},
+      {id:'aurorastore',name:'Aurora Store',category:'Tiendas de apps',desc:'Cliente libre y de código abierto para buscar y descargar aplicaciones desde Google Play, con opciones de cuenta anónima.',tag:'Tienda de apps',initials:'AS',color:'#b9a3ff',photo:'https://aplicacionesandroid.es/img/Aurora-Store-actualizacion_AplicacionesAndroid.jpg',site:'https://auroraoss.com/aurora-store',source:'https://gitlab.com/AuroraOSS/AuroraStore',featured:6},
+      {id:'auraninja',name:'AuraNinja',category:'Música',desc:'Mezclá sonidos de la naturaleza, ruido blanco, pulsos binaurales y radios online para concentrarte o relajarte.',tag:'Audio · Android',initials:'AN',color:'#c5f467',photo:'https://opengraph.githubassets.com/1/Giuig/auraninja',site:'https://github.com/Giuig/auraninja',source:'https://github.com/Giuig/auraninja',featured:7},
+      {id:'lemuroid',name:'Lemuroid',category:'Juegos',desc:'Emulador todo en uno para Android basado en Libretro, compatible con varias consolas clásicas. Usá tus propios juegos obtenidos legalmente.',tag:'Emulación · Android',initials:'LE',color:'#7bc8ee',photo:'https://opengraph.githubassets.com/1/swordfish90/lemuroid',site:'https://github.com/swordfish90/lemuroid',source:'https://github.com/swordfish90/lemuroid',featured:8},
+      {id:'silent-hill-1-android',name:'Silent Hill 1 Android',category:'Juegos',desc:'Versión beta multiplataforma basada en la decompilación de Silent Hill. Revisá los requisitos y aportá tus propios archivos del juego legalmente.',tag:'Juego · Beta',initials:'SH',color:'#b4b7bf',photo:'https://opengraph.githubassets.com/1/SlickAmogus/silent-hill-decomp',site:'https://github.com/SlickAmogus/silent-hill-decomp/releases/tag/crossplatform-beta',source:'https://github.com/SlickAmogus/silent-hill-decomp',featured:9},
+      {id:'jak-3-pc',name:'Jak 3 PC',category:'Juegos',desc:'Port para PC de Jak 3 publicado como lanzamiento comunitario. Consultá las notas del proyecto y los requisitos antes de instalar.',tag:'Juego · PC',initials:'J3',color:'#e0b96e',photo:'https://opengraph.githubassets.com/1/ingunnfranklyn0931/jak-3-pc-port-opengoal',site:'https://github.com/ingunnfranklyn0931/jak-3-pc-port-opengoal/releases/tag/jak-3-pc-port-opengoal',source:'https://github.com/ingunnfranklyn0931/jak-3-pc-port-opengoal',featured:10},
+      {id:'sonic-r-android',name:'Sonic R Android',category:'Juegos',desc:'Port nativo de Sonic R para Android con controles táctiles personalizables. Requiere que tengas los archivos originales del juego; no están incluidos.',tag:'Juego · Android',initials:'SR',color:'#83baff',photo:'https://raw.githubusercontent.com/ZinexDa/sonic-r-android/main/AppIcon.png',site:'https://github.com/ZinexDa/sonic-r-android',source:'https://github.com/ZinexDa/sonic-r-android',featured:11},
+      {id:'archivetune',name:'ArchiveTune',category:'Música',desc:'Reproductor musical para Android con soporte para archivos locales y YouTube Music, con una interfaz moderna.',tag:'Música · Android',initials:'AT',color:'#f1a5ca',photo:'https://opengraph.githubassets.com/1/rukamori/ArchiveTune',site:'https://github.com/rukamori/ArchiveTune',source:'https://github.com/rukamori/ArchiveTune',featured:12},
+      {id:'gif-live-wallpaper',name:'GIF Live Wallpaper',category:'Personalización',desc:'Aplicación Android para usar GIFs animados como fondo de pantalla.',tag:'Fondos animados · Android',initials:'GIF',color:'#c9a7ff',photo:'https://opengraph.githubassets.com/1/redwarp/gif-wallpaper',site:'https://github.com/redwarp/gif-wallpaper',source:'https://github.com/redwarp/gif-wallpaper',featured:13},
+      {id:'droiddeck',name:'DroidDeck',category:'Juegos',desc:'Lleva la experiencia de SteamOS a dispositivos Android compatibles, con Steam Big Picture y soporte para juegos de PC mediante Proton. Revisá los requisitos de hardware.',tag:'Gaming · Android',initials:'DD',color:'#95a8ff',photo:'https://opengraph.githubassets.com/1/Droid-Deck/DroidDeck',site:'https://github.com/Droid-Deck/DroidDeck',source:'https://github.com/Droid-Deck/DroidDeck',featured:14},
+      {id:'super-mario-sunshine-pc',name:'Super Mario Sunshine (PC)',category:'Juegos',desc:'Aviso: el enlace que compartiste corresponde a un port nativo para PC, no a una versión Android. Requiere una copia propia del juego; confirmá si querías este proyecto.',tag:'Juego · PC · Enlace a confirmar',initials:'SMS',color:'#ff9e64',photo:'https://opengraph.githubassets.com/1/TekRantGaming/sms-pc-port',site:'https://github.com/TekRantGaming/sms-pc-port',source:'https://github.com/TekRantGaming/sms-pc-port',featured:15},
+      {id:'concat',name:'Con Cat',category:'Creatividad',desc:'Editor de video libre, alternativa a CapCut, disponible para Android y computadoras. El proyecto está en beta, así que revisá sus limitaciones actuales.',tag:'Video · Android y PC',initials:'CC',color:'#f0a9a0',photo:'https://opengraph.githubassets.com/1/jub0t/Concat',site:'https://github.com/jub0t/Concat',source:'https://github.com/jub0t/Concat',featured:16},
+      {id:'hail',name:'Hail',category:'Herramientas',desc:'Permite deshabilitar, ocultar, suspender o desinstalar aplicaciones Android, con funciones que dependen de la configuración del dispositivo.',tag:'Sistema · Android',initials:'HA',color:'#b8cefb',photo:'https://raw.githubusercontent.com/aistra0528/Hail/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png',site:'https://github.com/aistra0528/Hail',source:'https://github.com/aistra0528/Hail',featured:17},
+      {id:'seal',name:'Seal',category:'Multimedia',desc:'Descargador de video y audio para Android basado en yt-dlp. Respetá las condiciones de la plataforma y los derechos del contenido que descargues.',tag:'Audio y video · Android',initials:'SE',color:'#b4d5b3',photo:'https://raw.githubusercontent.com/JunkFood02/Seal/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg',site:'https://github.com/junkfood02/Seal',source:'https://github.com/junkfood02/Seal',featured:18},
+      {id:'celeste-android',name:'Celeste Android',category:'Juegos',desc:'Port nativo de Celeste para Android que ejecuta tu propia copia de la versión de PC. El proyecto no incluye el juego ni sus archivos.',tag:'Juego · Android',initials:'CE',color:'#8fbbfb',photo:'https://opengraph.githubassets.com/1/BelmanteGu/CelesteAndroid',site:'https://github.com/BelmanteGu/CelesteAndroid/releases',source:'https://github.com/BelmanteGu/CelesteAndroid',featured:19},
+      {id:'opencut',name:'OpenCut',category:'Multimedia',desc:'Proyecto de editor de video libre para web, escritorio y móvil. La rama principal está en reescritura; consultá el README para ver qué versión está lista para usar.',tag:'Edición de video · Android y PC',initials:'OC',color:'#c5f467',photo:'https://opengraph.githubassets.com/1/opencut-app/opencut',site:'https://github.com/opencut-app/opencut',source:'https://github.com/opencut-app/opencut',featured:20},
+      {id:'dbz-budokai-tenkaichi-3-android',name:'Dragon Ball Z Budokai Tenkaichi 3 Android',category:'Juegos',desc:'Enlace a revisar: la URL proporcionada lleva al repositorio halo-ce-android y no parece corresponder a Dragon Ball Z Budokai Tenkaichi 3. Mandá el enlace correcto para actualizar esta ficha.',tag:'Juego · Android · Enlace a revisar',initials:'DBZ',color:'#f3a65b',photo:'https://opengraph.githubassets.com/1/FulGerNet/halo-ce-android',site:'https://github.com/FulGerNet/halo-ce-android',source:'https://github.com/FulGerNet/halo-ce-android',featured:21},
+      {id:'opentune',name:'OpenTune Android',category:'Música',desc:'Cliente de YouTube Music para Android con una interfaz Material Design 3. La web del proyecto incluye información y descargas.',tag:'Música · Android',initials:'OT',color:'#86c9e8',photo:'https://raw.githubusercontent.com/Arturo254/OpenTune-Web/main/img/reproductor.webp',site:'https://github.com/Arturo254/OpenTune-Web',source:'https://github.com/Arturo254/OpenTune-Web',featured:22}
+    ];
+    // Apps añadidas por la comunidad a la lista base.
+    originalApps.push(...[
+  {
+    "id": "noutune",
+    "name": "NouTune Android",
+    "category": "Música",
+    "desc": "Proyecto de música para Android publicado por la comunidad NouTube. Consultá el repositorio para ver sus funciones, compatibilidad e instrucciones de instalación.",
+    "tag": "Música · Android",
+    "initials": "NT",
+    "color": "#c5f467",
+    "photo": "https://opengraph.githubassets.com/1/nonbili/NouTube",
+    "site": "https://github.com/nonbili/NouTube",
+    "source": "https://github.com/nonbili/NouTube",
+    "featured": 23
+  },
+  {
+    "id": "gama-android",
+    "name": "GAMA Android",
+    "category": "Herramientas",
+    "desc": "Graphics API Manager para Android: permite cambiar la API de renderizado gráfico compatible con el dispositivo. Algunas funciones pueden requerir Shizuku o root.",
+    "tag": "Sistema · Android",
+    "initials": "GA",
+    "color": "#89c9f2",
+    "photo": "https://opengraph.githubassets.com/1/palincat/gama",
+    "site": "https://github.com/palincat/gama",
+    "source": "https://github.com/palincat/gama",
+    "featured": 24
+  },
+  {
+    "id": "sd-maid-2-se",
+    "name": "SD Maid 2/SE - Limpiador",
+    "category": "Herramientas",
+    "desc": "Herramienta de mantenimiento y administración de archivos para liberar espacio, limpiar residuos de aplicaciones y analizar el almacenamiento de Android.",
+    "tag": "Limpieza · Android",
+    "initials": "SD",
+    "color": "#d4d9df",
+    "photo": "https://opengraph.githubassets.com/1/d4rken-org/sdmaid-se",
+    "site": "https://github.com/d4rken-org/sdmaid-se",
+    "source": "https://github.com/d4rken-org/sdmaid-se",
+    "featured": 25
+  },
+  {
+    "id": "fdroid-basic",
+    "name": "F-Droid Basic",
+    "category": "Tiendas de apps",
+    "desc": "Cliente básico para acceder al catálogo de aplicaciones libres de F-Droid. El enlace lleva al repositorio oficial del cliente; consultá allí las variantes disponibles.",
+    "tag": "Tienda de apps · Android",
+    "initials": "FB",
+    "color": "#8bc7ee",
+    "photo": "https://gitlab.com/fdroid/fdroidclient/-/raw/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png",
+    "site": "https://gitlab.com/fdroid/fdroidclient",
+    "source": "https://gitlab.com/fdroid/fdroidclient",
+    "featured": 26
+  },
+  {
+    "id": "neo-store",
+    "name": "Neo Store",
+    "category": "Tiendas de apps",
+    "desc": "Cliente moderno de F-Droid con una interfaz cuidada, sincronización rápida de repositorios y herramientas para explorar aplicaciones libres.",
+    "tag": "Tienda de apps · Android",
+    "initials": "NS",
+    "color": "#bea7ff",
+    "photo": "https://opengraph.githubassets.com/1/NeoApplications/Neo-Store",
+    "site": "https://github.com/NeoApplications/Neo-Store",
+    "source": "https://github.com/NeoApplications/Neo-Store",
+    "featured": 27
+  },
+  {
+    "id": "fdroid",
+    "name": "F-Droid",
+    "category": "Tiendas de apps",
+    "desc": "Catálogo e instalador de aplicaciones gratuitas y de código abierto para Android. Permite añadir repositorios y revisar los metadatos de las apps.",
+    "tag": "Tienda de apps · Android",
+    "initials": "FD",
+    "color": "#75bce6",
+    "photo": "https://gitlab.com/fdroid/fdroidclient/-/raw/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png",
+    "site": "https://gitlab.com/fdroid/fdroidclient",
+    "source": "https://gitlab.com/fdroid/fdroidclient",
+    "featured": 28
+  },
+  {
+    "id": "dolphin-emulator",
+    "name": "Dolphin Emulator",
+    "category": "Emuladores",
+    "desc": "Emulador de Nintendo GameCube y Wii disponible para distintas plataformas. El rendimiento depende del dispositivo; utilizá copias de juegos que tengas legalmente.",
+    "tag": "Emulación · Android y PC",
+    "initials": "DE",
+    "color": "#76c9f0",
+    "photo": "https://opengraph.githubassets.com/1/dolphin-emu/dolphin",
+    "site": "https://github.com/dolphin-emu/dolphin",
+    "source": "https://github.com/dolphin-emu/dolphin",
+    "featured": 29
+  },
+  {
+    "id": "ppsspp",
+    "name": "PPSSPP",
+    "category": "Emuladores",
+    "desc": "Emulador de PSP para ejecutar juegos de esa consola en dispositivos compatibles, con opciones gráficas y de control. No incluye juegos.",
+    "tag": "Emulación · Android y PC",
+    "initials": "PSP",
+    "color": "#8ea7ff",
+    "photo": "https://opengraph.githubassets.com/1/hrydgard/ppsspp",
+    "site": "https://github.com/hrydgard/ppsspp",
+    "source": "https://github.com/hrydgard/ppsspp",
+    "featured": 30
+  },
+  {
+    "id": "retroarch",
+    "name": "RetroArch",
+    "category": "Emuladores",
+    "desc": "Interfaz multiplataforma para usar distintos núcleos de emulación y organizar juegos clásicos. Los núcleos y sus licencias pueden variar.",
+    "tag": "Emulación · Android y PC",
+    "initials": "RA",
+    "color": "#ee9f68",
+    "photo": "https://opengraph.githubassets.com/1/libretro/RetroArch",
+    "site": "https://github.com/libretro/RetroArch",
+    "source": "https://github.com/libretro/RetroArch",
+    "featured": 31
+  },
+  {
+    "id": "nfs-most-wanted-android",
+    "name": "Need For Speed Most Wanted Android",
+    "category": "Juegos",
+    "desc": "Proyecto comunitario relacionado con ejecutar Need for Speed: Most Wanted en Android. Revisá el estado del lanzamiento, compatibilidad y requisitos; no se incluyen archivos comerciales del juego.",
+    "tag": "Juego · Android · Experimental",
+    "initials": "NFS",
+    "color": "#ee795e",
+    "photo": "https://opengraph.githubassets.com/1/codepdbh/nfsmw-android",
+    "site": "https://github.com/codepdbh/nfsmw-android/releases",
+    "source": "https://github.com/codepdbh/nfsmw-android",
+    "featured": 32
+  },
+  {
+    "id": "j2me-loader",
+    "name": "J2ME Loader",
+    "category": "Emuladores",
+    "desc": "Emulador para ejecutar aplicaciones y juegos Java ME clásicos en Android, con configuración de pantalla, teclado y compatibilidad.",
+    "tag": "Emulación · Android",
+    "initials": "J2",
+    "color": "#9bc7e5",
+    "photo": "https://opengraph.githubassets.com/1/nikita36078/J2ME-Loader",
+    "site": "https://github.com/nikita36078/J2ME-Loader",
+    "source": "https://github.com/nikita36078/J2ME-Loader",
+    "featured": 33
+  },
+  {
+    "id": "olauncher",
+    "name": "Olauncher",
+    "category": "Personalización",
+    "desc": "Lanzador minimalista para Android que reduce distracciones y mantiene una pantalla de inicio sencilla, basada principalmente en texto.",
+    "tag": "Launcher · Android",
+    "initials": "OL",
+    "color": "#d6d2c5",
+    "photo": "https://opengraph.githubassets.com/1/tanujnotes/Olauncher",
+    "site": "https://github.com/tanujnotes/Olauncher",
+    "source": "https://github.com/tanujnotes/Olauncher",
+    "featured": 34
+  },
+  {
+    "id": "kvaesitso",
+    "name": "Kvaesitso",
+    "category": "Personalización",
+    "desc": "Lanzador de Android centrado en la búsqueda, con widgets y accesos rápidos para encontrar aplicaciones y contenido desde la pantalla de inicio.",
+    "tag": "Launcher · Android",
+    "initials": "KV",
+    "color": "#b9a8f5",
+    "photo": "https://opengraph.githubassets.com/1/MM2-0/Kvaesitso",
+    "site": "https://github.com/MM2-0/Kvaesitso",
+    "source": "https://github.com/MM2-0/Kvaesitso",
+    "featured": 35
+  },
+  {
+    "id": "soundpod",
+    "name": "SoundPod",
+    "category": "Música",
+    "desc": "Aplicación de audio para Android del proyecto SoundPod. Visitá el repositorio para consultar detalles de sus funciones, requisitos y versiones disponibles.",
+    "tag": "Audio · Android",
+    "initials": "SP",
+    "color": "#e9a7c5",
+    "photo": "https://opengraph.githubassets.com/1/arunnechully/SoundPod",
+    "site": "https://github.com/arunnechully/SoundPod",
+    "source": "https://github.com/arunnechully/SoundPod",
+    "featured": 36
+  },
+  {
+    "id": "newpipe",
+    "name": "NewPipe",
+    "category": "Multimedia",
+    "desc": "Cliente ligero y libre para explorar servicios de video y audio sin depender de las aplicaciones oficiales. Instalá desde fuentes confiables y respetá los derechos del contenido.",
+    "tag": "Video y audio · Android",
+    "initials": "NP",
+    "color": "#f5a16e",
+    "photo": "https://opengraph.githubassets.com/1/TeamNewPipe/NewPipe",
+    "site": "https://github.com/TeamNewPipe/NewPipe",
+    "source": "https://github.com/TeamNewPipe/NewPipe",
+    "featured": 37
+  },
+  {
+    "id": "pixelplayeross",
+    "name": "PixelPlayerOSS",
+    "category": "Música",
+    "desc": "Reproductor musical libre para Android, enfocado en música local y bibliotecas controladas por el usuario, con interfaz Material moderna.",
+    "tag": "Reproductor · Android",
+    "initials": "PP",
+    "color": "#a7c6ff",
+    "photo": "https://opengraph.githubassets.com/1/PixelPlayerHQ/PixelPlayerOSS",
+    "site": "https://github.com/PixelPlayerHQ/PixelPlayerOSS",
+    "source": "https://github.com/PixelPlayerHQ/PixelPlayerOSS",
+    "featured": 38
+  },
+  {
+    "id": "innertune",
+    "name": "InnerTune",
+    "category": "Música",
+    "desc": "Cliente musical libre para Android que permite explorar y reproducir música de YouTube Music. Consultá el repositorio para ver el estado del proyecto.",
+    "tag": "Música · Android",
+    "initials": "IT",
+    "color": "#9ed7bd",
+    "photo": "https://opengraph.githubassets.com/1/z-huang/InnerTune",
+    "site": "https://github.com/z-huang/InnerTune",
+    "source": "https://github.com/z-huang/InnerTune",
+    "featured": 39
+  },
+  {
+    "id": "gdroid",
+    "name": "GDroid",
+    "category": "Herramientas",
+    "desc": "Proyecto para Android publicado en GitHub. Entrá al repositorio para revisar su descripción, las funciones actuales y las instrucciones de instalación.",
+    "tag": "Herramientas · Android",
+    "initials": "GD",
+    "color": "#91c5ed",
+    "photo": "https://opengraph.githubassets.com/1/tinsarfal/GDroid",
+    "site": "https://github.com/tinsarfal/GDroid",
+    "source": "https://github.com/tinsarfal/GDroid",
+    "featured": 40
+  },
+  {
+    "id": "cod-black-ops-zombies-android",
+    "name": "COD: Black Ops Zombies Android",
+    "category": "Juegos",
+    "desc": "Proyecto comunitario de decompilación parcial relacionado con Call of Duty: Black Ops Zombies. Puede ser experimental y requerir archivos originales; revisá la página de lanzamientos.",
+    "tag": "Juego · Android · Experimental",
+    "initials": "COD",
+    "color": "#a9adba",
+    "photo": "https://opengraph.githubassets.com/1/eugene373/COD-BOZ-Partially-Decompiled",
+    "site": "https://github.com/eugene373/COD-BOZ-Partially-Decompiled/releases",
+    "source": "https://github.com/eugene373/COD-BOZ-Partially-Decompiled",
+    "featured": 41
+  },
+  {
+    "id": "gta-4-android",
+    "name": "GTA 4 Android",
+    "category": "Juegos",
+    "desc": "Port no oficial y experimental de Liberty Recomp para Android. El propio repositorio advierte que puede ser inestable; verificá requisitos y archivos necesarios antes de probarlo.",
+    "tag": "Juego · Android · Experimental",
+    "initials": "GTA",
+    "color": "#9ac2aa",
+    "photo": "https://opengraph.githubassets.com/1/vaduur/LibertyRecompAndroid",
+    "site": "https://github.com/vaduur/LibertyRecompAndroid",
+    "source": "https://github.com/vaduur/LibertyRecompAndroid",
+    "featured": 42
+  },
+  {
+    "id": "metroid-prime-android",
+    "name": "Metroid Prime Android",
+    "category": "Juegos",
+    "desc": "Port nativo de Metroid Prime para Android y otras plataformas basado en un proyecto de decompilación. No incluye archivos del juego; necesitás aportar tu propia imagen de disco.",
+    "tag": "Juego · Android y PC",
+    "initials": "MP",
+    "color": "#b7a7f2",
+    "photo": "https://opengraph.githubassets.com/1/Odrannnn/MetroidPrimePort",
+    "site": "https://github.com/Odrannnn/MetroidPrimePort",
+    "source": "https://github.com/Odrannnn/MetroidPrimePort",
+    "featured": 43
+  },
+  {
+    "id": "zelda-wind-waker-android",
+    "name": "The Legend of Zelda: The Wind Waker Android",
+    "category": "Juegos",
+    "desc": "Proyecto de port para Android de The Wind Waker HD. Revisá la documentación y los requisitos técnicos; puede necesitar archivos propios del juego.",
+    "tag": "Juego · Android",
+    "initials": "WW",
+    "color": "#81bde8",
+    "photo": "https://opengraph.githubassets.com/1/GreenNaugahyde/ZeldaWWHDRecompAndroid",
+    "site": "https://github.com/GreenNaugahyde/ZeldaWWHDRecompAndroid",
+    "source": "https://github.com/GreenNaugahyde/ZeldaWWHDRecompAndroid",
+    "featured": 44
+  },
+  {
+    "id": "pokewilds-android",
+    "name": "PokeWilds Android",
+    "category": "Juegos",
+    "desc": "Proyecto para ejecutar PokeWilds en Android mediante Godot. Consultá el repositorio para conocer el estado del port, compatibilidad y pasos de instalación.",
+    "tag": "Juego · Android",
+    "initials": "PW",
+    "color": "#e9c66f",
+    "photo": "https://opengraph.githubassets.com/1/TryTheSauceBoss/Pokewilds-Godot",
+    "site": "https://github.com/TryTheSauceBoss/Pokewilds-Godot",
+    "source": "https://github.com/TryTheSauceBoss/Pokewilds-Godot",
+    "featured": 45
+  },
+  {
+    "id": "broforce-android",
+    "name": "Broforce Android",
+    "category": "Juegos",
+    "desc": "Port comunitario de Broforce para Android. Revisá los requisitos y el estado del proyecto antes de instalar; puede necesitar recursos originales del juego.",
+    "tag": "Juego · Android",
+    "initials": "BF",
+    "color": "#ee9871",
+    "photo": "https://opengraph.githubassets.com/1/BelmanteGu/BroforceAndroid",
+    "site": "https://github.com/BelmanteGu/BroforceAndroid",
+    "source": "https://github.com/BelmanteGu/BroforceAndroid",
+    "featured": 46
+  },
+  {
+    "id": "cs16client-android",
+    "name": "CS16Client Android",
+    "category": "Juegos",
+    "desc": "Cliente para jugar Counter-Strike 1.6 en Android. Consultá la documentación para configurar los datos del juego y asegurarte de usar archivos que tengas legalmente.",
+    "tag": "Juego · Android",
+    "initials": "CS",
+    "color": "#b8c4d2",
+    "photo": "https://opengraph.githubassets.com/1/Velaron/cs16-client",
+    "site": "https://github.com/Velaron/cs16-client",
+    "source": "https://github.com/Velaron/cs16-client",
+    "featured": 47
+  },
+  {
+    "id": "simpsons-hit-and-run-android",
+    "name": "The Simpsons: Hit & Run Android",
+    "category": "Juegos",
+    "desc": "Port no oficial para Android de The Simpsons: Hit & Run. Revisá compatibilidad, instrucciones y requisitos de archivos originales en el repositorio.",
+    "tag": "Juego · Android",
+    "initials": "SHR",
+    "color": "#f1cd60",
+    "photo": "https://opengraph.githubassets.com/1/Carlox33/The-Simpsons-Hit-and-Run-Android",
+    "site": "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android",
+    "source": "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android",
+    "featured": 48
+  },
+  {
+    "id": "pokemon-reloaded-android",
+    "name": "Pokemon Reloaded Android",
+    "category": "Juegos",
+    "desc": "Proyecto para llevar Pokémon Reloaded a Android. Revisá la página de lanzamientos y las indicaciones del autor sobre compatibilidad e instalación.",
+    "tag": "Juego · Android",
+    "initials": "PK",
+    "color": "#e8a9bd",
+    "photo": "https://opengraph.githubassets.com/1/Klisee/pokemon-reloaded-android",
+    "site": "https://github.com/Klisee/pokemon-reloaded-android/releases",
+    "source": "https://github.com/Klisee/pokemon-reloaded-android",
+    "featured": 49
+  }
+]);
+    const appGrid = document.getElementById('app-grid');
+    const searchInput = document.getElementById('search');
+    const clearSearch = document.getElementById('clear-search');
+    const sortSelect = document.getElementById('sort');
+    const emptyState = document.getElementById('empty-state');
+    const resultCount = document.getElementById('result-count');
+    const toast = document.getElementById('toast');
+    let activeCategory = 'Todas';
+    let toastTimeout;
+    const saved = new Set(JSON.parse(localStorage.getItem('libreapps-favorites') || '[]'));
+    const allApps = () => [...originalApps];
+    // Generar categorías desde el catálogo evita que una app nueva quede sin filtro.
+    function buildCategoryFilters() {
+      const filters = document.getElementById('filters');
+      const priority = ['Música', 'Juegos', 'Emuladores', 'Privacidad', 'Tiendas de apps', 'Herramientas', 'Multimedia', 'Creatividad', 'Personalización', 'Otros'];
+      const present = [...new Set(allApps().map(app => app.category))];
+      const categories = [...present].sort((a, b) => {
+        const ai = priority.indexOf(a), bi = priority.indexOf(b);
+        if (ai === -1 && bi === -1) return a.localeCompare(b, 'es');
+        if (ai === -1) return 1;
+        if (bi === -1) return -1;
+        return ai - bi;
+      });
+      filters.innerHTML = '<button class="filter active" data-category="Todas" type="button">Todas</button>' +
+        categories.map(category => `<button class="filter" data-category="${escapeHTML(category)}" type="button">${escapeHTML(category)}</button>`).join('');
+    }
+    const escapeHTML = (value) => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const iconSvg = (name) => name === 'heart'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>'
+      : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>';
+    function cardHTML(app) {
+      const isSaved = saved.has(app.id);
+      const photoHTML = app.photo ? `<img class="app-photo" src="${escapeHTML(app.photo)}" alt="Imagen de ${escapeHTML(app.name)}" loading="lazy" decoding="async" onerror="this.style.display='none'">` : '';
+      const sameProjectLink = !app.source || app.source === app.site;
+      const projectLink = sameProjectLink
+        ? `<a class="card-link" href="${escapeHTML(app.site)}" target="_blank" rel="noopener noreferrer">Ver proyecto ${iconSvg('external')}</a>`
+        : `<a class="card-link" href="${escapeHTML(app.site)}" target="_blank" rel="noopener noreferrer">Web ${iconSvg('external')}</a><a class="card-link" href="${escapeHTML(app.source)}" target="_blank" rel="noopener noreferrer">Código ${iconSvg('external')}</a>`;
+      return `<article class="app-card">
+        ${photoHTML}
+        <div class="card-top">
+          <div class="app-icon" style="background:${escapeHTML(app.color || '#c5f467')}">${escapeHTML(app.initials || app.name.slice(0,2).toUpperCase())}</div>
+          <div class="app-title-wrap"><h3 class="app-title">${escapeHTML(app.name)}</h3><div class="app-category">${escapeHTML(app.category)} · ${escapeHTML(app.tag || 'Open source')}</div></div>
+          <button class="favorite ${isSaved?'saved':''}" data-favorite="${escapeHTML(app.id)}" type="button" aria-label="${isSaved?'Quitar de':'Agregar a'} favoritos: ${escapeHTML(app.name)}" aria-pressed="${isSaved}">${iconSvg('heart')}</button>
+        </div>
+        <p class="app-description">${escapeHTML(app.desc)}</p>
+        <div class="card-bottom"><span class="open-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg> Código abierto</span><div class="card-links">${projectLink}</div></div>
+      </article>`;
+    }
+    function layoutAppGrid() {
+      if (!appGrid || !appGrid.children.length || appGrid.offsetParent === null) return;
+      const styles = getComputedStyle(appGrid);
+      const rowHeight = parseFloat(styles.gridAutoRows);
+      const rowGap = parseFloat(styles.rowGap) || 0;
+      if (!rowHeight || !Number.isFinite(rowHeight)) return;
+      const cards = [...appGrid.querySelectorAll('.app-card')];
+      // Quitar los spans anteriores para medir la altura natural de cada ficha.
+      cards.forEach(card => { card.style.gridRowEnd = 'auto'; });
+      cards.forEach(card => {
+        const height = card.getBoundingClientRect().height;
+        const span = Math.max(1, Math.ceil((height + rowGap) / (rowHeight + rowGap)));
+        card.style.gridRowEnd = `span ${span}`;
+      });
+    }
+    window.addEventListener('resize', () => requestAnimationFrame(layoutAppGrid));
+
+    function render() {
+      const query = searchInput.value.trim().toLocaleLowerCase('es');
+      let apps = allApps().filter(app => {
+        const matchCategory = activeCategory === 'Todas' || app.category === activeCategory;
+        const haystack = `${app.name} ${app.category} ${app.desc} ${app.tag || ''}`.toLocaleLowerCase('es');
+        const matchQuery = !query || haystack.includes(query);
+        const matchSaved = sortSelect.value !== 'saved' || saved.has(app.id);
+        return matchCategory && matchQuery && matchSaved;
+      });
+      if (sortSelect.value === 'az') apps.sort((a,b)=>a.name.localeCompare(b.name,'es'));
+      else if (sortSelect.value === 'saved') apps.sort((a,b)=>a.name.localeCompare(b.name,'es'));
+      else apps.sort((a,b)=>(a.featured || 99)-(b.featured || 99));
+      appGrid.innerHTML = apps.map(cardHTML).join('');
+      emptyState.style.display = apps.length ? 'none' : 'block';
+      appGrid.style.display = apps.length ? 'grid' : 'none';
+      // Si una miniatura tarda o falla, recalcular para que no quede un hueco.
+      appGrid.querySelectorAll('.app-photo').forEach(img => {
+        if (!img.complete) {
+          img.addEventListener('load', () => requestAnimationFrame(layoutAppGrid), { once:true });
+          img.addEventListener('error', () => requestAnimationFrame(layoutAppGrid), { once:true });
+        }
+      });
+      requestAnimationFrame(layoutAppGrid);
+      resultCount.textContent = `${apps.length} ${apps.length === 1 ? 'aplicación' : 'aplicaciones'}${sortSelect.value === 'saved' ? ' favoritas' : ''}`;
+      document.getElementById('stat-apps').textContent = allApps().length;
+      document.getElementById('stat-categories').textContent = new Set(allApps().map(app => app.category)).size;
+      clearSearch.classList.toggle('visible', !!searchInput.value);
+    }
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(()=>toast.classList.remove('show'), 2600);
+    }
+    document.getElementById('filters').addEventListener('click', event => {
+      const button = event.target.closest('[data-category]');
+      if (!button) return;
+      activeCategory = button.dataset.category;
+      document.querySelectorAll('.filter').forEach(el=>el.classList.toggle('active', el===button));
+      render();
+    });
+    searchInput.addEventListener('input', render);
+    clearSearch.addEventListener('click',()=>{searchInput.value=''; searchInput.focus(); render();});
+    sortSelect.addEventListener('change',render);
+    appGrid.addEventListener('click', event => {
+      const button = event.target.closest('[data-favorite]');
+      if (!button) return;
+      const id = button.dataset.favorite;
+      if (saved.has(id)) { saved.delete(id); showToast('Quitada de tus favoritas'); }
+      else { saved.add(id); showToast('Guardada en tus favoritas'); }
+      localStorage.setItem('libreapps-favorites', JSON.stringify([...saved]));
+      render();
+    });
+    document.getElementById('reset-filters').addEventListener('click',()=>{
+      activeCategory='Todas'; searchInput.value=''; sortSelect.value='featured';
+      document.querySelectorAll('.filter').forEach(el=>el.classList.toggle('active',el.dataset.category==='Todas'));
+      render();
+    });
+    function revealContent(targetId = 'explorar') {
+      document.body.classList.add('catalog-visible');
+      requestAnimationFrame(() => {
+        layoutAppGrid();
+        const target = document.getElementById(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+    document.querySelectorAll('a[href="#explorar"]').forEach(a => a.addEventListener('click', event => {
+      event.preventDefault();
+      revealContent('explorar');
+    }));
+    document.querySelectorAll('a[href="#filosofia"]').forEach(a => a.addEventListener('click', event => {
+      event.preventDefault();
+      revealContent('filosofia');
+    }));
+    buildCategoryFilters();
+    render();
+  </script>
+</body>
+</html>
