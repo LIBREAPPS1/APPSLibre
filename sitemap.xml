@@ -1,38 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<!-- Página principal -->
-<url>
-<loc>https://libreapps1.github.io/</loc>
-<lastmod>2026-10-15</lastmod>
-<changefreq>daily</changefreq>
-<priority>1.0</priority>
-</url>
-​<!-- Sección de Juegos -->
-<url>
-<loc>https://libreapps1.github.io/juegos.html</loc>
-<lastmod>2026-10-15</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.8</priority>
-</url>
-​<!-- Sección de Música -->
-<url>
-<loc>https://libreapps1.github.io/musica.html</loc>
-<lastmod>2026-10-15</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.8</priority>
-</url>
-​<!-- Sección de Apps Populares -->
-<url>
-<loc>https://libreapps1.github.io/populares.html</loc>
-<lastmod>2026-10-15</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.8</priority>
-</url>
-​<!-- Sección de Herramientas -->
-<url>
-<loc>https://libreapps1.github.io/herramientas.html</loc>
-<lastmod>2026-10-15</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.8</priority>
-</url>
+  <!-- Página principal -->
+  <url>
+    <loc>https://libreapps1.github.io/APPSLibre/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
 </urlset>
