@@ -13,7 +13,7 @@
       if (localStorage.getItem('appslibre-performance-mode') === 'true') {
         document.documentElement.setAttribute('data-performance-mode', 'on');
       }
-      if (localStorage.getItem('appslibre-onboarding-complete') !== 'true' || localStorage.getItem('appslibre-onboarding-version') !== '3') {
+      if (localStorage.getItem('appslibre-onboarding-complete') !== 'true' || localStorage.getItem('appslibre-onboarding-version') !== '4') {
         document.documentElement.classList.add('first-visit');
       }
     } catch (_) {
@@ -217,7 +217,7 @@
     .toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#e2ffc0; color:#16200c; padding:12px 18px; border-radius:12px; font-size:.87rem; font-weight:750; box-shadow:0 8px 40px #0005; transition:all .25s; z-index:30; }
     .toast.show { opacity:1; transform:translate(-50%,0); }
     @media (max-width: 900px) { .hero-grid { grid-template-columns:1fr; gap:34px; } .visual { min-height:0; } .app-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero { padding-top:64px; } }
-    @media (max-width: 620px) { .container { width:min(100% - 30px, var(--max)); } .topbar { height:66px; } .nav-links { gap:14px; } .nav-links a:not(.nav-cta):not([href="#noticias"]):not([href="#paginas"]):not([href="#nosotros"]) { display:none; } .nav-cta { padding:9px 11px; font-size:.8rem; } .hero { padding:53px 0 35px; } h1 { font-size:clamp(2.6rem, 13vw, 4.3rem); } .hero-copy { font-size:1rem; } .visual { padding:19px; border-radius:22px; } .mini-apps { gap:8px; } .mini-app { padding:9px; gap:8px; } .mini-icon { width:33px; height:33px; border-radius:10px; } .mini-app strong { font-size:.77rem; } .mini-app small { font-size:.66rem; } .stat { padding:14px 10px; } .stat strong { font-size:1.2rem; } .stat span { font-size:.68rem; } .catalog { padding:46px 0 62px; } .section-top { align-items:start; flex-direction:column; gap:12px; } .toolbar { align-items:stretch; } .search-wrap { max-width:none; flex-basis:100%; } .sort-select { flex:1; } .app-grid { grid-template-columns:1fr; column-gap:0; row-gap:11px; } .app-photo { height:190px; }  .news-grid { grid-template-columns:1fr; } .news-feature.expanded .news-intro { grid-template-columns:1fr; padding:20px; gap:18px; } .news-feature.expanded .news-copy { padding:20px 20px 25px; } .news-feature.expanded .news-card-bottom { margin:0 20px; } .news-check-grid, .spec-grid { grid-template-columns:1fr; } .principles { padding-bottom:56px; } .principle-grid { grid-template-columns:1fr; } .submit-banner { padding:23px; flex-direction:column; align-items:flex-start; margin-bottom:50px; } .footer-inner { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
+    @media (max-width: 620px) { .container { width:min(100% - 30px, var(--max)); } .topbar { height:66px; } .nav-links { gap:14px; } .nav-links a:not(.nav-cta):not([href="#noticias"]):not([href="#paginas"]):not([href="#nosotros"]):not([href="#repositorios"]) { display:none; } .nav-cta { padding:9px 11px; font-size:.8rem; } .hero { padding:53px 0 35px; } h1 { font-size:clamp(2.6rem, 13vw, 4.3rem); } .hero-copy { font-size:1rem; } .visual { padding:19px; border-radius:22px; } .mini-apps { gap:8px; } .mini-app { padding:9px; gap:8px; } .mini-icon { width:33px; height:33px; border-radius:10px; } .mini-app strong { font-size:.77rem; } .mini-app small { font-size:.66rem; } .stat { padding:14px 10px; } .stat strong { font-size:1.2rem; } .stat span { font-size:.68rem; } .catalog { padding:46px 0 62px; } .section-top { align-items:start; flex-direction:column; gap:12px; } .toolbar { align-items:stretch; } .search-wrap { max-width:none; flex-basis:100%; } .sort-select { flex:1; } .app-grid { grid-template-columns:1fr; column-gap:0; row-gap:11px; } .app-photo { height:190px; }  .news-grid { grid-template-columns:1fr; } .news-feature.expanded .news-intro { grid-template-columns:1fr; padding:20px; gap:18px; } .news-feature.expanded .news-copy { padding:20px 20px 25px; } .news-feature.expanded .news-card-bottom { margin:0 20px; } .news-check-grid, .spec-grid { grid-template-columns:1fr; } .principles { padding-bottom:56px; } .principle-grid { grid-template-columns:1fr; } .submit-banner { padding:23px; flex-direction:column; align-items:flex-start; margin-bottom:50px; } .footer-inner { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
     /* Tema azul eléctrico + microinteracciones */
     :root {
       color-scheme: dark;
@@ -844,6 +844,14 @@
     .about-section .principle p { color:#5c626e; }
     .about-note { border:1px solid #d7dbe2; background:#fff; border-radius:16px; padding:18px 20px; color:#525965; line-height:1.75; }
     .about-note strong { color:#202329; }
+    .about-ai-card { display:flex; align-items:flex-start; gap:16px; margin:22px 0; padding:20px 22px; border:1px solid #dce4ee; border-radius:18px; background:linear-gradient(135deg,#f7faff 0%,#f5f7fb 58%,#f1f6f3 100%); box-shadow:0 8px 24px #17243a08; }
+    .about-ai-icon { display:grid; place-items:center; flex:0 0 42px; width:42px; height:42px; border:1px solid #d9e5f5; border-radius:13px; color:#4268a6; background:#fff; }
+    .about-ai-icon svg { width:21px; height:21px; }
+    .about-ai-copy { min-width:0; }
+    .about-ai-kicker { display:block; margin:0 0 5px; color:#5274a8; font-size:.68rem; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
+    .about-ai-card h3 { margin:0; color:#202936; font-size:1.08rem; letter-spacing:-.025em; }
+    .about-ai-card p { margin:8px 0 0; color:#566171; line-height:1.72; }
+    .about-ai-card p:last-child { margin-bottom:0; }
     .about-short { display:none; }
     @media (max-width: 620px) {
       .nav-about { padding:7px 8px; font-size:.75rem; }
@@ -858,6 +866,11 @@
     }
     html[data-theme="black"] .about-channel-card { background:linear-gradient(135deg,#1a1a1e,#111114); border-color:#393941; box-shadow:0 10px 28px #0005; }
     html[data-theme="black"] .about-channel-card h3 { color:#f4f4f6; }
+    html[data-theme="black"] .about-ai-card { background:linear-gradient(135deg,#151a22,#111519 70%,#111714) !important; border-color:#303844 !important; box-shadow:0 8px 24px #0005 !important; }
+    html[data-theme="black"] .about-ai-icon { background:#1a202a !important; border-color:#354052 !important; color:#9dbcf0 !important; }
+    html[data-theme="black"] .about-ai-kicker { color:#a5bee8 !important; }
+    html[data-theme="black"] .about-ai-card h3 { color:#f0f2f6 !important; }
+    html[data-theme="black"] .about-ai-card p { color:#bcbfc7 !important; }
     html[data-theme="black"] .about-channel-card p { color:#b9b9c2; }
     html[data-theme="black"] .about-channel-kicker { color:#76e7a0; }
     @media (prefers-reduced-motion: reduce) {
@@ -886,6 +899,10 @@
     .latest-app-card:nth-child(5) { animation-delay:.2s; }
     .latest-app-card:nth-child(6) { animation-delay:.25s; }
     .latest-app-card:hover { transform:translateY(-3px); border-color:#c7ccd5; box-shadow:0 9px 22px #1519220d; }
+    .latest-app-preview { display:block; width:100%; height:112px; flex:0 0 auto; object-fit:cover; object-position:center; margin:0 0 12px; border:1px solid #e4e7ec; border-radius:11px; background:#f0f1f4; }
+    html[data-theme="black"] .latest-app-preview { border-color:#333; background:#171717; }
+    html[data-performance-mode="on"] .app-photo,
+    html[data-performance-mode="on"] .latest-app-preview { display:none !important; }
     .latest-app-head { display:flex; align-items:center; gap:11px; min-width:0; }
     .latest-app-icon { display:grid; place-items:center; flex:0 0 44px; width:44px; height:44px; border-radius:13px; color:#202329; font-size:.77rem; font-weight:900; letter-spacing:-.04em; box-shadow:inset 0 1px 0 #ffffffb8; }
     .latest-app-title-wrap { min-width:0; }
@@ -964,9 +981,7 @@
     .nav-theme-toggle svg { width: 18px; height: 18px; }
     .nav-theme-toggle:hover { transform: translateY(-2px); background: #f0f1f4; border-color: #aeb3bc; box-shadow: 0 5px 14px #11131812; }
     .nav-theme-toggle:active { transform: scale(.94); }
-    .theme-icon-sun { display: none; }
-    html[data-theme="black"] .theme-icon-moon { display: none; }
-    html[data-theme="black"] .theme-icon-sun { display: block; }
+    .theme-icon-contrast { display: block; }
     @media (max-width: 620px) {
       .nav-theme-toggle { width: 32px; height: 32px; border-radius: 10px; }
       .nav-theme-toggle svg { width: 16px; height: 16px; }
@@ -1454,8 +1469,9 @@
     @keyframes onboardingEnter { from { opacity:0; transform:translateY(8px) scale(.99); } to { opacity:1; transform:none; } }
     @keyframes onboardingQuestionEnter { from { opacity:0; transform:translateX(7px); } to { opacity:1; transform:none; } }
     @media (max-width:680px) {
-      .onboarding-overlay { padding:10px; align-items:flex-start; }
-      .onboarding-dialog { max-height:calc(100vh - 20px); padding:20px 15px; border-radius:20px; }
+      /* Mantener el asistente centrado también en móviles, con scroll interno si hace falta. */
+      .onboarding-overlay { padding:10px; align-items:center; justify-content:center; overscroll-behavior:contain; }
+      .onboarding-dialog { max-height:calc(100vh - 20px); max-height:calc(100dvh - 20px); padding:20px 15px; border-radius:20px; }
       .onboarding-brand { margin-bottom:18px; }
       .onboarding-question { padding:15px 13px; }
       .onboarding-footer { align-items:stretch; flex-direction:column; gap:12px; }
@@ -1478,7 +1494,387 @@
     html[data-theme="black"] .onboarding-question { background:transparent; border:0; }
     @media (max-width:560px) { .onboarding-options { grid-template-columns:1fr; } }
 
-</style>
+
+
+    /* Navegación neutral: solo se destaca la sección que está abierta. */
+    .nav-links a.nav-news {
+      gap: 0 !important;
+      padding: 0 !important;
+      font-weight: inherit !important;
+      border-color: transparent !important;
+      border-radius: 11px !important;
+      background: transparent !important;
+      color: var(--muted) !important;
+      box-shadow: none !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    .nav-links a.nav-news::before { display: none !important; }
+    .nav-links a.nav-news:hover,
+    body.news-visible .nav-links a.nav-news {
+      gap: 8px !important;
+      padding: 9px 13px !important;
+      font-weight: 750 !important;
+      color: var(--text) !important;
+      background: var(--panel-2) !important;
+      border-color: var(--line) !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+    body.news-visible .nav-links a.nav-news::before {
+      display: block !important;
+      content: "" !important;
+      flex: 0 0 7px;
+      width: 7px;
+      height: 7px;
+      margin-right: 0;
+      border-radius: 50%;
+      background: currentColor !important;
+      box-shadow: none !important;
+      animation: none !important;
+    }
+    @media (max-width: 620px) {
+      .nav-links a.nav-news:hover,
+      body.news-visible .nav-links a.nav-news { padding: 7px 8px !important; }
+      /* Evita una celda vacía bajo las estadísticas cuando se apilan en dos columnas. */
+      .catalog-overview .stat:last-child { grid-column: 1 / -1; }
+    }
+
+
+
+    /* Correcciones finales de Noticias: miniaturas resilientes y estado coherente del botón. */
+    .news-cover.image-unavailable,
+    .news-inline-photo.image-unavailable {
+      position: relative;
+      display: flex !important;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 10px;
+      overflow: hidden;
+      padding: 20px;
+      border: 1px solid #d9dde4;
+      border-radius: 14px;
+      color: #252a33;
+      background:
+        radial-gradient(ellipse at 82% 18%, rgba(111,126,151,.2), transparent 44%),
+        radial-gradient(ellipse at 12% 88%, rgba(190,196,207,.35), transparent 48%),
+        linear-gradient(145deg, #f7f8fa, #e6e9ef);
+    }
+    .news-cover.image-unavailable { min-height: 166px; height: 166px; margin-bottom: 16px; }
+    .news-inline-photo.image-unavailable { min-height: 170px; margin: 25px 0; }
+    .news-feature.expanded .news-cover.image-unavailable { height: auto; min-height: 240px; aspect-ratio: 3 / 2; margin: 0; }
+    figure.image-unavailable > img,
+    figure.image-unavailable > figcaption { display: none !important; }
+    figure.image-unavailable::before {
+      content: "APPSLIBRE · NOTICIAS";
+      display: inline-flex;
+      align-items: center;
+      min-height: 25px;
+      padding: 5px 9px;
+      border: 1px solid #cbd0d9;
+      border-radius: 999px;
+      color: #4c5360;
+      background: rgba(255,255,255,.6);
+      font-size: .65rem;
+      font-weight: 850;
+      letter-spacing: .09em;
+    }
+    figure.image-unavailable::after {
+      content: attr(data-fallback);
+      display: block;
+      max-width: 46ch;
+      color: #242832;
+      font-size: clamp(.95rem, 2vw, 1.25rem);
+      font-weight: 800;
+      line-height: 1.35;
+      text-wrap: balance;
+    }
+    .news-cover img,
+    .news-inline-photo img { max-width: 100%; object-position: center; }
+
+    /* El botón de Noticias solo se resalta cuando está activo (o al pasar el cursor). */
+    .nav-links a.nav-news,
+    html:not([data-theme="black"]) .nav-links a.nav-news {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      min-height: 40px;
+      padding: 9px 13px !important;
+      border: 1px solid #d7dbe2 !important;
+      border-radius: 12px !important;
+      color: #555c68 !important;
+      background: #ffffff !important;
+      font-weight: 650 !important;
+      line-height: 1.1 !important;
+      box-shadow: 0 2px 8px rgba(23,28,38,.05) !important;
+      transform: none !important;
+      animation: none !important;
+      text-decoration: none !important;
+      transition: color .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease !important;
+    }
+    .nav-links a.nav-news::before,
+    html:not([data-theme="black"]) .nav-links a.nav-news::before {
+      content: "" !important;
+      display: inline-block !important;
+      flex: 0 0 7px !important;
+      width: 7px !important;
+      height: 7px !important;
+      margin: 0 !important;
+      border-radius: 50% !important;
+      background: currentColor !important;
+      opacity: .45;
+      box-shadow: none !important;
+      animation: none !important;
+    }
+    .nav-links a.nav-news:hover,
+    body.news-visible .nav-links a.nav-news,
+    html:not([data-theme="black"]) .nav-links a.nav-news:hover,
+    html:not([data-theme="black"]) body.news-visible .nav-links a.nav-news {
+      color: #ffffff !important;
+      background: #202329 !important;
+      border-color: #202329 !important;
+      box-shadow: 0 5px 15px rgba(20,24,32,.14) !important;
+    }
+    body.news-visible .nav-links a.nav-news::before { opacity: .8; }
+    html[data-theme="black"] .nav-links a.nav-news {
+      color: #dddddf !important;
+      background: #151515 !important;
+      border-color: #3b3b3b !important;
+      box-shadow: none !important;
+    }
+    html[data-theme="black"] .nav-links a.nav-news:hover,
+    html[data-theme="black"] body.news-visible .nav-links a.nav-news {
+      color: #111111 !important;
+      background: #f0f0f0 !important;
+      border-color: #f0f0f0 !important;
+      box-shadow: 0 5px 18px #0008 !important;
+    }
+    html[data-theme="black"] .nav-links a.nav-news::before { color: inherit !important; background: currentColor !important; }
+    html[data-theme="black"] body.news-visible .nav-links a.nav-news::before { opacity: .85; }
+
+    .nav-theme-toggle {
+      display: inline-grid !important;
+      place-items: center !important;
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
+      padding: 0 !important;
+      border: 1px solid #d7dbe2 !important;
+      border-radius: 12px !important;
+      color: #343840 !important;
+      background: #fff !important;
+      box-shadow: 0 2px 8px rgba(23,28,38,.05) !important;
+      cursor: pointer;
+    }
+    .nav-theme-toggle svg { display: block; width: 18px !important; height: 18px !important; }
+    html[data-theme="black"] .nav-theme-toggle {
+      color: #f0f0f0 !important;
+      background: #151515 !important;
+      border-color: #3b3b3b !important;
+      box-shadow: none !important;
+    }
+    html[data-theme="black"] .nav-theme-toggle:hover { color: #111 !important; background: #f0f0f0 !important; border-color: #f0f0f0 !important; }
+    @media (max-width: 620px) {
+      .news-cover.image-unavailable { min-height: 145px; height: 145px; }
+      .news-inline-photo.image-unavailable { min-height: 145px; padding: 16px; }
+      .nav-links { gap: 10px !important; }
+      .nav-links a.nav-news { padding: 8px 10px !important; min-height: 38px; }
+      .nav-theme-toggle { width: 38px !important; height: 38px !important; min-width: 38px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .nav-links a.nav-news, .nav-theme-toggle { transition: none !important; }
+    }
+
+    /* Acciones por aplicación: Web/Repositorio y descarga contextual por plataforma. */
+    .card-bottom { flex-wrap:wrap; }
+    .card-links { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:6px; min-width:0; }
+    .card-link { display:inline-flex; align-items:center; justify-content:center; gap:5px; padding:6px 8px; border:1px solid transparent; border-radius:8px; white-space:nowrap; line-height:1.2; }
+    .card-link.download-link { background:#22262d; border-color:#22262d; color:#fff; width:32px; height:32px; min-width:32px; padding:0; }
+    .card-link.download-link svg { width:16px; height:16px; }
+    .card-link.download-link:hover { background:#383d47; border-color:#383d47; color:#fff; }
+    .card-link.download-link:focus-visible { outline:2px solid currentColor; outline-offset:2px; }
+    html[data-theme="black"] .card-link.download-link { background:#f0f0f2; border-color:#f0f0f2; color:#111114; }
+    html[data-theme="black"] .card-link.download-link:hover { background:#d8d8dc; border-color:#d8d8dc; color:#111114; }
+    html[data-performance-mode="on"] .card-link { transition:none !important; }
+
+    @media (max-width:620px) {
+      .card-bottom { align-items:flex-start; }
+      .card-links { justify-content:flex-start; gap:5px; }
+      .card-link { padding:6px 7px; font-size:.73rem; }
+    }
+
+
+    /* Favoritos: botón compacto, refinado y coherente con ambos temas. */
+    .favorite {
+      width:36px !important; height:36px !important; flex:0 0 36px;
+      display:grid; place-items:center; margin-left:auto; padding:0 !important;
+      border-radius:12px !important; border:1px solid #e0e3e9 !important;
+      color:#777f8c !important; background:#ffffff !important;
+      box-shadow:0 2px 7px rgba(20,28,40,.07) !important;
+      transition:transform .18s ease, color .18s ease, background .18s ease,
+        border-color .18s ease, box-shadow .18s ease !important;
+    }
+    .favorite svg { display:block; width:17px !important; height:17px !important; transition:transform .18s ease, fill .18s ease; }
+    .favorite:hover { transform:translateY(-1px); color:#c34f6c !important; background:#fff !important; border-color:#e4a8b7 !important; box-shadow:0 4px 12px rgba(195,79,108,.13) !important; }
+    .favorite:active { transform:scale(.92) !important; }
+    .favorite.saved { color:#d44868 !important; background:#fff0f3 !important; border-color:#efb7c3 !important; }
+    .favorite.saved svg { fill:currentColor !important; stroke:currentColor; animation:heartPop .32s ease; }
+    .favorite:focus-visible { outline:2px solid currentColor !important; outline-offset:3px; }
+    html[data-theme="black"] .favorite { color:#c7c7d0 !important; background:#1b1b20 !important; border-color:#45454e !important; box-shadow:0 2px 9px #0005 !important; }
+    html[data-theme="black"] .favorite:hover { color:#ff9caf !important; background:#25252b !important; border-color:#925364 !important; box-shadow:0 4px 13px #0006 !important; }
+    html[data-theme="black"] .favorite.saved { color:#ff91a7 !important; background:#382029 !important; border-color:#7a4050 !important; }
+    @media (prefers-reduced-motion: reduce) { .favorite, .favorite svg { transition:none !important; animation:none !important; } }
+
+
+    /* Biblioteca de guardados: una vista propia para reunir favoritos. */
+    .favorites-toggle {
+      display:inline-flex !important; align-items:center; justify-content:center; gap:7px;
+      border-color:#e7d7de !important; background:linear-gradient(145deg,#fff,#fff8fa) !important;
+      color:#65384b !important; font-weight:750; box-shadow:0 2px 7px rgba(94,43,64,.05);
+    }
+    .favorites-toggle > svg { width:15px; height:15px; flex:0 0 auto; }
+    .favorites-toggle:hover { border-color:#cfa4b5 !important; background:#fff1f5 !important; color:#7e3151 !important; }
+    .favorites-toggle.active { background:#2c2027 !important; color:#fff !important; border-color:#2c2027 !important; box-shadow:0 5px 14px rgba(44,32,39,.17); }
+    .favorites-count { display:inline-grid; place-items:center; min-width:20px; height:20px; padding:0 5px; box-sizing:border-box; border-radius:99px; background:#f2e5ea; color:#6f3d51; font-size:.7rem; font-weight:850; font-variant-numeric:tabular-nums; }
+    .favorites-toggle.active .favorites-count { background:#ffffff22; color:#fff; }
+    .favorites-hub[hidden] { display:none !important; }
+    .favorites-hub {
+      display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:18px;
+      margin:0 0 20px; padding:clamp(18px,3vw,25px); border:1px solid #e5dbe0; border-radius:22px;
+      background:radial-gradient(ellipse at 0% 0%,#f8eaf0 0,transparent 55%),linear-gradient(135deg,#fff 0%,#faf7f9 100%);
+      box-shadow:0 9px 28px rgba(46,28,37,.055); animation:riseIn .3s ease both;
+    }
+    .favorites-hub-mark { display:grid; place-items:center; width:58px; height:58px; border:1px solid #ead3dd; border-radius:18px; color:#8a4c65; background:linear-gradient(145deg,#fff,#f5e7ed); box-shadow:inset 0 1px 0 #fff; }
+    .favorites-hub-mark svg { width:27px; height:27px; }
+    .favorites-hub-copy { min-width:0; }
+    .favorites-hub-kicker { display:block; color:#98657b; font-size:.68rem; font-weight:850; letter-spacing:.14em; margin-bottom:4px; }
+    .favorites-hub-copy h3 { margin:0; color:#242027; font-size:clamp(1.25rem,2.3vw,1.7rem); letter-spacing:-.045em; line-height:1.2; }
+    .favorites-hub-copy p { margin:7px 0 0; max-width:620px; color:#6e6570; font-size:.84rem; line-height:1.6; }
+    .favorites-hub-side { display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
+    .favorites-hub-number { display:flex; align-items:baseline; gap:7px; }
+    .favorites-hub-number strong { color:#392733; font-size:1.8rem; line-height:1; letter-spacing:-.06em; font-variant-numeric:tabular-nums; }
+    .favorites-hub-number span { color:#8a7180; font-size:.74rem; font-weight:700; }
+    .favorites-back-button { display:inline-flex; align-items:center; gap:7px; border:1px solid #e2d4db; border-radius:10px; padding:9px 12px; background:#fff; color:#654354; font-size:.76rem; font-weight:800; cursor:pointer; transition:background .18s ease,border-color .18s ease,transform .18s ease; white-space:nowrap; }
+    .favorites-back-button:hover { background:#fbf0f5; border-color:#cfa7b8; transform:translateY(-1px); }
+    .favorites-back-button:focus-visible { outline:2px solid currentColor; outline-offset:3px; }
+    body.favorites-view-active .catalog-overview,
+    body.favorites-view-active #latest-apps-section,
+    body.favorites-view-active #catalog-heading-block { display:none !important; }
+    body.favorites-view-active #catalog-kicker { color:#98657b; }
+    body.favorites-view-active #catalog-heading { color:#392733; }
+    body.favorites-view-active #catalog-description { color:#746a74; }
+    html[data-theme="black"] .favorites-toggle { background:linear-gradient(145deg,#211d21,#171518) !important; border-color:#484047 !important; color:#eadce3 !important; box-shadow:0 2px 8px #0003; }
+    html[data-theme="black"] .favorites-toggle:hover { background:#30232b !important; border-color:#805467 !important; color:#fff !important; }
+    html[data-theme="black"] .favorites-toggle.active { background:#f0e9ed !important; border-color:#f0e9ed !important; color:#292027 !important; }
+    html[data-theme="black"] .favorites-count { background:#3d3038; color:#f0e4eb; }
+    html[data-theme="black"] .favorites-toggle.active .favorites-count { background:#d9c7d1; color:#2c2027; }
+    html[data-theme="black"] .favorites-hub { background:radial-gradient(ellipse at 0% 0%,#3b2934 0,transparent 55%),linear-gradient(135deg,#171518,#0d0c0e 100%); border-color:#3d333a; box-shadow:0 10px 28px #0006; }
+    html[data-theme="black"] .favorites-hub-mark { color:#f1dce5; background:linear-gradient(145deg,#3a2b34,#211b20); border-color:#59414d; box-shadow:inset 0 1px 0 #ffffff0c; }
+    html[data-theme="black"] .favorites-hub-kicker { color:#d7a9bd; }
+    html[data-theme="black"] .favorites-hub-copy h3,
+    html[data-theme="black"] body.favorites-view-active #catalog-heading { color:#f4edf1 !important; }
+    html[data-theme="black"] .favorites-hub-copy p,
+    html[data-theme="black"] body.favorites-view-active #catalog-description { color:#c0b3bc !important; }
+    html[data-theme="black"] .favorites-hub-number strong { color:#fff0f6; }
+    html[data-theme="black"] .favorites-hub-number span { color:#c5aab8; }
+    html[data-theme="black"] .favorites-back-button { background:#242026; color:#f0e2ea; border-color:#51424b; }
+    html[data-theme="black"] .favorites-back-button:hover { background:#34252e; border-color:#805467; }
+    @media (max-width:720px) {
+      .favorites-hub { grid-template-columns:auto minmax(0,1fr); gap:13px; padding:17px; }
+      .favorites-hub-mark { width:46px; height:46px; border-radius:14px; }
+      .favorites-hub-mark svg { width:22px; height:22px; }
+      .favorites-hub-side { grid-column:1 / -1; flex-direction:row; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid #e7dce2; }
+      html[data-theme="black"] .favorites-hub-side { border-color:#3d333a; }
+      .favorites-hub-number strong { font-size:1.55rem; }
+      .favorites-back-button { white-space:normal; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .favorites-hub { animation:none; }
+      .favorites-toggle,.favorites-back-button { transition:none !important; }
+      .favorites-back-button:hover { transform:none; }
+    }
+
+
+    body.favorites-view-active .empty-state.favorites-empty {
+      margin-top:4px; border-style:solid; border-color:#eadbe2; background:linear-gradient(145deg,#fff,#fcf7f9);
+      color:#756774; box-shadow:0 5px 18px rgba(46,28,37,.035); padding:38px 22px;
+    }
+    body.favorites-view-active .empty-state.favorites-empty::before {
+      content:"♡"; display:grid; place-items:center; width:54px; height:54px; margin:0 auto 14px;
+      border:1px solid #ead3dd; border-radius:17px; background:#fbf0f5; color:#9a5c76; font-size:1.9rem; line-height:1;
+    }
+    body.favorites-view-active .empty-state.favorites-empty strong { color:#372833; }
+    body.favorites-view-active .empty-state.favorites-empty button { border-color:#d9bdca; background:#fff; color:#704259; }
+    html[data-theme="black"] body.favorites-view-active .empty-state.favorites-empty { border-color:#3d333a; background:linear-gradient(145deg,#171518,#0e0d0f); color:#c4b6c0; box-shadow:0 8px 24px #0005; }
+    html[data-theme="black"] body.favorites-view-active .empty-state.favorites-empty::before { border-color:#59414d; background:#2c2027; color:#efd8e3; }
+    html[data-theme="black"] body.favorites-view-active .empty-state.favorites-empty strong { color:#f4edf1 !important; }
+    html[data-theme="black"] body.favorites-view-active .empty-state.favorites-empty button { border-color:#51424b; background:#242026; color:#f0e2ea; }
+
+
+
+    /* Repositorios recomendados: sección independiente de APPSLibre. */
+    #repositorios { display:none; padding:58px 0 84px; }
+    body.repositories-visible #repositorios,
+    body.repositories-visible footer { display:block; }
+    body.repositories-visible .topbar { display:flex; animation:topbarReveal .36s cubic-bezier(.2,.75,.25,1) both; }
+    body.repositories-visible #repositorios { animation:viewEnter .45s ease both; }
+    .nav-repos { display:inline-flex; align-items:center; justify-content:center; padding:9px 12px; min-height:38px; border:1px solid #cfd8bf; border-radius:11px; background:#f0f6e6; color:#39482a; font-weight:800; transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease; white-space:nowrap; }
+    .nav-repos:hover, body.repositories-visible .nav-repos { background:#27321c; color:#d7fb9a; border-color:#617747; transform:translateY(-1px); }
+    .repos-label-short { display:none; }
+    .repositories-hero { display:flex; justify-content:space-between; align-items:center; gap:28px; padding:clamp(24px,5vw,42px); position:relative; overflow:hidden; border:1px solid #dfe4e8; border-radius:26px; background:radial-gradient(circle at 90% 10%,#dff2be 0,transparent 32%),linear-gradient(135deg,#fff,#f3f6f0); box-shadow:0 12px 36px #17201808; }
+    .repositories-hero-copy { min-width:0; position:relative; z-index:1; }
+    .repositories-hero .section-desc { max-width:670px; }
+    .repositories-hero-mark { flex:0 0 104px; width:104px; height:104px; display:grid; place-items:center; position:relative; border:1px solid #bdd19e; border-radius:30px; background:rgba(255,255,255,.68); transform:rotate(-8deg); box-shadow:0 12px 28px #34492512; }
+    .repositories-hero-mark span { font-size:3.3rem; line-height:1; font-weight:950; letter-spacing:-.1em; color:#334c20; }
+    .repositories-hero-mark i,.repositories-hero-mark b { position:absolute; display:block; border:1px solid #84a65d; border-radius:50%; width:33px;height:33px; right:-10px;top:-10px;background:#e8f6d8; }
+    .repositories-hero-mark b { width:13px;height:13px;right:auto;left:-6px;top:auto;bottom:4px;background:#bfe68f;border-color:#8bad62; }
+    .repositories-note { display:flex; gap:12px; align-items:flex-start; margin:18px 0 39px; padding:15px 18px; border:1px solid #e0e6d7; border-radius:15px; background:#f8faF4; color:#626b59; }
+    .repositories-note-icon { display:grid; place-items:center; flex:0 0 27px;width:27px;height:27px;border-radius:9px;background:#e5f2d5;color:#436528;font-weight:900; }
+    .repositories-note p { margin:1px 0 0; font-size:.84rem; line-height:1.65; }
+    .repositories-note strong { color:#2a3520; }
+    .repo-group { margin-top:36px; }
+    .repo-group-heading { display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:17px; }
+    .repo-group-index { display:block; margin-bottom:7px; color:#869078; font-size:.67rem; font-weight:900; letter-spacing:.17em; }
+    .repo-group-heading h3 { margin:0; color:#1d221a; font-size:clamp(1.35rem,2.4vw,1.75rem); font-weight:850; letter-spacing:-.055em; }
+    .repo-group-count { color:#7c8477; font-size:.75rem; padding:6px 10px; border:1px solid #e0e5d9; background:#fff; border-radius:999px; white-space:nowrap; }
+    .repo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; }
+    .repo-card { min-width:0; display:flex; align-items:flex-start; gap:13px; padding:17px; border:1px solid #e0e4e8; border-radius:17px; background:#fff; color:#20251d; box-shadow:0 4px 14px #11131805; transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+    .repo-card:hover { transform:translateY(-3px); border-color:#b8cb9f; box-shadow:0 12px 26px #24341a0d; }
+    .repo-mark { flex:0 0 45px; width:45px;height:45px;display:grid;place-items:center;border:1px solid #ffffffa8;border-radius:14px;background:var(--repo-mark,#e3eccf);color:#202719;font-size:.72rem;font-weight:950;letter-spacing:-.04em;box-shadow:inset 0 1px 0 #ffffffaa; }
+    .repo-card-content { min-width:0; display:flex; flex-direction:column; align-items:flex-start; }
+    .repo-card-title { display:flex; align-items:center; gap:8px; flex-wrap:wrap; color:#1c2119; font-size:.94rem; font-weight:850; line-height:1.4; }
+    .repo-arrow { color:#7d9066; font-size:1rem; transition:transform .18s ease; }
+    .repo-card:hover .repo-arrow { transform:translate(2px,-2px); }
+    .repo-card-desc { display:block; margin-top:7px; color:#666e63; font-size:.79rem; line-height:1.55; }
+    .repo-card-meta { display:inline-flex; margin-top:11px; padding:4px 8px; border:1px solid #e5eadd; border-radius:7px; background:#f6f8f1; color:#6a765b; font-size:.66rem; font-weight:750; }
+    .repositories-footnote { margin:38px 0 0; padding-top:17px; border-top:1px solid #e3e6e1; color:#82887e; font-size:.77rem; line-height:1.6; }
+    html[data-theme="black"] .nav-repos { background:#151515; color:#e4e4e4; border-color:#393939; }
+    html[data-theme="black"] .nav-repos:hover, html[data-theme="black"] body.repositories-visible .nav-repos { background:#f0f0f0; color:#111; border-color:#f0f0f0; }
+    html[data-theme="black"] .repositories-hero { background:radial-gradient(circle at 90% 10%,#262626 0,transparent 32%),linear-gradient(135deg,#151515,#0e0e0e); border-color:#363636; box-shadow:0 12px 36px #0005; }
+    html[data-theme="black"] .repositories-hero-mark { background:#191919b8; border-color:#555; box-shadow:0 12px 28px #0005; }
+    html[data-theme="black"] .repositories-hero-mark span { color:#efefef; }
+    html[data-theme="black"] .repositories-hero-mark i { background:#202020; border-color:#777; }
+    html[data-theme="black"] .repositories-hero-mark b { background:#aaa; border-color:#ddd; }
+    html[data-theme="black"] .repositories-note { background:#121212; border-color:#333; color:#aaa; }
+    html[data-theme="black"] .repositories-note-icon { background:#242424; color:#eee; }
+    html[data-theme="black"] .repositories-note strong { color:#f1f1f1; }
+    html[data-theme="black"] .repo-group-heading h3 { color:#f2f2f2; }
+    html[data-theme="black"] .repo-group-count { color:#ccc; background:#171717; border-color:#393939; }
+    html[data-theme="black"] .repo-card { background:#111; border-color:#303030; color:#eee; box-shadow:0 5px 16px #0004; }
+    html[data-theme="black"] .repo-card:hover { border-color:#777; box-shadow:0 12px 26px #0008; }
+    html[data-theme="black"] .repo-card-title { color:#f2f2f2; }
+    html[data-theme="black"] .repo-arrow { color:#d0d0d0; }
+    html[data-theme="black"] .repo-card-desc { color:#aaa; }
+    html[data-theme="black"] .repo-card-meta { background:#1b1b1b; border-color:#383838; color:#c3c3c3; }
+    html[data-theme="black"] .repositories-footnote { border-color:#333; color:#999; }
+    @media (max-width: 980px) { .repo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .repositories-hero-mark { flex-basis:82px;width:82px;height:82px;border-radius:25px; } .repositories-hero-mark span { font-size:2.8rem; } }
+    @media (max-width: 720px) { .repo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } .repo-card { padding:13px; gap:10px; } .repo-mark { flex-basis:37px;width:37px;height:37px;border-radius:12px;font-size:.65rem; } .repositories-hero { gap:14px; padding:22px; } .repositories-hero-mark { flex-basis:59px;width:59px;height:59px;border-radius:19px; } .repositories-hero-mark span { font-size:2.2rem; } .repositories-hero-mark i { width:22px;height:22px;right:-7px;top:-7px; } .repositories-hero-mark b { width:10px;height:10px; } .nav-links { gap:6px; } .nav-repos { padding:7px 8px; font-size:.75rem; } }
+    @media (max-width: 520px) { .repo-grid { grid-template-columns:1fr; } .repo-card { padding:14px; } .repositories-hero-mark { display:none; } .repos-label-full { display:none; } .repos-label-short { display:inline; } .repositories-note { margin-bottom:30px; } .repo-group-heading { align-items:center; } }
+    @media (prefers-reduced-motion: reduce) { body.repositories-visible .topbar, body.repositories-visible #repositorios, .repo-card, .repo-arrow, .nav-repos { animation:none !important; transition:none !important; } .repo-card:hover { transform:none; } }
+
+  </style>
 </head>
 <body>
   <header class="topbar">
@@ -1486,10 +1882,13 @@
       <a class="brand" href="#inicio" aria-label="APPSLibre, inicio"><span class="brand-mark">A</span><span>APPS<em>Libre</em></span></a>
       <div class="nav-links">
         <a class="nav-pages" href="#paginas" aria-label="Abrir páginas de juegos web">Páginas</a>
+        <a class="nav-repos" href="#repositorios" aria-label="Abrir repositorios recomendados"><span class="repos-label-full">Repositorios</span><span class="repos-label-short">Repos</span></a>
         <a class="nav-news" href="#noticias" aria-label="Abrir sección de noticias">Noticias</a>
         <button class="nav-theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a tema negro" title="Cambiar a tema negro" aria-pressed="false">
-          <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 15.5A8.5 8.5 0 0 1 8.5 3.2 8.7 8.7 0 1 0 20.8 15.5Z"/></svg>
-          <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+          <svg class="theme-icon-contrast" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 3a9 9 0 0 0 0 18V3Z" fill="currentColor" stroke="none"/>
+          </svg>
         </button>
       </div>
     </nav>
@@ -1500,20 +1899,27 @@
       <form id="first-visit-form" novalidate>
         <div class="onboarding-question-grid">
           <fieldset class="onboarding-question is-current" data-onboarding-step="0">
+            <legend><span>¿Qué tema preferís para APPSLibre?</span></legend>
+            <div class="onboarding-options">
+              <label class="onboarding-option"><input type="radio" name="onboarding-theme" value="black"><span class="onboarding-option-copy"><strong>Tema negro</strong></span></label>
+              <label class="onboarding-option"><input type="radio" name="onboarding-theme" value="light" checked><span class="onboarding-option-copy"><strong>Tema blanco</strong></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="onboarding-question" data-onboarding-step="1" hidden>
             <legend><span>¿Querés ver solo aplicaciones básicas, como música y juegos?</span></legend>
             <div class="onboarding-options">
               <label class="onboarding-option"><input type="radio" name="onboarding-basic" value="simple" checked><span class="onboarding-option-copy"><strong>Solo las básicas</strong></span></label>
               <label class="onboarding-option"><input type="radio" name="onboarding-basic" value="all"><span class="onboarding-option-copy"><strong>Todo el catálogo</strong></span></label>
             </div>
           </fieldset>
-          <fieldset class="onboarding-question" data-onboarding-step="1" hidden>
+          <fieldset class="onboarding-question" data-onboarding-step="2" hidden>
             <legend><span>¿Tenés root en tu dispositivo?</span></legend>
             <div class="onboarding-options">
               <label class="onboarding-option"><input type="radio" name="onboarding-root" value="yes"><span class="onboarding-option-copy"><strong>Sí, tengo root</strong></span></label>
               <label class="onboarding-option"><input type="radio" name="onboarding-root" value="no" checked><span class="onboarding-option-copy"><strong>No / no estoy seguro</strong></span></label>
             </div>
           </fieldset>
-          <fieldset class="onboarding-question" data-onboarding-step="2" hidden>
+          <fieldset class="onboarding-question" data-onboarding-step="3" hidden>
             <legend><span>¿Para qué plataforma buscás proyectos?</span></legend>
             <div class="onboarding-options">
               <label class="onboarding-option"><input type="radio" name="onboarding-platform" value="android" checked><span class="onboarding-option-copy"><strong>Android</strong></span></label>
@@ -1523,7 +1929,7 @@
               <label class="onboarding-option"><input type="radio" name="onboarding-platform" value="all"><span class="onboarding-option-copy"><strong>Todas las plataformas</strong></span></label>
             </div>
           </fieldset>
-          <fieldset class="onboarding-question" data-onboarding-step="3" hidden>
+          <fieldset class="onboarding-question" data-onboarding-step="4" hidden>
             <legend><span>¿Querés activar el modo Rendimiento?</span></legend>
             <div class="onboarding-options">
               <label class="onboarding-option"><input type="radio" name="onboarding-performance" value="yes"><span class="onboarding-option-copy"><strong>Sí, priorizar fluidez</strong></span></label>
@@ -1555,7 +1961,7 @@
           <h1>Buenas apps.<br><span class="accent">Código abierto.</span><br>Sin vueltas.</h1>
           <p class="hero-copy">Descubrí aplicaciones, herramientas de IA y recursos de código abierto para crear, aprender y trabajar.</p>
           <div class="hero-actions">
-            <a class="btn-primary" href="#explorar">Explorar catálogo <span aria-hidden="true">↗</span></a>
+            <a class="btn-primary" href="#explorar">Explorar contenido <span aria-hidden="true">↗</span></a>
             <a class="btn-secondary" href="#nosotros">Acerca de nosotros</a>
           </div>
           <div class="hero-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg> Sin rankings pagos. Sin apps patrocinadas. Solo software para explorar.</div>
@@ -1585,14 +1991,7 @@
 
     <section class="catalog" id="explorar">
       <div class="container">
-        <div class="stats catalog-overview project-stats" aria-label="Resumen de proyectos">
-          <div class="stat"><strong id="catalog-stat-projects">260</strong><span>proyectos en total</span></div>
-          <div class="stat"><strong id="catalog-stat-apps">241</strong><span>apps y recursos</span></div>
-          <div class="stat"><strong id="catalog-stat-pages">19</strong><span>juegos web</span></div>
-          <div class="stat"><strong id="catalog-stat-categories">32</strong><span>categorías</span></div>
-          <div class="stat"><strong>0</strong><span>anuncios integrados</span></div>
-        </div>
-        <section class="latest-apps-section" aria-labelledby="latest-apps-heading">
+        <section class="latest-apps-section" id="latest-apps-section" aria-labelledby="latest-apps-heading">
           <div class="latest-apps-top">
             <div>
               <div class="section-kicker">Recién añadidas</div>
@@ -1603,20 +2002,38 @@
           </div>
           <div class="latest-apps-grid" id="latest-apps-grid" aria-live="polite"></div>
         </section>
-        <div class="section-top">
-          <div><div class="section-kicker">El catálogo</div><h2>Explorá apps y proyectos libres.</h2><p class="section-desc">Buscá aplicaciones, herramientas, frameworks, recursos de aprendizaje y entrá al repositorio oficial.</p></div>
+        <div class="section-top" id="catalog-heading-block">
+          <div><div class="section-kicker" id="catalog-kicker">El catálogo</div><h2 id="catalog-heading">Explorá apps y proyectos libres.</h2><p class="section-desc" id="catalog-description">Buscá aplicaciones, herramientas, frameworks, recursos de aprendizaje y entrá al repositorio oficial.</p></div>
           <div class="result-count" id="result-count" aria-live="polite">241 resultados</div>
         </div>
+        <section class="favorites-hub" id="favorites-hub" hidden aria-labelledby="favorites-hub-title">
+          <div class="favorites-hub-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.75h12a1 1 0 0 1 1 1V21l-7-4-7 4V4.75a1 1 0 0 1 1-1Z"/><path d="m9 9 3 3 3-3"/></svg>
+          </div>
+          <div class="favorites-hub-copy">
+            <span class="favorites-hub-kicker">TU BIBLIOTECA PERSONAL</span>
+            <h3 id="favorites-hub-title">Tus guardados y favoritos</h3>
+            <p>Todo lo que guardás queda reunido aquí para encontrarlo fácilmente. Tus favoritos se conservan en este navegador.</p>
+          </div>
+          <div class="favorites-hub-side">
+            <div class="favorites-hub-number"><strong id="favorites-hub-count">0</strong><span>guardados</span></div>
+            <button class="favorites-back-button" id="favorites-back" type="button">Volver al catálogo <span aria-hidden="true">↗</span></button>
+          </div>
+        </section>
         <div class="toolbar">
           <div class="search-wrap">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7.5"/><path d="m16.5 16.5 4 4"/></svg>
             <input class="search" id="search" type="search" placeholder="Buscá una app, herramienta, recurso o lenguaje…" autocomplete="off" aria-label="Buscar aplicaciones">
             <button type="button" class="clear-search" id="clear-search" aria-label="Limpiar búsqueda">✕</button>
           </div>
-          <select class="sort-select" id="sort" aria-label="Ordenar aplicaciones"><option value="featured">Orden recomendado</option><option value="az">Nombre: A–Z</option><option value="saved">Mis favoritas</option></select>
+          <select class="sort-select" id="sort" aria-label="Ordenar aplicaciones"><option value="featured">Orden recomendado</option><option value="az">Nombre: A–Z</option></select>
         </div>
         <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría">
           <button class="filter active" data-category="Todas" type="button">Todas</button>
+          <button class="filter favorites-toggle" id="favorites-toggle" type="button" aria-pressed="false" title="Ver las aplicaciones guardadas">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.75h12a1 1 0 0 1 1 1V21l-7-4-7 4V4.75a1 1 0 0 1 1-1Z"/></svg>
+            <span>Guardados</span><span class="favorites-count" id="favorites-count">0</span>
+          </button>
           <button class="filter category-toggle" id="category-toggle" type="button" aria-expanded="false" aria-controls="category-options" aria-pressed="false">
             <span>Categorías</span><span class="filter-selection" id="filter-selection"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
@@ -1624,7 +2041,7 @@
           <div class="category-options" id="category-options" role="group" aria-label="Categorías disponibles" hidden></div>
         </div>
         <div class="app-grid" id="app-grid"></div>
-        <div class="empty-state" id="empty-state"><strong>No encontramos aplicaciones.</strong>Probá con otra búsqueda o elegí una categoría distinta.<br><button id="reset-filters" type="button">Ver todas las apps</button></div>
+        <div class="empty-state" id="empty-state"><strong id="empty-state-title">No encontramos aplicaciones.</strong><span id="empty-state-message">Probá con otra búsqueda o elegí una categoría distinta.</span><br><button id="reset-filters" type="button">Ver todas las apps</button></div>
       </div>
     </section>
 
@@ -1747,7 +2164,7 @@
               <p class="news-lead">Proyectos comunitarios como DroidDeck y SteamOS ARM Port acercan Steam y algunos juegos de Windows a móviles, tablets y consolas Android compatibles. Son dos soluciones diferentes, con requisitos exigentes y compatibilidad todavía limitada.</p>
             </div>
             <figure class="news-cover">
-              <img src="https://images.openai.com/static-rsc-4/kREkJTZKUUuqthQpae5eLruL1UTh-6pKbAeamLcdA0sVPjBfg2VlzaxCdmXJGrWzfErYV-jNPbE07khGGjhjwapim7ZVFSGNzdQ1JwthgPmjCuHdOtO1a_vZM1SCAqGhGDS5e9essg696fWrNcu7eVkbYWlg8-ezSOnQ1mRuHTc?purpose=inline" alt="DroidDeck, experiencia de Steam orientada a dispositivos Android" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://droiddeck.app/assets/images/media/launcher-steam.jpg" data-fallback-src="https://raw.githubusercontent.com/Droid-Deck/DroidDeck/main/docs/releases/media/0.2.0/drawer-android-apps.jpg" alt="DroidDeck, experiencia de Steam orientada a dispositivos Android" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>La idea es llevar una experiencia similar a Steam Deck a dispositivos Android compatibles.</figcaption>
             </figure>
           </div>
@@ -1763,7 +2180,7 @@
             <h3>DroidDeck: Steam directamente en Android</h3>
             <p>DroidDeck prepara un entorno Linux sobre Android y ejecuta el cliente de Steam en modo Big Picture, pensado para usarse con un mando. Para intentar ejecutar juegos de Windows utiliza <strong>Proton ARM64</strong> y las capas de compatibilidad necesarias. No se limita a transmitir desde una PC: la intención es ejecutar el cliente y los juegos compatibles localmente en el dispositivo.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/gdPTiFDuhtdM29gVMXg3c4jyEAN7q79OwMbkUxkjFfCHjpwF0ZtFtd4d0zsF8vrYNSUsud9iTnNm67jASbgV-637bOgmfy2-9oo1eTFpTyRuVE1lUnSxG1gOoOsmE4NF6pHsmgARRKSAPC85EGqRGXxSl91b8BtRfbeU8oTZNZs?purpose=inline" alt="Interfaz de DroidDeck para jugar desde Android" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://droiddeck.app/assets/images/media/controller-editor.jpg" data-fallback-src="https://droiddeck.app/assets/images/social-preview.png" alt="Interfaz de DroidDeck para jugar desde Android" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>DroidDeck combina el cliente Steam con un entorno Linux y herramientas de compatibilidad.</figcaption>
             </figure>
             <p>Según la documentación del repositorio, se necesita Android 9 o posterior y un dispositivo Qualcomm con GPU Adreno compatible, como Adreno 730 o posterior o la serie Adreno 8xx. Las GPU Mali, Xclipse, PowerVR y Adreno 710 no están soportadas; Adreno 6xx figura como experimental. <strong>No requiere root</strong>, pero sí instalar el APK y descargar los componentes de runtime. La documentación calcula aproximadamente 3 GB para el runtime y 1,1 GB adicionales para el escritorio y los emuladores.</p>
@@ -1772,12 +2189,12 @@
             <h3>SteamOS ARM Port: una adaptación del sistema</h3>
             <p>La segunda opción es más profunda. <strong>SteamOS ARM Port</strong> adapta una versión ARM de SteamOS a determinadas consolas portátiles y tablets Snapdragon. Su objetivo es ofrecer el modo Gaming, el escritorio KDE y la ejecución de juegos mediante FEX y Proton, además de algunas aplicaciones Android. No es una APK normal que se instala dentro de Android: requiere un procedimiento específico para el dispositivo y modifica el proceso de arranque.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/ZiQ4yGMkV2u9rYSFnyQgZUNWiKjKsOwvb17dJ7d34QuULvjYPJd5jPIJv_oet3rgozQokmvoz_aiPzOX1tr8yXtpIU9cWBbjxt-wRbAN9tRdP0V-mfw9iimyFeNee06ez8DYwKYTOf0mB_1T632u21RLpNSPb362Xk_xYLWqUq8?purpose=inline" alt="Dispositivo portátil Android relacionado con el port comunitario de SteamOS ARM" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://www.smartworld.it/images/2026/05/26/steam-su-linux-arm_crop_resize.png" data-fallback-src="https://discuss-cdn.kde.org/uploads/default/optimized/3X/c/1/c17a039ecb5e7d5cd06a6ed0d6bbe9c5e8f2d3b6_2_1380x776.jpeg" alt="Dispositivo portátil Android relacionado con el port comunitario de SteamOS ARM" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>SteamOS ARM Port está limitado a una lista concreta de dispositivos y procedimientos de instalación.</figcaption>
             </figure>
             <p>El repositorio explica que instalarlo implica flashear el cargador de arranque ROCKNIX ABL. Si el proceso se hace incorrectamente, el dispositivo podría dejar de arrancar o perder datos. Antes de probarlo, hay que comprobar la lista de dispositivos compatibles, leer la guía completa y hacer una copia de seguridad. El proyecto no está afiliado ni respaldado por Valve.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/RZNkeZibGAlI7nGmNPz4FiAz3wmxpvc2bGewxmNMmfSo2UlAvPBtvhzSGqC5m7ktY4OaEo85E4s4pHdkO7_PN2Zj6n12eQ6gR-8l-GAOEF7pueOmOE5EgiS7ya15c2qNL11KxtRpePcxCVJ44MA-Jd8Bv49-dVWzMS4ncuE_c9Q?purpose=inline" alt="Consola portátil Android mencionada entre los dispositivos compatibles" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.blogs.es/52e78e/odin-3/1366_2000.jpeg" data-fallback-src="https://cdn.mos.cms.futurecdn.net/neQaKPi4BnfNrZkRF35TN.jpg" alt="Consola portátil Android mencionada entre los dispositivos compatibles" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>Los dispositivos que aparecen en las listas de compatibilidad pueden tener estados distintos: estable, beta o experimental.</figcaption>
             </figure>
 
@@ -1809,7 +2226,7 @@
               <p class="news-lead">Un proyecto comunitario está adaptando God of War III Remastered de PS4 a teléfonos Android ARM64. Ya hay demostraciones en dispositivos compatibles, pero el desarrollo sigue en pruebas y no existe una cifra de rendimiento que pueda garantizarse para todos los móviles.</p>
             </div>
             <figure class="news-cover">
-              <img src="https://images.openai.com/static-rsc-4/RYdMSsRHaXghuivpA4lVWhuRmi2otDHOb6ELoWshu65D7k9bR2xhC1SLlJbM_JLuR2agirAnc7PUUubiynDI0XzR8EgigKq6Gf28gZr3LrFSa7hXnqfgZrb0GBF0Iq31ux3lbkDSu2rjLdiBe3xYqav6JdQMFLAXBtGU2bZbFwE?purpose=inline" alt="God of War III Remastered, juego original de PlayStation 4" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.jeuxactus.com/datas/jeux/g/o/god-of-war-iii-remastered/xl/god-of-war-iii-remastered-55a4b6467880c.jpg" data-fallback-src="https://thekoalition.com/images/2015/05/17210093404_e7e0d753ea_o.jpg" alt="God of War III Remastered, juego original de PlayStation 4" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>El port de Android está en desarrollo y necesita archivos de una copia propia del juego de PS4.</figcaption>
             </figure>
           </div>
@@ -1826,7 +2243,7 @@
             <p>El ejecutable original de PS4 usa arquitectura x86-64, mientras que los teléfonos Android actuales suelen utilizar ARM64. El proyecto emplea <strong>FEXCore</strong> para traducir dinámicamente las instrucciones del procesador y un runtime creado específicamente para el juego que sustituye las funciones del sistema de PlayStation que necesita.</p>
             <p>La parte gráfica se traduce a <strong>Vulkan</strong> y, en los dispositivos compatibles, utiliza el controlador <strong>Turnip</strong> para conectar con la GPU Adreno. No es un emulador genérico preparado para ejecutar cualquier juego de PS4: está adaptado a este título concreto.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/x2YRlBPSuFHPNDygJa-MliJ4741riQLhLh6B97YMZz_UPHQoReQALZDIwQR9J4E8syGLnfQMOlF1XBhH8eZL89EaajPGuIOGvm5Nfi3Qf-3r42PCfBfS9Lour6kN3Ck6CfhI2NtS-2jDzCBfecS4NSBy6gMNNF7wlYQZvH6CaLo?purpose=inline" alt="Gameplay de God of War III Remastered" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://thekoalition.com/images/2015/05/17210093404_e7e0d753ea_o.jpg" data-fallback-src="https://i.jeuxactus.com/datas/jeux/g/o/god-of-war-iii-remastered/xl/god-of-war-iii-remastered-55a4b6467880c.jpg" alt="Gameplay de God of War III Remastered" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>La compatibilidad gráfica depende del runtime y de los controladores disponibles en cada móvil.</figcaption>
             </figure>
 
@@ -1834,7 +2251,7 @@
             <p>La documentación del proyecto apunta a dispositivos Android ARM64 con GPU Adreno compatible con Vulkan y Turnip. Entre los equipos mencionados en las primeras pruebas figuran la Lenovo Legion Y700 de cuarta generación y el Redmi K70 Pro. También circulan demostraciones de la comunidad en otros teléfonos, pero eso no garantiza que el juego funcione igual en todos los modelos.</p>
             <p>Los móviles con GPU Mali o ciertos chips MediaTek no cuentan con suficientes pruebas para afirmar una compatibilidad general. La arquitectura del procesador, los controladores gráficos y la versión de Android pueden ser tan importantes como la potencia bruta del dispositivo.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/6IUU99MKKfsjU4MUTbEc4rkuHBxzhC0PjnwAVBBHB_ag4eSBnCdwad-UllABGMOuRiMM9f5UlQ9Mu0AfiCiMfQpYwipnS0NGcLpsKNvsiSi0s3rI0en4i6-Sdo_5UC14CK6Yyyu5xKE_w4r90DSan-2T9jh-c-XJYH13N6hL05Y?purpose=inline" alt="Captura de God of War III Remastered usada para ilustrar el port" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://s2.dmcdn.net/v/AbWFR1LlJJ5c-NgwD/x1080" data-fallback-src="https://s2.dmcdn.net/v/Tt7391eo-21U-VT18/x1080" alt="Captura de God of War III Remastered usada para ilustrar el port" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>La lista de dispositivos compatibles todavía es reducida y puede cambiar con nuevas versiones.</figcaption>
             </figure>
 
@@ -1842,7 +2259,7 @@
             <p>En redes se han compartido reportes de alrededor de 50–60 FPS en escenas concretas y en hardware de gama alta. Son observaciones individuales: el propio proyecto aclara que las pruebas en teléfonos reales continúan y que aún no hay datos de rendimiento estables que permitan comparar todos los equipos.</p>
             <p>La fluidez puede variar según la zona del juego, la resolución, el controlador, la generación de fotogramas y la temperatura. Las sesiones prolongadas también pueden causar calentamiento y reducir el rendimiento. Conviene tomar los vídeos como demostraciones, no como una garantía de FPS.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/mK2SqOW9M2SMzX2anJ0f6EvrFw8lz8p0F52i9yBwXfNqLmXgf-jBQ3-PVB-bJBhszjXsUFwuHtmIrZh_0-QiV15DI695fedrVWi1RvHPZe8Fot270r-r0K_CzZuD69NUL5NRGOn_Qr3lMuDF7GIllLCeKhtByGqC9pnrtdYrUhc?purpose=inline" alt="Imagen de gameplay de God of War III Remastered" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://s2.dmcdn.net/v/Tt7391eo-21U-VT18/x1080" data-fallback-src="https://i.jeuxactus.com/datas/jeux/g/o/god-of-war-iii-remastered/xl/god-of-war-iii-remastered-55a4b6467880c.jpg" alt="Imagen de gameplay de God of War III Remastered" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>Los resultados dependen del equipo y la configuración; el desarrollo aún no publica una medición estable para todos los modelos.</figcaption>
             </figure>
 
@@ -1885,7 +2302,7 @@
               <p class="news-lead">Un proyecto independiente para Windows permite jugar de principio a fin la versión remasterizada de PS4, con teclado y ratón, controles configurables, resolución 4K y mejoras de rendimiento. Sigue siendo un desarrollo experimental y requiere una copia propia del juego.</p>
             </div>
             <figure class="news-cover">
-              <img src="https://images.openai.com/static-rsc-4/tE8iNxXvzFrvdeo2pAUpyxog66vxwzdQblAvchWGmxzZEbrez2aa24LWkZKDD0PT2CzhgP-Q5YJvFpWGIf-dfuQs7n5XPt8FhQAL2IHYScl6VYtNdq_1MZXmM7SVv5SVLK7qOHl2WH_wUKw63amr5TXscM3zgMgIyz4J9eheJJG7YRzDiZm4e1Nfbi0o1Rgr?purpose=fullsize" alt="Imagen de God of War III Remastered para la noticia del port de PC" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://s2.dmcdn.net/v/AbWFR1LlJJ5c-NgwD/x1080" data-fallback-src="https://i.jeuxactus.com/datas/jeux/g/o/god-of-war-iii-remastered/xl/god-of-war-iii-remastered-55a4b6467880c.jpg" alt="Imagen de God of War III Remastered para la noticia del port de PC" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>El port comunitario ejecuta el código del juego de PS4 en Windows mediante una capa de compatibilidad específica.</figcaption>
             </figure>
           </div>
@@ -1902,7 +2319,7 @@
             <p>En vez de simular una consola completa, el proyecto ejecuta el código original de la versión de PS4 —basado en arquitectura x86-64— directamente en la CPU del ordenador. Un entorno de ejecución diseñado para el juego reemplaza los servicios del sistema de PlayStation que necesita el título.</p>
             <p>Para los gráficos utiliza un núcleo derivado de shadPS4 que traduce las instrucciones gráficas a Vulkan. Dicho de forma sencilla, combina el código original con una capa de compatibilidad hecha para God of War III Remastered, en lugar de emular una PS4 completa como lo haría un emulador general.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/7Kljz0kCFuMeNKOwLtP2Fu3pFRmdnC757tZyoaSoFt3lMwtEgOarfb1dvVXXViL9DHd2L3QmeJyKsF06yFxk9sC4DnUImi-zC_HDryATrpYQUlHkj2XTla9xqSwfVsG8BcLo00jlRGpIfxihr37eB98gGqa4v0wRMCWQ-oie_lwAvPM2_2p4TIzXBfUZwCgL?purpose=fullsize" alt="Captura relacionada con el port de God of War III Remastered para PC" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://thekoalition.com/images/2015/05/17210093404_e7e0d753ea_o.jpg" data-fallback-src="https://i.jeuxactus.com/datas/jeux/g/o/god-of-war-iii-remastered/xl/god-of-war-iii-remastered-55a4b6467880c.jpg" alt="Captura relacionada con el port de God of War III Remastered para PC" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>La compatibilidad gráfica depende del renderizado Vulkan y de las correcciones específicas del proyecto.</figcaption>
             </figure>
 
@@ -1910,7 +2327,7 @@
             <p>El proyecto incorpora parches para superar los 60 fotogramas por segundo de la versión de consola. En una máquina de prueba con Radeon RX 6700 XT, Ryzen 5 5600X y 32 GB de RAM, el desarrollador comunicó un promedio cercano a 144 FPS en 1080p y de 108 FPS en 4K con FSR 1. El modo de motor a 240 FPS está disponible mediante un parche, pero no significa que esa cifra se mantenga en todas las escenas.</p>
             <p>Hay opciones de renderizado que incluyen 720p, 1080p, 1440p y 4K, además de escalado FSR 1, nitidez, límite de fotogramas, sincronización vertical y modos de pantalla completa, ventana y ventana sin bordes. El rendimiento real cambia según la GPU, el procesador, los controladores y la zona del juego.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/oDvOE83ubqkuNwU6FkzbjyZT6oIr78R-bkUjZBuP_MjEktF9sAF64VL2sqLQN2R8C1SuL6ohfJu6KfoQ2xQtr3hsrZSf2c8j0UlGzXMWLeyuSTOgyT2PDBGz6B8W666VKwLdr80WwR8By_qtXYCHgmB1x0h5uxYOeodMIhWUEGERsb4C2C1ivheQqmAjbMWN?purpose=fullsize" alt="Imagen adicional del proyecto God of War III Remastered para Windows" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://s2.dmcdn.net/v/Tt7391eo-21U-VT18/x1080" data-fallback-src="https://thekoalition.com/images/2015/05/17210093404_e7e0d753ea_o.jpg" alt="Imagen adicional del proyecto God of War III Remastered para Windows" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>La cifra de FPS es orientativa y proviene de pruebas comunicadas por el desarrollador.</figcaption>
             </figure>
 
@@ -1922,7 +2339,7 @@
             </div>
             <p>El menú integrado puede abrirse con Insert o con una combinación de botones en un mando compatible, según la configuración. Entre sus herramientas hay opciones de diagnóstico, ajustes visuales, multiplicadores de orbes y parámetros de daño. Son funciones opcionales pensadas para pruebas y personalización.</p>
             <figure class="news-inline-photo">
-              <img src="https://images.openai.com/static-rsc-4/5pXAjMkyRMziU33RhXVc093lye5_xIWTfUBsO4R9CSVKVhdynAZlpkxqC9CbCNt5GiSA2Y-Ficn9Wdo6ygNYciwLQceypJ2efy8TtTIuuqesRA4wDT6FDyiI9I_Twv-onx_t-oVD0CAQD-8frneRZ8IonOT6zWVh8JHYg8QtroIU4daT5cEWtZTohCUDQIYS?purpose=fullsize" alt="Cuarta imagen facilitada para la noticia del port de God of War III" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.jeuxactus.com/datas/jeux/g/o/god-of-war-iii-remastered/xl/god-of-war-iii-remastered-55a4b6467880c.jpg" data-fallback-src="https://s2.dmcdn.net/v/AbWFR1LlJJ5c-NgwD/x1080" alt="Cuarta imagen facilitada para la noticia del port de God of War III" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>La interfaz del lanzador reúne ajustes, parches y opciones de diagnóstico.</figcaption>
             </figure>
 
@@ -1956,7 +2373,7 @@
               <p class="news-lead">Desde febrero de 2027, Google Play empezará a aplicar nuevos umbrales de calidad relacionados con el uso de memoria. La idea es ayudar a que las aplicaciones con un consumo desmedido no perjudiquen la fluidez, especialmente en móviles con menos recursos.</p>
             </div>
             <figure class="news-cover">
-              <img src="https://i.blogs.es/56bebc/cmf-phone-1/1200_800.jpeg" alt="Teléfono Android de gama media" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.blogs.es/56bebc/cmf-phone-1/1200_800.jpeg" data-fallback-src="https://fotografias-2.larazon.es/clipping/cmsimages01/2026/05/04/3B77C4CF-77AA-4D0C-B9D0-863CF93056C6/pasos-conocer-memoria-ram-que-ocupa-app_58.jpg?crop=1354%2C768%2Cx6%2Cy0&amp;format=webply&amp;height=567&amp;optimize=high&amp;width=1000" alt="Teléfono Android de gama media" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>Los teléfonos con menos memoria disponible pueden notar más los efectos de las apps exigentes.</figcaption>
             </figure>
           </div>
@@ -1975,7 +2392,7 @@
             <h3>Cómo funcionarán los límites de RAM</h3>
             <p>Los límites no serán idénticos para todos los dispositivos: se ajustarán en función de la memoria total del teléfono y del tipo de aplicación. Google contempla umbrales distintos para apps y juegos, ya que estos últimos suelen necesitar más recursos. Android también puede actuar cuando un proceso consume demasiada memoria y amenaza la estabilidad del sistema.</p>
             <figure class="news-inline-photo">
-              <img src="https://i.blogs.es/142ca4/android-17-limites-ram/1200_800.jpeg" alt="Ilustración sobre los límites de memoria RAM en Android 17" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.blogs.es/142ca4/android-17-limites-ram/1200_800.jpeg" data-fallback-src="https://oss.xyyzone.com/jishuzhan/article/2053688389229150210/ab00d752c49e35d2c2d26ab5d430a9a0.webp" alt="Ilustración sobre los límites de memoria RAM en Android 17" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>Android 17 incorpora límites de memoria por aplicación; los umbrales varían según el dispositivo y el estado de la app.</figcaption>
             </figure>
             <p>Las aplicaciones que ejecutan tareas exigentes —por ejemplo, modelos de inteligencia artificial en el propio dispositivo— tendrán que optimizar su consumo para funcionar dentro de las condiciones aplicables. El resultado concreto dependerá de cada app y de cómo gestione sus recursos.</p>
@@ -2002,7 +2419,7 @@
               <p class="news-lead">El POCO F9 Ultra apuesta por una experiencia de gama alta casi sin recortes: pantalla AMOLED de 185 Hz, Snapdragon 8 Elite Gen 5, cámaras versátiles y batería de 8.050 mAh. Su mayor obstáculo es el precio oficial, que supera los mil euros.</p>
             </div>
             <figure class="news-cover">
-              <img src="https://i.blogs.es/2025c9/poco-f9-ultra-1/1200_800.jpeg" alt="Vista del POCO F9 Ultra" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.blogs.es/2025c9/poco-f9-ultra-1/1200_800.jpeg" data-fallback-src="https://www.notebookcheck-cn.com/fileadmin/Notebooks/News/_nc5/Screenshot-2026-09-01-072555-1-1.jpg" alt="Vista del POCO F9 Ultra" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>Un teléfono orientado a quienes priorizan potencia, pantalla, sonido y autonomía.</figcaption>
             </figure>
           </div>
@@ -2039,7 +2456,7 @@
             <p>La construcción mezcla aluminio y un diseño cuidado, con lector de huellas ultrasónico bajo la pantalla. Pese a su batería generosa, el dispositivo mantiene un grosor de 8,74 mm y un peso de 235 gramos. La certificación IP68 y el cristal Gorilla Glass 7i completan una ficha pensada para competir en la gama más alta.</p>
             <p>La pantalla AMOLED de 6,9 pulgadas ofrece resolución de 2.608 × 1.200 píxeles, compatibilidad con HDR10+ y Dolby Vision, y una tasa de refresco de hasta 185 Hz. El brillo anunciado varía según el modo de medición: Xiaomi publica cifras máximas de escenario y valores HBM diferentes, así que no deben interpretarse como brillo sostenido en toda la pantalla.</p>
             <figure class="news-inline-photo">
-              <img src="https://i.blogs.es/d74155/poco-f9-ultra-2/1366_2000.jpeg" alt="Detalle del diseño y la pantalla del POCO F9 Ultra" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.blogs.es/d74155/poco-f9-ultra-2/1366_2000.jpeg" data-fallback-src="https://www.mobilissimo.ro/photos/1600x900-crop/434413/poco-f9-ultra-poco-smartphone-cover-a96726-001.webp?format=webp&amp;quality=high&amp;upscale=1" alt="Detalle del diseño y la pantalla del POCO F9 Ultra" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>El panel de alta frecuencia y el acabado son dos de los elementos centrales de esta propuesta.</figcaption>
             </figure>
 
@@ -2047,7 +2464,7 @@
             <p>El Snapdragon 8 Elite Gen 5, fabricado en 3 nm, está acompañado por RAM LPDDR5X y almacenamiento UFS 4.1. En juegos y tareas pesadas ofrece un margen de rendimiento propio de los equipos más potentes. Sin embargo, sostener ese nivel de exigencia también puede elevar mucho la temperatura: durante pruebas de estrés prolongadas se registraron valores superiores a 50 °C y algunas pruebas llegaron a interrumpirse por calor.</p>
             <p>En el uso real, la temperatura dependerá del juego, la temperatura ambiente, la funda y el tiempo de carga de trabajo. Si jugás durante horas, conviene observar cómo se comporta el equipo y evitar usarlo bajo el sol o mientras se carga si ya está caliente.</p>
             <figure class="news-inline-photo">
-              <img src="https://i.blogs.es/b60a24/portada/375_142.jpeg" alt="Imagen de portada de la reseña del POCO F9 Ultra" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.blogs.es/b60a24/portada/375_142.jpeg" data-fallback-src="https://multiplayer.net-cdn.it/thumbs/images/2026/09/11/poco-f9-ultra_2_jpg_1400x0_q85.jpg" alt="Imagen de portada de la reseña del POCO F9 Ultra" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>El análisis destaca el rendimiento sostenido, aunque la disipación térmica es uno de los aspectos a considerar.</figcaption>
             </figure>
 
@@ -2055,7 +2472,7 @@
             <p>La cámara trasera reúne un sensor principal de 200 MP con estabilización óptica, un ultra gran angular de 50 MP y un teleobjetivo periscópico de 50 MP con zoom óptico equivalente a 120 mm. Puede grabar vídeo hasta 8K a 30 fotogramas por segundo; la cámara frontal es de 32 MP y admite vídeo 4K a 30 fps.</p>
             <p>El apartado de audio es otro de sus argumentos: cuenta con altavoces estéreo y un subwoofer independiente con ajuste de Bose, además de Dolby Atmos. La conectividad incluye 5G, Wi-Fi 7, Bluetooth 6.0, NFC, USB-C 3.2 Gen 1 y opciones dual SIM con eSIM, según mercado y operador.</p>
             <figure class="news-inline-photo">
-              <img src="https://i.blogs.es/8d8504/poco-f9-ultra-4/1366_2000.jpeg" alt="Vista adicional del POCO F9 Ultra" loading="lazy" decoding="async" onerror="this.style.display='none'">
+              <img src="https://i.blogs.es/8d8504/poco-f9-ultra-4/1366_2000.jpeg" data-fallback-src="https://img-cdn.heureka.group/v1/84d5be29-0222-4cdc-ad37-d6fd40e65ade.jpg?height=420&amp;width=480" alt="Vista adicional del POCO F9 Ultra" loading="lazy" decoding="async" onerror="(function(img){var fig=img.closest('figure');if(img.dataset.fallbackSrc&&!img.dataset.fallbackUsed){img.dataset.fallbackUsed='1';img.src=img.dataset.fallbackSrc;return;}img.style.display='none';if(fig){fig.classList.add('image-unavailable');fig.setAttribute('data-fallback',img.alt||'Imagen ilustrativa');}})(this)">
               <figcaption>El conjunto de cámaras combina sensor principal de alta resolución y teleobjetivo periscópico.</figcaption>
             </figure>
 
@@ -2091,6 +2508,67 @@
       </div>
     </section>
 
+    <section class="repositories-section" id="repositorios" aria-labelledby="repositories-heading">
+      <div class="container">
+        <div class="repositories-hero">
+          <div class="repositories-hero-copy">
+            <div class="section-kicker">Selección de APPSLibre</div>
+            <h2 id="repositories-heading">Repositorios recomendados.</h2>
+            <p class="section-desc">Una selección personal de proyectos que vale la pena conocer. Abrí cada repositorio para consultar su código, novedades, requisitos y versiones disponibles.</p>
+          </div>
+          <div class="repositories-hero-mark" aria-hidden="true"><span>R</span><i></i><b></b></div>
+        </div>
+        <div class="repositories-note"><span class="repositories-note-icon" aria-hidden="true">↗</span><p><strong>Un consejo:</strong> antes de instalar cualquier app, revisá las instrucciones y las versiones publicadas por sus desarrolladores. Los proyectos pueden cambiar, discontinuarse o tener requisitos específicos.</p></div>
+
+        <section class="repo-group" aria-labelledby="repo-music-heading">
+          <div class="repo-group-heading"><div><span class="repo-group-index">01 / ANDROID</span><h3 id="repo-music-heading">Música</h3></div><span class="repo-group-count">05 proyectos</span></div>
+          <div class="repo-grid">
+            <a class="repo-card" href="https://github.com/acoluzzi/libre-tune" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#bfe9dc">LT</span><span class="repo-card-content"><span class="repo-card-title">LibreTune <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Reproductor musical libre para Android, con una experiencia centrada en la escucha.</span><span class="repo-card-meta">Android · GitHub</span></span></a>
+            <a class="repo-card" href="https://github.com/Erorr40/OpenTune" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#b7dcf5">OT</span><span class="repo-card-content"><span class="repo-card-title">OpenTune <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Cliente musical para Android con interfaz Material 3 y funciones en desarrollo activo.</span><span class="repo-card-meta">Android · GitHub</span></span></a>
+            <a class="repo-card" href="https://github.com/rukamori/ArchiveTune" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#f2c9df">AT</span><span class="repo-card-content"><span class="repo-card-title">ArchiveTune <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Proyecto musical para Android con soporte para archivos locales y servicios de música.</span><span class="repo-card-meta">Android · GitHub</span></span></a>
+            <a class="repo-card" href="https://github.com/z-huang/InnerTune" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#b9e4c5">IT</span><span class="repo-card-content"><span class="repo-card-title">InnerTune <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Cliente de YouTube Music con reproducción en segundo plano y biblioteca musical.</span><span class="repo-card-meta">Android · GitHub</span></span></a>
+            <a class="repo-card" href="https://github.com/nonbili/NouTube" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#e7ecaa">NT</span><span class="repo-card-content"><span class="repo-card-title">NouTune <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Proyecto musical comunitario para Android. Consultá el repositorio por detalles y versiones.</span><span class="repo-card-meta">Android · GitHub</span></span></a>
+          </div>
+        </section>
+
+        <section class="repo-group" aria-labelledby="repo-browsers-heading">
+          <div class="repo-group-heading"><div><span class="repo-group-index">02 / WEB</span><h3 id="repo-browsers-heading">Navegadores</h3></div><span class="repo-group-count">03 proyectos</span></div>
+          <div class="repo-grid">
+            <a class="repo-card" href="https://github.com/brave/brave-browser" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#ffd1c8">BR</span><span class="repo-card-content"><span class="repo-card-title">Brave <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Navegador centrado en privacidad, con bloqueo integrado de anuncios y rastreadores.</span><span class="repo-card-meta">Android · Escritorio · GitHub</span></span></a>
+            <a class="repo-card" href="https://github.com/Alex313031/Thorium-Android" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#d3d7df">TH</span><span class="repo-card-content"><span class="repo-card-title">Thorium <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Variante de Chromium con optimizaciones y compilaciones para distintas plataformas.</span><span class="repo-card-meta">Android · Escritorio · GitHub</span></span></a>
+            <a class="repo-card" href="https://github.com/guardianproject/tor-browser" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#d8d2f2">TOR</span><span class="repo-card-content"><span class="repo-card-title">Tor Browser <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Navegador que se conecta a la red Tor para ayudar a reducir el rastreo y mejorar la privacidad.</span><span class="repo-card-meta">Android · Privacidad · GitHub</span></span></a>
+          </div>
+        </section>
+
+        <section class="repo-group" aria-labelledby="repo-anime-heading">
+          <div class="repo-group-heading"><div><span class="repo-group-index">03 / ANDROID</span><h3 id="repo-anime-heading">Anime y seguimiento</h3></div><span class="repo-group-count">03 proyectos</span></div>
+          <div class="repo-grid">
+            <a class="repo-card" href="https://github.com/aniyomiorg/aniyomi" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#d6c6ff">AN</span><span class="repo-card-content"><span class="repo-card-title">Aniyomi <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Aplicación para organizar y reproducir anime y manga mediante fuentes configuradas por el usuario.</span><span class="repo-card-meta">Android · GitHub</span></span></a>
+            <a class="repo-card" href="https://github.com/animiruorg/Animiru" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#ffc9dd">AM</span><span class="repo-card-content"><span class="repo-card-title">Animiru <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Biblioteca y reproductor de video para organizar anime, series y contenido local.</span><span class="repo-card-meta">Android · GitHub</span></span></a>
+            <a class="repo-card" href="https://github.com/axiel7/AniHyou-android" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#bfe3f8">AH</span><span class="repo-card-content"><span class="repo-card-title">AniHyou <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Cliente Android no oficial de AniList para seguir anime y gestionar listas personales.</span><span class="repo-card-meta">Android · AniList · GitHub</span></span></a>
+          </div>
+        </section>
+
+        <section class="repo-group" aria-labelledby="repo-media-heading">
+          <div class="repo-group-heading"><div><span class="repo-group-index">04 / ANDROID</span><h3 id="repo-media-heading">Multimedia</h3></div><span class="repo-group-count">02 proyectos</span></div>
+          <div class="repo-grid">
+            <a class="repo-card" href="https://github.com/TeamNewPipe/NewPipe" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#ffd4b5">NP</span><span class="repo-card-content"><span class="repo-card-title">NewPipe <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Cliente multimedia ligero y libre para Android, sin depender de Google Play Services.</span><span class="repo-card-meta">Android · Audio y video</span></span></a>
+            <a class="repo-card" href="https://github.com/JunkFood02/Seal" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#c9ead0">SE</span><span class="repo-card-content"><span class="repo-card-title">Seal <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Interfaz para yt-dlp que permite gestionar descargas de audio y video en Android.</span><span class="repo-card-meta">Android · yt-dlp</span></span></a>
+          </div>
+        </section>
+
+        <section class="repo-group" aria-labelledby="repo-performance-heading">
+          <div class="repo-group-heading"><div><span class="repo-group-index">05 / ANDROID</span><h3 id="repo-performance-heading">Rendimiento y control</h3></div><span class="repo-group-count">03 proyectos</span></div>
+          <div class="repo-grid">
+            <a class="repo-card" href="https://github.com/samolego/Canta" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#efcddd">CA</span><span class="repo-card-content"><span class="repo-card-title">Canta <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Ayuda a desinstalar aplicaciones no deseadas sin root mediante Shizuku. Revisá cada paquete antes de quitarlo.</span><span class="repo-card-meta">Android · Shizuku</span></span></a>
+            <a class="repo-card" href="https://github.com/aistra0528/Hail" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#cbd9fc">HA</span><span class="repo-card-content"><span class="repo-card-title">Hail <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Permite congelar, deshabilitar u ocultar aplicaciones para reducir su actividad cuando no se usan.</span><span class="repo-card-meta">Android · Shizuku / root</span></span></a>
+            <a class="repo-card" href="https://github.com/palincat/gama" target="_blank" rel="noopener noreferrer"><span class="repo-mark" style="--repo-mark:#bfe5f5">GA</span><span class="repo-card-content"><span class="repo-card-title">GAMA Android <span class="repo-arrow">↗</span></span><span class="repo-card-desc">Graphics API Manager: permite cambiar la API gráfica utilizada por el dispositivo, según compatibilidad.</span><span class="repo-card-meta">Android · GPU · Shizuku</span></span></a>
+          </div>
+        </section>
+        <p class="repositories-footnote">APPSLibre recomienda estos proyectos de forma independiente y no es responsable de su desarrollo. Revisá siempre el repositorio original antes de instalar.</p>
+      </div>
+    </section>
+
 <section class="about-section" id="nosotros" aria-labelledby="about-heading">
       <div class="container">
         <div class="section-kicker">Quiénes somos</div>
@@ -2104,6 +2582,17 @@
           <article class="principle"><div class="principle-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18-6-6 6-6M15 6l6 6-6 6"/></svg></div><h3>Código abierto</h3><p>Cuando el código está publicado bajo una licencia abierta, la comunidad puede inspeccionarlo, auditarlo y colaborar en sus mejoras.</p></article>
           <article class="principle"><div class="principle-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Transparencia primero</h3><p>Intentamos enlazar con la fuente del proyecto para que puedas revisar sus detalles, sus permisos, sus lanzamientos y su actividad.</p></article>
         </div>
+        <aside class="about-ai-card" aria-label="Transparencia sobre el uso de inteligencia artificial">
+          <div class="about-ai-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/><path d="m19 14 .9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14Z"/></svg>
+          </div>
+          <div class="about-ai-copy">
+            <span class="about-ai-kicker">Transparencia del proyecto</span>
+            <h3>La interfaz se hizo con ayuda de IA</h3>
+            <p>La inteligencia artificial se utilizó únicamente como ayuda para desarrollar la interfaz y el diseño de APPSLibre. El contenido del catálogo —las aplicaciones, los recursos y lo que se publica— lo elegí y preparé yo, como creador de la página.</p>
+            <p>Al final, lo importante no es si se usó IA, sino que la página cumpla bien su función y sea útil. Si ayuda a encontrar contenido y funciona como debe, usar IA para construir la interfaz no es ningún problema.</p>
+          </div>
+        </aside>
         <div class="about-note"><strong>Sobre la seguridad:</strong> el código abierto hace posible revisar cómo funciona una aplicación, pero no garantiza por sí solo que esté libre de virus o vulnerabilidades. No podemos prometer que todas las apps sean 100 % seguras. Para reducir riesgos, descargá desde la página o el repositorio oficial, revisá los permisos y comprobá que el proyecto siga mantenido. APPSLibre es un directorio: no modifica las apps ni distribuye sus instaladores.</div>
         <div class="about-channel-card">
           <div class="about-channel-copy">
@@ -5113,6 +5602,7 @@
       }
     }
     const saved = new Set(readSavedFavorites());
+    let favoritesMode = false;
     const allApps = () => [...originalApps];
     // Compatibilidad por proyecto para los repositorios cuyo tag no declara el sistema,
     // o para evitar inferencias erróneas. iPhone se limita deliberadamente a la sección Páginas.
@@ -5232,19 +5722,48 @@
       });
       const allActive = activeCategory === 'Todas';
       const categoryActive = !allActive;
-      filters.innerHTML = `<button class="filter${allActive ? ' active' : ''}" data-category="Todas" type="button">Todas</button>` +
+      filters.innerHTML = `<button class="filter${allActive && !favoritesMode ? ' active' : ''}" data-category="Todas" type="button">Todas</button>` +
+        `<button class="filter favorites-toggle${favoritesMode ? ' active' : ''}" id="favorites-toggle" type="button" aria-pressed="${favoritesMode}" title="Ver las aplicaciones guardadas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.75h12a1 1 0 0 1 1 1V21l-7-4-7 4V4.75a1 1 0 0 1 1-1Z"/></svg><span>Guardados</span><span class="favorites-count" id="favorites-count">${saved.size}</span></button>` +
         `<button class="filter category-toggle${categoryActive ? ' active' : ''}" id="category-toggle" type="button" aria-expanded="false" aria-controls="category-options" aria-pressed="${categoryActive}"><span>Categorías</span><span class="filter-selection" id="filter-selection">${allActive ? '' : ` · ${escapeHTML(activeCategory)}`}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>` +
         '<div class="category-options" id="category-options" role="group" aria-label="Categorías disponibles" hidden>' +
         categories.map(category => `<button class="filter category-option${category === activeCategory ? ' active' : ''}" data-category="${escapeHTML(category)}" type="button">${escapeHTML(category)}</button>`).join('') +
         '</div>';
     }
     const escapeHTML = (value) => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    // Obtiene una vista previa social generada por GitHub para el repositorio.
+    // Si el proyecto tiene una imagen configurada, GitHub la mostrará; si no, genera una tarjeta con sus datos.
+    function githubRepositoryPreview(app) {
+      const candidates = [app.source, app.site].filter(Boolean);
+      for (const candidate of candidates) {
+        try {
+          const url = new URL(candidate);
+          if (url.hostname !== 'github.com' && url.hostname !== 'www.github.com') continue;
+          const parts = url.pathname.split('/').filter(Boolean);
+          if (parts.length < 2) continue;
+          const owner = parts[0];
+          const repo = parts[1].replace(/\.git$/i, '');
+          if (!owner || !repo) continue;
+          return `https://opengraph.githubassets.com/1/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+        } catch (_) { /* Ignorar enlaces no válidos y probar la siguiente URL. */ }
+      }
+      return '';
+    }
+    function projectPreviewHTML(app, className) {
+      if (performanceMode) return '';
+      const repoPreview = githubRepositoryPreview(app);
+      const primary = String(app.photo || repoPreview || '').trim();
+      if (!primary) return '';
+      const fallback = repoPreview && primary !== repoPreview ? repoPreview : '';
+      const height = className === 'latest-app-preview' ? 112 : 166;
+      return `<img class="${className}" src="${escapeHTML(primary)}"${fallback ? ` data-fallback-src="${escapeHTML(fallback)}"` : ''} alt="Vista previa del proyecto ${escapeHTML(app.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="960" height="540" />`;
+    }
     function renderLatestApps() {
       if (!latestAppsGrid) return;
       // El número "featured" conserva el orden de incorporación al catálogo.
       const latest = [...appsForCurrentMode()].sort((a, b) => (b.featured || 0) - (a.featured || 0)).slice(0, 6);
       latestAppsGrid.innerHTML = latest.map(app => `
         <a class="latest-app-card" href="${escapeHTML(app.site)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${escapeHTML(app.name)} en una pestaña nueva">
+          ${projectPreviewHTML(app, 'latest-app-preview')}
           <div class="latest-app-head">
             <span class="latest-app-icon" style="background:${escapeHTML(app.color || '#e5e7eb')}">${escapeHTML(app.initials || app.name.slice(0, 2).toUpperCase())}</span>
             <span class="latest-app-title-wrap"><span class="latest-app-title">${escapeHTML(app.name)}</span><span class="latest-app-meta">${escapeHTML(app.category)} · ${escapeHTML(app.tag || 'Open source')}</span></span>
@@ -5254,25 +5773,197 @@
         </a>`).join('');
     }
     const iconSvg = (name) => name === 'heart'
-      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>'
-      : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>';
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>'
+      : name === 'download'
+        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>'
+        : name === 'star'
+          ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>'
+          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>';
+
+    function getProjectRepository(app) {
+      const candidates = [app.source, app.site].filter(Boolean);
+      for (const candidate of candidates) {
+        try {
+          const url = new URL(candidate);
+          const pathParts = url.pathname.split('/').filter(Boolean);
+          if ((url.hostname === 'github.com' || url.hostname === 'www.github.com') && pathParts.length >= 2) {
+            const owner = pathParts[0];
+            const repo = pathParts[1].replace(/\.git$/i, '');
+            if (owner && repo) return { kind: 'github', owner, repo, url: `https://github.com/${owner}/${repo}` };
+          }
+          if ((url.hostname === 'gitlab.com' || url.hostname === 'www.gitlab.com') && pathParts.length >= 2) {
+            const releaseMarker = pathParts.indexOf('-');
+            const projectParts = releaseMarker > 1 ? pathParts.slice(0, releaseMarker) : pathParts;
+            const projectPath = projectParts.join('/');
+            if (projectPath.includes('/')) return { kind: 'gitlab', projectPath, url: `https://gitlab.com/${projectPath}` };
+          }
+        } catch (_) { /* Probar el siguiente enlace. */ }
+      }
+      return null;
+    }
+
+    function downloadFallbackURL(app) {
+      if (app.download && typeof app.download === 'string') return app.download;
+      if (app.downloads && typeof app.downloads === 'object' && app.downloads[preferredPlatform]) return app.downloads[preferredPlatform];
+      const repo = getProjectRepository(app);
+      if (repo?.kind === 'github') return `${repo.url}/releases`;
+      if (repo?.kind === 'gitlab') return `${repo.url}/-/releases`;
+      return app.site || app.source || '#';
+    }
+
+    const releaseCache = new Map();
+    async function fetchReleaseAssets(app) {
+      const repo = getProjectRepository(app);
+      if (!repo) return [];
+      const cacheKey = `${repo.kind}:${repo.kind === 'github' ? `${repo.owner}/${repo.repo}` : repo.projectPath}`;
+      if (releaseCache.has(cacheKey)) return releaseCache.get(cacheKey);
+      const request = (async () => {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 6500);
+        try {
+          let endpoint;
+          if (repo.kind === 'github') {
+            endpoint = `https://api.github.com/repos/${encodeURIComponent(repo.owner)}/${encodeURIComponent(repo.repo)}/releases?per_page=10`;
+          } else {
+            endpoint = `https://gitlab.com/api/v4/projects/${encodeURIComponent(repo.projectPath)}/releases?per_page=10`;
+          }
+          const response = await fetch(endpoint, { headers: { 'Accept': 'application/json' }, signal: controller.signal, cache: 'force-cache' });
+          if (!response.ok) return [];
+          const releases = await response.json();
+          if (!Array.isArray(releases)) return [];
+          const assets = [];
+          for (const release of releases.slice(0, 10)) {
+            const releaseAssets = repo.kind === 'github'
+              ? (Array.isArray(release.assets) ? release.assets : []).map(asset => ({ name: asset.name || '', url: asset.browser_download_url || '' }))
+              : (Array.isArray(release.assets?.links) ? release.assets.links : []).map(asset => ({ name: asset.name || '', url: asset.direct_asset_url || asset.url || '' }));
+            for (const asset of releaseAssets) {
+              if (asset.url && /^https:\/\//i.test(asset.url)) assets.push({ ...asset, publishedAt: release.published_at || release.released_at || release.created_at || '' });
+            }
+          }
+          return assets;
+        } catch (_) {
+          return [];
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      })();
+      releaseCache.set(cacheKey, request);
+      const assets = await request;
+      if (!assets.length) releaseCache.delete(cacheKey);
+      return assets;
+    }
+
+    function downloadAssetScore(assetName, platform) {
+      const name = String(assetName || '').toLowerCase();
+      if (!name || /source[ _-]?code|\bsources?\b|checksums?|sha256|sha512|\.asc$|\.sig$|debug-symbol|symbols\.zip|\.pdb$/i.test(name)) return -1;
+      if (platform === 'all') return -1;
+      if (platform === 'android') {
+        let score = name.endsWith('.apk') ? 100 : name.endsWith('.apks') ? 88 : name.endsWith('.xapk') ? 82 : -1;
+        if (score < 0) return -1;
+        if (/universal|all-devices|all_devices/.test(name)) score += 20;
+        if (/arm64-v8a|arm64|aarch64/.test(name)) score += 12;
+        if (/android/.test(name)) score += 8;
+        if (/release/.test(name)) score += 3;
+        if (/debug|unsigned/.test(name)) score -= 8;
+        if (/x86_64|x86-64/.test(name)) score -= 4;
+        return score;
+      }
+      if (platform === 'phone') {
+        if (!name.endsWith('.ipa')) return -1;
+        return 100 + (/ios|iphone|universal/.test(name) ? 10 : 0);
+      }
+      if (platform === 'windows') {
+        if (/linux|appimage|\.deb\b|\.rpm\b|\.flatpak/.test(name)) return -1;
+        const priorities = [['.msix',120],['.msi',118],['.exe',115],['.appx',110],['.7z',75],['.zip',70],['.tar.gz',60],['.tar.xz',55]];
+        let score = priorities.find(([extension]) => name.endsWith(extension))?.[1] ?? -1;
+        const windowsHint = /windows|win64|win32|win-x64|win-x86|x64|x86_64|amd64/.test(name);
+        if (score >= 0 && ['.zip','.7z','.tar.gz','.tar.xz'].some(extension => name.endsWith(extension)) && !windowsHint) return -1;
+        if (score >= 0 && windowsHint) score += 15;
+        if (/arm64|aarch64/.test(name)) score += 4;
+        if (/portable|installer|setup/.test(name)) score += 4;
+        return score;
+      }
+      if (platform === 'linux') {
+        if (/windows|win64|win32|\.msi\b|\.exe\b|\.msix\b|\.appx\b/.test(name)) return -1;
+        const priorities = [['.appimage',125],['.flatpakref',118],['.flatpak',116],['.deb',114],['.rpm',110],['.tar.zst',75],['.tar.xz',70],['.tar.gz',65],['.zip',58]];
+        let score = priorities.find(([extension]) => name.endsWith(extension))?.[1] ?? -1;
+        const linuxHint = /linux|appimage|ubuntu|debian|fedora|x86_64|amd64|aarch64|arm64/.test(name);
+        if (score >= 0 && ['.tar.zst','.tar.xz','.tar.gz','.zip'].some(extension => name.endsWith(extension)) && !linuxHint) return -1;
+        if (score >= 0 && linuxHint) score += 12;
+        if (/arm64|aarch64/.test(name)) score += 5;
+        return score;
+      }
+      return -1;
+    }
+
+    async function findDirectDownload(app, platform) {
+      if (app.download && typeof app.download === 'string') return app.download;
+      if (app.downloads && typeof app.downloads === 'object' && app.downloads[platform]) return app.downloads[platform];
+      if (platform === 'all') return '';
+      const assets = await fetchReleaseAssets(app);
+      const sorted = assets
+        .map(asset => ({ ...asset, score: downloadAssetScore(asset.name, platform) }))
+        .filter(asset => asset.score >= 0)
+        .sort((a, b) => b.score - a.score || String(b.publishedAt).localeCompare(String(a.publishedAt)));
+      return sorted[0]?.url || '';
+    }
+
+    async function openPlatformDownload(app) {
+      const fallbackURL = downloadFallbackURL(app);
+      if (!app) return;
+      // Abrimos la pestaña sincrónicamente desde el clic para evitar bloqueadores de ventanas.
+      const downloadWindow = window.open('about:blank', '_blank');
+      if (!downloadWindow) {
+        showToast('El navegador bloqueó la pestaña; abrimos las descargas oficiales en esta pestaña.');
+        window.location.href = fallbackURL;
+        return;
+      }
+      try {
+        downloadWindow.document.title = `Preparando descarga · ${app.name}`;
+        downloadWindow.document.body.style.cssText = 'margin:0;min-height:100vh;display:grid;place-items:center;background:#f6f7f9;color:#17191d;font:16px system-ui,sans-serif';
+        downloadWindow.document.body.textContent = `Buscando una descarga para ${app.name}…`;
+        downloadWindow.opener = null;
+      } catch (_) { /* El enlace de respaldo sigue disponible si no se puede modificar la ventana. */ }
+      const platformLabels = { android: 'Android', windows: 'Windows', linux: 'Linux', phone: 'iPhone / iOS', all: 'todas las plataformas' };
+      try {
+        const directURL = await findDirectDownload(app, preferredPlatform);
+        downloadWindow.location.href = directURL || fallbackURL;
+        if (directURL) showToast(`Descarga compatible con ${platformLabels[preferredPlatform] || preferredPlatform}: ${app.name}`);
+        else if (preferredPlatform === 'all') showToast('Abrimos las versiones oficiales para que elijas el archivo adecuado.');
+        else showToast('No encontramos un instalador directo compatible; abrimos las versiones oficiales.');
+      } catch (_) {
+        downloadWindow.location.href = fallbackURL;
+        showToast('Abrimos las descargas oficiales del proyecto.');
+      }
+    }
+
+    function isRepositoryURL(value) {
+      try {
+        const host = new URL(value).hostname;
+        return ['github.com', 'www.github.com', 'gitlab.com', 'www.gitlab.com', 'codeberg.org'].includes(host);
+      } catch (_) { return false; }
+    }
     function cardHTML(app) {
       const isSaved = saved.has(app.id);
-      // Si la imagen falla, el evento delegado la quita y la ficha conserva su icono, nombre y descripción.
-      const photoHTML = app.photo && !performanceMode ? `<img class="app-photo" src="${escapeHTML(app.photo)}" alt="Imagen de ${escapeHTML(app.name)}" loading="lazy" decoding="async">` : '';
+      // Usa la imagen proporcionada por la ficha o genera una vista previa desde el repositorio.
+      // Si fallan ambas, queda la tarjeta compacta con iniciales, nombre y descripción.
+      const photoHTML = projectPreviewHTML(app, 'app-photo');
       const sameProjectLink = !app.source || app.source === app.site;
+      const siteLabel = isRepositoryURL(app.site) ? 'Ver código' : 'Web';
+      const sourceLabel = 'Ver código';
       const projectLink = sameProjectLink
-        ? `<a class="card-link" href="${escapeHTML(app.site)}" target="_blank" rel="noopener noreferrer">Ver proyecto ${iconSvg('external')}</a>`
-        : `<a class="card-link" href="${escapeHTML(app.site)}" target="_blank" rel="noopener noreferrer">Web ${iconSvg('external')}</a><a class="card-link" href="${escapeHTML(app.source)}" target="_blank" rel="noopener noreferrer">Código ${iconSvg('external')}</a>`;
+        ? `<a class="card-link" href="${escapeHTML(app.site)}" target="_blank" rel="noopener noreferrer">${siteLabel} ${iconSvg('external')}</a>`
+        : `<a class="card-link" href="${escapeHTML(app.site)}" target="_blank" rel="noopener noreferrer">${siteLabel} ${iconSvg('external')}</a><a class="card-link" href="${escapeHTML(app.source)}" target="_blank" rel="noopener noreferrer">${sourceLabel} ${iconSvg('external')}</a>`;
+      const downloadLink = `<a class="card-link download-link" href="${escapeHTML(downloadFallbackURL(app))}" target="_blank" rel="noopener noreferrer" data-download-app="${escapeHTML(app.id)}" aria-label="Buscar descarga para ${escapeHTML(app.name)} según la plataforma seleccionada" title="Descargar ${escapeHTML(app.name)}">${iconSvg('download')}</a>`;
       return `<article class="app-card">
         ${photoHTML}
         <div class="card-top">
           <div class="app-icon" style="background:${escapeHTML(app.color || '#c5f467')}">${escapeHTML(app.initials || app.name.slice(0,2).toUpperCase())}</div>
           <div class="app-title-wrap"><h3 class="app-title">${escapeHTML(app.name)}</h3><div class="app-category">${escapeHTML(app.category)} · ${escapeHTML(app.tag || 'Open source')}</div></div>
-          <button class="favorite ${isSaved?'saved':''}" data-favorite="${escapeHTML(app.id)}" type="button" aria-label="${isSaved?'Quitar de':'Agregar a'} favoritos: ${escapeHTML(app.name)}" aria-pressed="${isSaved}">${iconSvg('heart')}</button>
+          <button class="favorite ${isSaved?'saved':''}" data-favorite="${escapeHTML(app.id)}" type="button" aria-label="${isSaved?'Quitar de':'Agregar a'} favoritos: ${escapeHTML(app.name)}" title="${isSaved?'Quitar de favoritos':'Agregar a favoritos'}" aria-pressed="${isSaved}">${iconSvg('heart')}</button>
         </div>
         <p class="app-description">${escapeHTML(app.desc)}</p>
-        <div class="card-bottom"><span class="open-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg> Código abierto</span><div class="card-links">${projectLink}</div></div>
+        <div class="card-bottom"><span class="open-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg> Código abierto</span><div class="card-links">${projectLink}${downloadLink}</div></div>
       </article>`;
     }
     function layoutAppGrid() {
@@ -5291,8 +5982,8 @@
         card.style.gridRowEnd = `span ${span}`;
       });
     }
-    // Las imágenes externas pueden estar caídas. Quitar solo la miniatura fallida evita huecos vacíos;
-    // recalculamos la cuadrícula una vez por frame para reducir reajustes durante el scroll.
+    // Las vistas previas externas pueden fallar. Primero intentamos la tarjeta social de GitHub;
+    // si tampoco carga, quitamos la miniatura y queda la tarjeta compacta con icono y texto.
     let appGridLayoutPending = false;
     function scheduleAppGridLayout() {
       if (performanceMode || appGridLayoutPending) return;
@@ -5302,12 +5993,22 @@
         layoutAppGrid();
       });
     }
-    appGrid.addEventListener('error', event => {
+    function handleProjectPreviewError(event) {
       const image = event.target;
-      if (!(image instanceof HTMLImageElement) || !image.classList.contains('app-photo')) return;
+      if (!(image instanceof HTMLImageElement) || !image.matches('.app-photo, .latest-app-preview')) return;
+      const fallback = image.getAttribute('data-fallback-src');
+      const current = image.getAttribute('src');
+      if (fallback && current !== fallback && image.dataset.fallbackTried !== 'true') {
+        image.dataset.fallbackTried = 'true';
+        image.setAttribute('src', fallback);
+        return;
+      }
+      // Sin imagen disponible, elimina el espacio de la miniatura: la ficha conserva su icono y texto.
       image.remove();
-      scheduleAppGridLayout();
-    }, true);
+      if (image.classList.contains('app-photo')) scheduleAppGridLayout();
+    }
+    appGrid.addEventListener('error', handleProjectPreviewError, true);
+    if (latestAppsGrid) latestAppsGrid.addEventListener('error', handleProjectPreviewError, true);
     window.addEventListener('resize', scheduleAppGridLayout, { passive: true });
 
     function updateCatalogStats() {
@@ -5333,24 +6034,71 @@
     }
     function render() {
       const query = searchInput.value.trim().toLocaleLowerCase('es');
+      const favoritesHub = document.getElementById('favorites-hub');
+      const catalogOverview = document.querySelector('.catalog-overview');
+      const latestSection = document.getElementById('latest-apps-section');
+      const headingKicker = document.getElementById('catalog-kicker');
+      const headingTitle = document.getElementById('catalog-heading');
+      const headingDescription = document.getElementById('catalog-description');
+      const favoritesCount = document.getElementById('favorites-count');
+      const favoritesHubCount = document.getElementById('favorites-hub-count');
+      const favoritesToggle = document.getElementById('favorites-toggle');
+      const emptyTitle = document.getElementById('empty-state-title');
+      const emptyMessage = document.getElementById('empty-state-message');
+      const resetButton = document.getElementById('reset-filters');
+      document.body.classList.toggle('favorites-view-active', favoritesMode);
+      if (favoritesHub) favoritesHub.hidden = !favoritesMode;
+      if (catalogOverview) catalogOverview.hidden = favoritesMode;
+      if (latestSection) latestSection.hidden = favoritesMode;
+      if (headingKicker) headingKicker.textContent = favoritesMode ? 'TU BIBLIOTECA' : 'El catálogo';
+      if (headingTitle) headingTitle.textContent = favoritesMode ? 'Tus guardados y favoritos.' : 'Explorá apps y proyectos libres.';
+      if (headingDescription) headingDescription.textContent = favoritesMode
+        ? 'Encontrá de nuevo tus proyectos favoritos y seguí explorando cuando quieras.'
+        : 'Buscá aplicaciones, herramientas, frameworks, recursos de aprendizaje y entrá al repositorio oficial.';
+      if (favoritesCount) favoritesCount.textContent = String(saved.size);
+      if (favoritesHubCount) favoritesHubCount.textContent = String(saved.size);
+      if (favoritesToggle) {
+        favoritesToggle.classList.toggle('active', favoritesMode);
+        favoritesToggle.setAttribute('aria-pressed', String(favoritesMode));
+      }
       let apps = appsForCurrentMode().filter(app => {
         const matchCategory = activeCategory === 'Todas' || app.category === activeCategory;
         const haystack = `${app.name} ${app.category} ${app.desc} ${app.tag || ''}`.toLocaleLowerCase('es');
         const matchQuery = !query || haystack.includes(query);
-        const matchSaved = sortSelect.value !== 'saved' || saved.has(app.id);
+        const matchSaved = !favoritesMode || saved.has(app.id);
         return matchCategory && matchQuery && matchSaved;
       });
       if (sortSelect.value === 'az') apps.sort((a,b)=>a.name.localeCompare(b.name,'es'));
-      else if (sortSelect.value === 'saved') apps.sort((a,b)=>a.name.localeCompare(b.name,'es'));
       else apps.sort((a,b)=>(a.featured || 99)-(b.featured || 99));
       appGrid.innerHTML = apps.map(cardHTML).join('');
       emptyState.style.display = apps.length ? 'none' : 'block';
+      emptyState.classList.toggle('favorites-empty', favoritesMode && apps.length === 0);
       appGrid.style.display = apps.length ? 'grid' : 'none';
+      if (!apps.length && favoritesMode) {
+        const availableSavedCount = appsForCurrentMode().filter(app => saved.has(app.id)).length;
+        if (saved.size === 0) {
+          emptyTitle.textContent = 'Tu biblioteca está vacía por ahora.';
+          emptyMessage.textContent = 'Tocá el corazón de una aplicación para guardarla aquí y encontrarla fácilmente después.';
+          resetButton.textContent = 'Explorar catálogo';
+        } else if (availableSavedCount === 0) {
+          emptyTitle.textContent = 'No hay guardados para esta plataforma.';
+          emptyMessage.textContent = 'Tus favoritos siguen guardados. Cambiá la plataforma en las preferencias para ver otros proyectos.';
+          resetButton.textContent = 'Volver al catálogo';
+        } else {
+          emptyTitle.textContent = 'No hay guardados con estos filtros.';
+          emptyMessage.textContent = 'Probá borrar la búsqueda o seleccionar otra categoría.';
+          resetButton.textContent = 'Ver todos mis guardados';
+        }
+      } else {
+        emptyTitle.textContent = 'No encontramos aplicaciones.';
+        emptyMessage.textContent = 'Probá con otra búsqueda o elegí una categoría distinta.';
+        resetButton.textContent = 'Ver todas las apps';
+      }
       // Calcular el diseño una sola vez por render. Las miniaturas reservan su altura,
       // incluso si una URL externa falla, para evitar saltos durante el desplazamiento.
       layoutAppGrid();
       const platformLabels = { android: 'Android', windows: 'Windows', linux: 'Linux', phone: 'Phone / iOS', all: 'todas las plataformas' };
-      resultCount.textContent = `${apps.length} ${apps.length === 1 ? 'resultado' : 'resultados'}${sortSelect.value === 'saved' ? ' · favoritos' : ''}${commonUserMode ? ' · usuario común' : ''}${hasRootAccess === false ? ' · sin root' : ''}${preferredPlatform !== 'all' ? ` · ${platformLabels[preferredPlatform] || preferredPlatform}` : ''}`;
+      resultCount.textContent = `${apps.length} ${favoritesMode ? (apps.length === 1 ? 'favorito guardado' : 'favoritos guardados') : (apps.length === 1 ? 'resultado' : 'resultados')}${commonUserMode ? ' · usuario común' : ''}${hasRootAccess === false ? ' · sin root' : ''}${preferredPlatform !== 'all' ? ` · ${platformLabels[preferredPlatform] || preferredPlatform}` : ''}`;
       updateCatalogStats();
       clearSearch.classList.toggle('visible', !!searchInput.value);
     }
@@ -5361,6 +6109,16 @@
       toastTimeout = setTimeout(()=>toast.classList.remove('show'), 2600);
     }
     document.getElementById('filters').addEventListener('click', event => {
+      const favoritesButton = event.target.closest('#favorites-toggle');
+      if (favoritesButton) {
+        favoritesMode = !favoritesMode;
+        activeCategory = 'Todas';
+        searchInput.value = '';
+        sortSelect.value = 'featured';
+        buildCategoryFilters();
+        render();
+        return;
+      }
       const toggle = event.target.closest('#category-toggle');
       if (toggle) {
         const options = document.getElementById('category-options');
@@ -5375,7 +6133,17 @@
       }
       const button = event.target.closest('[data-category]');
       if (!button) return;
-      activeCategory = button.dataset.category;
+      const chosenCategory = button.dataset.category;
+      if (chosenCategory === 'Todas' && favoritesMode) {
+        favoritesMode = false;
+        activeCategory = 'Todas';
+        searchInput.value = '';
+        sortSelect.value = 'featured';
+        buildCategoryFilters();
+        render();
+        return;
+      }
+      activeCategory = chosenCategory;
       const options = document.getElementById('category-options');
       const categoryToggle = document.getElementById('category-toggle');
       const allButton = document.querySelector('#filters > [data-category="Todas"]');
@@ -5402,6 +6170,13 @@
     clearSearch.addEventListener('click',()=>{searchInput.value=''; searchInput.focus(); render();});
     sortSelect.addEventListener('change',render);
     appGrid.addEventListener('click', event => {
+      const downloadLink = event.target.closest('[data-download-app]');
+      if (downloadLink) {
+        event.preventDefault();
+        const app = originalApps.find(item => item.id === downloadLink.dataset.downloadApp);
+        if (app) openPlatformDownload(app);
+        return;
+      }
       const button = event.target.closest('[data-favorite]');
       if (!button) return;
       const id = button.dataset.favorite;
@@ -5414,17 +6189,26 @@
       }
       render();
     });
-    document.getElementById('reset-filters').addEventListener('click',()=>{
-      activeCategory='Todas'; searchInput.value=''; sortSelect.value='featured';
-      document.querySelectorAll('#category-options [data-category]').forEach(el=>el.classList.remove('active'));
-      const allButton = document.querySelector('#filters > [data-category="Todas"]');
-      const categoryToggle = document.getElementById('category-toggle');
-      allButton.classList.add('active');
-      categoryToggle.classList.remove('active');
-      categoryToggle.setAttribute('aria-pressed', 'false');
-      categoryToggle.setAttribute('aria-expanded', 'false');
-      document.getElementById('filter-selection').textContent = '';
+    function resetCatalogFilters() {
+      activeCategory = 'Todas';
+      searchInput.value = '';
+      sortSelect.value = 'featured';
       document.getElementById('category-options').hidden = true;
+      document.getElementById('filter-selection').textContent = '';
+      buildCategoryFilters();
+      render();
+    }
+    document.getElementById('reset-filters').addEventListener('click', () => {
+      if (favoritesMode && (saved.size === 0 || !appsForCurrentMode().some(app => saved.has(app.id)))) favoritesMode = false;
+      resetCatalogFilters();
+    });
+    const favoritesBackButton = document.getElementById('favorites-back');
+    if (favoritesBackButton) favoritesBackButton.addEventListener('click', () => {
+      favoritesMode = false;
+      activeCategory = 'Todas';
+      searchInput.value = '';
+      sortSelect.value = 'featured';
+      buildCategoryFilters();
       render();
     });
     let catalogIntroRunning = false;
@@ -5460,15 +6244,17 @@
       }, reducedMotion ? 650 : 1750);
     }
     function revealContentNow(targetId = 'explorar') {
-      document.body.classList.remove('catalog-visible', 'news-visible', 'pages-visible', 'about-visible');
+      document.body.classList.remove('catalog-visible', 'news-visible', 'pages-visible', 'about-visible', 'repositories-visible');
       if (targetId === 'noticias') document.body.classList.add('news-visible');
       else if (targetId === 'paginas') document.body.classList.add('pages-visible');
       else if (targetId === 'nosotros') document.body.classList.add('about-visible');
+      else if (targetId === 'repositorios') document.body.classList.add('repositories-visible');
       else document.body.classList.add('catalog-visible');
 
       const newsLink = document.querySelector('.nav-news');
       const pagesLink = document.querySelector('.nav-pages');
       const aboutLink = document.querySelector('.nav-about');
+      const reposLink = document.querySelector('.nav-repos');
       if (newsLink) {
         if (targetId === 'noticias') newsLink.setAttribute('aria-current', 'page');
         else newsLink.removeAttribute('aria-current');
@@ -5480,6 +6266,10 @@
       if (aboutLink) {
         if (targetId === 'nosotros') aboutLink.setAttribute('aria-current', 'page');
         else aboutLink.removeAttribute('aria-current');
+      }
+      if (reposLink) {
+        if (targetId === 'repositorios') reposLink.setAttribute('aria-current', 'page');
+        else reposLink.removeAttribute('aria-current');
       }
 
       requestAnimationFrame(() => {
@@ -5494,13 +6284,15 @@
     }
     document.querySelectorAll('a[href="#inicio"]').forEach(a => a.addEventListener('click', event => {
       event.preventDefault();
-      document.body.classList.remove('catalog-visible', 'news-visible', 'pages-visible', 'about-visible');
+      document.body.classList.remove('catalog-visible', 'news-visible', 'pages-visible', 'about-visible', 'repositories-visible');
       const newsLink = document.querySelector('.nav-news');
       const pagesLink = document.querySelector('.nav-pages');
       const aboutLink = document.querySelector('.nav-about');
+      const reposLink = document.querySelector('.nav-repos');
       if (newsLink) newsLink.removeAttribute('aria-current');
       if (pagesLink) pagesLink.removeAttribute('aria-current');
       if (aboutLink) aboutLink.removeAttribute('aria-current');
+      if (reposLink) reposLink.removeAttribute('aria-current');
       window.scrollTo({ top: 0, behavior: (performanceMode || window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth' });
     }));
     document.querySelectorAll('a[href="#explorar"]').forEach(a => a.addEventListener('click', event => {
@@ -5518,6 +6310,10 @@
     document.querySelectorAll('a[href="#paginas"]').forEach(a => a.addEventListener('click', event => {
       event.preventDefault();
       revealContent('paginas');
+    }));
+    document.querySelectorAll('a[href="#repositorios"]').forEach(a => a.addEventListener('click', event => {
+      event.preventDefault();
+      revealContent('repositorios');
     }));
     // Buscador independiente de la sección Páginas: filtra nombre y descripción sin imágenes.
     const pagesGrid = document.getElementById('pages-grid');
@@ -5577,7 +6373,7 @@
     buildCategoryFilters();
     renderLatestApps();
     updateCatalogStats();
-    // Asistente de primera visita: cuatro preguntas, una por pantalla; rendimiento se define en la cuarta.
+    // Asistente de primera visita: cinco preguntas, una por pantalla; el tema aparece primero.
     const firstVisitOverlay = document.getElementById('first-visit-onboarding');
     const firstVisitForm = document.getElementById('first-visit-form');
     const onboardingSteps = firstVisitForm ? Array.from(firstVisitForm.querySelectorAll('[data-onboarding-step]')) : [];
@@ -5621,10 +6417,14 @@
       }
     }
     function syncOnboardingForm() {
+      let themeValue = document.documentElement.getAttribute('data-theme') === 'black' ? 'black' : 'light';
       let basicValue = commonUserMode ? 'simple' : 'all';
       try {
+        const savedTheme = window.localStorage.getItem('appslibre-theme');
+        if (savedTheme === 'black' || savedTheme === 'light') themeValue = savedTheme;
         if (window.localStorage.getItem('appslibre-common-user') === null) basicValue = 'simple';
       } catch (_) { basicValue = 'simple'; }
+      chooseOnboardingOption('onboarding-theme', themeValue);
       chooseOnboardingOption('onboarding-basic', basicValue);
       chooseOnboardingOption('onboarding-root', hasRootAccess === true ? 'yes' : 'no');
       chooseOnboardingOption('onboarding-platform', preferredPlatform || 'android');
@@ -5655,7 +6455,7 @@
         if (!activeStep || !activeStep.querySelector('input[type="radio"]:checked')) return;
         onboardingTransitionLocked = true;
 
-        // Las primeras tres aceptaciones avanzan solo una pregunta; el bloqueo evita
+        // Las primeras cuatro aceptaciones avanzan solo una pregunta; el bloqueo evita
         // que un doble clic salte accidentalmente varias pantallas.
         if (onboardingStepIndex < onboardingSteps.length - 1) {
           showOnboardingStep(onboardingStepIndex + 1, true);
@@ -5669,6 +6469,17 @@
 
         const isFirstVisit = document.documentElement.classList.contains('first-visit');
         const answers = new FormData(firstVisitForm);
+        const selectedTheme = answers.get('onboarding-theme') === 'black' ? 'black' : 'light';
+        document.documentElement.setAttribute('data-theme', selectedTheme);
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeMeta = document.querySelector('meta[name="theme-color"]');
+        const isBlackTheme = selectedTheme === 'black';
+        if (themeToggle) {
+          themeToggle.setAttribute('aria-pressed', String(isBlackTheme));
+          themeToggle.setAttribute('aria-label', isBlackTheme ? 'Cambiar a tema blanco' : 'Cambiar a tema negro');
+          themeToggle.title = isBlackTheme ? 'Cambiar a tema blanco' : 'Cambiar a tema negro';
+        }
+        if (themeMeta) themeMeta.setAttribute('content', isBlackTheme ? '#0b0b0d' : '#f6f7f9');
         commonUserMode = answers.get('onboarding-basic') === 'simple';
         hasRootAccess = answers.get('onboarding-root') === 'yes';
         preferredPlatform = ['android', 'windows', 'linux', 'phone', 'all'].includes(answers.get('onboarding-platform'))
@@ -5686,7 +6497,8 @@
         firstVisitOverlay.setAttribute('aria-hidden', 'true');
         try {
           window.localStorage.setItem('appslibre-onboarding-complete', 'true');
-          window.localStorage.setItem('appslibre-onboarding-version', '3');
+          window.localStorage.setItem('appslibre-onboarding-version', '4');
+          window.localStorage.setItem('appslibre-theme', selectedTheme);
           window.localStorage.setItem('appslibre-common-user', String(commonUserMode));
           window.localStorage.setItem('appslibre-has-root', String(hasRootAccess));
           window.localStorage.setItem('appslibre-platform', preferredPlatform);
@@ -5703,12 +6515,9 @@
         onboardingTransitionLocked = false;
         if (onboardingSubmit) onboardingSubmit.disabled = false;
 
-        if (isFirstVisit) {
-          // Tras completar la configuración inicial, mostrar el contenido de la plataforma elegida.
-          window.setTimeout(() => revealContent(preferredPlatform === 'phone' ? 'paginas' : 'explorar'), 80);
-        } else {
-          if (preferredPlatform === 'phone') revealContent('paginas');
-          else revealContent('explorar');
+        // Al terminar la configuración, conservar la portada. El catálogo solo se abre
+        // cuando el usuario pulsa explícitamente «Explorar contenido».
+        if (!isFirstVisit) {
           showToast('Preferencias guardadas. ¡Bienvenido a APPSLibre!');
         }
       };
@@ -5735,7 +6544,7 @@
     }
     setupFirstVisitWizard();
 
-    // El catálogo principal se renderiza cuando se pulsa «Explorar catálogo».
+    // El catálogo principal se renderiza cuando se pulsa «Explorar contenido».
 
 
     // Cursor circular semitransparente. Solo se activa en dispositivos con mouse/trackpad.
